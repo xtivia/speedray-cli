@@ -39,7 +39,10 @@ module.exports = {
 
       // Configuration.
       'set': require('../commands/set').default,
-      'get': require('../commands/get').default
+      'get': require('../commands/get').default,
+
+      //Speedray additions
+      'speedray:jar': require('../commands/speedray-jar').default
     };
   }
 };
