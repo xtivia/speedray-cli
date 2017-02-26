@@ -9,8 +9,8 @@ const pollDefault = config.config.defaults && config.config.defaults.poll;
 
 // defaults for BuildOptions
 export const baseJarCommandOptions: any = [
-  { name: 'output-path', type: 'Path', aliases: ['op'] },
-  { name: 'input-path', type: String, default: 'liferay/build/**/*', aliases: ['ip'] },
+  { name: 'output-path', type: 'Path', default: 'dist', aliases: ['op'] },
+  { name: 'input-path', type: 'Path', default: 'liferay', aliases: ['ip'] },
   { name: 'gogo-port', type: Number, default: 11311, aliases: ['gp'] }
 ];
 
@@ -32,7 +32,7 @@ const JarCommand = Command.extend({
     // Check angular version.
     Version.assertAngularVersionIs2_3_1OrHigher(project.root);
 
-    const JarTask = require('../tasks/speedary/jar').default;
+    const JarTask = require('../tasks/speedray/jar').default;
 
     const jarTask = new JarTask({
       cliProject: project,
