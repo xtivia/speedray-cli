@@ -42,7 +42,8 @@ module.exports = {
       'get': require('../commands/get').default,
 
       //Speedray additions
-      'speedray:jar': require('../commands/speedray-jar').default
+      'jar': require('../commands/jar').default,
+      'deploy': require('../commands/deploy').default
     };
   }
 };

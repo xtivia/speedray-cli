@@ -44,11 +44,11 @@ const commandsToIgnore = [
   'init'
 ];
 
-const optsNg: string[] = [];
+const optsSr: string[] = [];
 
 const CompletionCommand = Command.extend({
   name: 'completion',
-  description: 'Adds autocomplete functionality to `ng` commands and subcommands',
+  description: 'Adds autocomplete functionality to `sr` commands and subcommands',
   works: 'everywhere',
   availableOptions: [
     { name: 'all',   type: Boolean, default: true,  aliases: ['a'] },
@@ -89,12 +89,12 @@ const CompletionCommand = Command.extend({
         tasks: this.tasks
       });
 
-      optsNg.push(command.name);
+      optsSr.push(command.name);
       com.push(command.name);
 
       if (command.aliases) {
         command.aliases.forEach((element: string) => {
-          optsNg.push(element);
+          optsSr.push(element);
           com.push(element);
         });
       }
@@ -110,23 +110,23 @@ const CompletionCommand = Command.extend({
       }
     });
 
-    caseBlock = 'ng|help) opts="' + optsNg.sort().join(' ') + '" ;;\n' +
+    caseBlock = 'sr|help) opts="' + optsSr.sort().join(' ') + '" ;;\n' +
       caseBlock +
       '    *) opts="" ;;';
 
     console.log(stripIndent`
-      ###-begin-ng-completion###
+      ###-begin-sr-completion###
       #
 
-      # ng command completion script
+      # sr command completion script
       #   This command supports 3 cases.
       #   1. (Default case) It prints a common completion initialisation for both Bash and Zsh.
-      #      It is the result of either calling "ng completion" or "ng completion -a".
-      #   2. Produce Bash-only completion: "ng completion -b" or "ng completion --bash".
-      #   3. Produce Zsh-only completion: "ng completion -z" or "ng completion --zsh".
+      #      It is the result of either calling "sr completion" or "sr completion -a".
+      #   2. Produce Bash-only completion: "sr completion -b" or "sr completion --bash".
+      #   3. Produce Zsh-only completion: "sr completion -z" or "sr completion --zsh".
       #
-      # Installation: ng completion -b >> ~/.bashrc
-      #           or  ng completion -z >> ~/.zshrc
+      # Installation: sr completion -b >> ~/.bashrc
+      #           or  sr completion -z >> ~/.zshrc
       #`);
 
     if (commandOptions.all && !commandOptions.bash) {
@@ -135,7 +135,7 @@ const CompletionCommand = Command.extend({
 
     if (commandOptions.all || commandOptions.bash) {
       console.log(stripIndent`
-          _ng_completion() {
+          _sr_completion() {
            local cword pword opts
 
            COMPREPLY=()
@@ -151,7 +151,7 @@ const CompletionCommand = Command.extend({
            return 0
          }
 
-         complete -o default -F _ng_completion ng
+         complete -o default -F _sr_completion sr
          `);
     }
 
@@ -163,7 +163,7 @@ const CompletionCommand = Command.extend({
 
     if (commandOptions.all || commandOptions.zsh) {
       console.log(stripIndent`
-          _ng_completion () {
+          _sr_completion () {
             local words cword opts
             read -Ac words
             read -cn cword
@@ -178,7 +178,7 @@ const CompletionCommand = Command.extend({
             unset shwordsplit
           }
 
-          compctl -K _ng_completion ng
+          compctl -K _sr_completion sr
           `);
     }
 
@@ -190,7 +190,7 @@ const CompletionCommand = Command.extend({
         fi`);
     }
 
-    console.log('###-end-ng-completion###');
+    console.log('###-end-sr-completion###');
 
   }
 });

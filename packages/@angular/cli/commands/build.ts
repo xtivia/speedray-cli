@@ -50,7 +50,7 @@ export interface BuildTaskOptions extends BuildOptions {
 
 const BuildCommand = Command.extend({
   name: 'build',
-  description: 'Builds your app and places it into the output path (dist/ by default).',
+  description: 'Builds your app and places it into the output path (liferay/dist/ by default).',
   aliases: ['b'],
 
   availableOptions: baseBuildCommandOptions.concat([

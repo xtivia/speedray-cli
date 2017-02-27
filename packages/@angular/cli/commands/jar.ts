@@ -1,6 +1,7 @@
 import { CliConfig } from '../models/config';
 import { Version } from '../upgrade/version';
 import { SpeedrayJarOptions } from '../models/speedray/jar-options';
+import { baseBuildCommandOptions } from './build';
 
 const Command = require('../ember-cli/lib/models/command');
 
@@ -8,19 +9,18 @@ const config = CliConfig.fromProject() || CliConfig.fromGlobal();
 const pollDefault = config.config.defaults && config.config.defaults.poll;
 
 // defaults for BuildOptions
-export const baseJarCommandOptions: any = [
+export const baseJarCommandOptions: any = baseBuildCommandOptions.concat([
   { name: 'output-path', type: 'Path', default: 'dist', aliases: ['op'] },
-  { name: 'input-path', type: 'Path', default: 'liferay', aliases: ['ip'] },
-  { name: 'gogo-port', type: Number, default: 11311, aliases: ['gp'] }
-];
+  { name: 'input-path', type: 'Path', default: 'liferay', aliases: ['ip'] }
+]);
 
 export interface JarTaskOptions extends SpeedrayJarOptions {
 }
 
 const JarCommand = Command.extend({
-  name: 'speedray-jar',
+  name: 'jar',
   description: 'Create a portlet jar for deployment to Liferay DXP',
-  aliases: ['s-j'],
+  aliases: ['j'],
 
   availableOptions: baseJarCommandOptions.concat([
   ]),

@@ -4,11 +4,11 @@
 // Provide a title to the process in `ps`
 process.title = '@speedray/cli';
 
-const CliConfig = require('../models/config').CliConfig;
-const Version = require('../upgrade/version').Version;
+const CliConfig = require('../../@angular/models/config').CliConfig;
+const Version = require('../../@angular/upgrade/version').Version;
 
 const fs = require('fs');
-const packageJson = require('../package.json');
+const packageJson = require('../../package.json');
 const path = require('path');
 const resolve = require('resolve');
 const stripIndents = require('common-tags').stripIndents;
@@ -95,7 +95,7 @@ resolve('@angular/cli', { basedir: process.cwd() },
       // library from a package.json. Instead, include it from a relative
       // path to this script file (which is likely a globally installed
       // npm package). Most common cause for hitting this is `ng new`
-      cli = require('../lib/cli');
+      cli = require('../../@angular/lib/cli');
     } else {
       // Verify that package's version.
       Version.assertPostWebpackVersion();
