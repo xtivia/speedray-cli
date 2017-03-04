@@ -26,7 +26,7 @@
       "node"
     ],
     "paths": {
-      "@angular/cli/*": [ "./packages/@angular/cli/*" ],
+      "@speedray/cli/*": [ "./packages/@speedray/cli/*" ],
       "@ngtools/json-schema": [ "./packages/json-schema/src" ],
       "@ngtools/logger": [ "./packages/logger/src" ],
       "@ngtools/webpack": [ "./packages/webpack/src" ]
