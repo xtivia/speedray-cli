@@ -27,7 +27,7 @@ Error.stackTraceLimit = Infinity;
  *   --noproject      Skip creating a project or using one.
  *   --nobuild        Skip building the packages. Use with --nolink and --reuse to quickly
  *                    rerun tests.
- *   --nolink         Skip linking your local @angular/cli directory. Can save a few seconds.
+ *   --nolink         Skip linking your local @speedray/cli directory. Can save a few seconds.
  *   --ng-sha=SHA     Use a specific ng-sha. Similar to nightly but point to a master SHA instead
  *                    of using the latest.
  *   --glob           Run tests matching this glob pattern (relative to tests/e2e/).

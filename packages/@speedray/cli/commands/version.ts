@@ -29,7 +29,7 @@ const VersionCommand = Command.extend({
     versions.os = process.platform + ' ' + process.arch;
 
     const alwaysPrint = ['node', 'os'];
-    const roots = ['@angular/', '@ngtools/'];
+    const roots = ['@speedray/', '@angular/', '@ngtools/'];
 
     let ngCliVersion = pkg.version;
     if (!__dirname.match(/node_modules/)) {

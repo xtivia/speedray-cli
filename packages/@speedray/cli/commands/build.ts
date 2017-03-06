@@ -16,8 +16,8 @@ export const baseBuildCommandOptions: any = [
     aliases: ['t', { 'dev': 'development' }, { 'prod': 'production' }]
   },
   { name: 'environment', type: String, aliases: ['e'] },
-  { name: 'output-path', type: 'Path', aliases: ['op'] },
-  { name: 'aot', type: Boolean },
+  { name: 'output-path', type: 'Path', default: 'liferay/dist', aliases: ['op'] },
+  { name: 'aot', default: false, type: Boolean },
   { name: 'sourcemap', type: Boolean, aliases: ['sm', 'sourcemaps'] },
   { name: 'vendor-chunk', type: Boolean, default: true, aliases: ['vc'] },
   { name: 'base-href', type: String, aliases: ['bh'] },

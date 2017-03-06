@@ -27,7 +27,8 @@ const DeployCommand = Command.extend({
 
   run: function (commandOptions: DeployTaskOptions) {
     const project = this.project;
-
+    
+    const config = CliConfig.fromProject().config;
     // Check angular version.
     Version.assertAngularVersionIs2_3_1OrHigher(project.root);
 

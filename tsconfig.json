@@ -33,7 +33,7 @@
     }
   },
   "exclude": [
-    "packages/@angular/cli/blueprints/*/files/**/*",
+    "packages/@speedray/cli/blueprints/*/files/**/*",
     "dist/**/*",
     "node_modules/**/*",
     "tmp/**/*"

@@ -59,8 +59,8 @@ Promise.resolve()
   .then(() => console.log('Creating schema.d.ts...'))
   .then(() => {
     const script = path.join(root, 'scripts/build-schema-dts.js');
-    const input = path.join(root, 'packages/@angular/cli/lib/config/schema.json');
-    const output = path.join(root, 'packages/@angular/cli/lib/config/schema.d.ts');
+    const input = path.join(root, 'packages/@speedray/cli/lib/config/schema.json');
+    const output = path.join(root, 'packages/@speedray/cli/lib/config/schema.d.ts');
     return npmRun.execSync(`node "${script}" "${input}" "${output}"`);
   })
   .then(() => console.log('Compiling packages...'))
@@ -174,7 +174,7 @@ Promise.resolve()
     const extraFiles = ['CHANGELOG.md', 'CONTRIBUTING.md', 'README.md'];
     return Promise.all(extraFiles.map(fileName => {
       console.log(`Copying ${fileName}...`);
-      return copy(fileName, path.join('dist/@angular/cli', fileName));
+      return copy(fileName, path.join('dist/@speedray/cli', fileName));
     }));
   })
   .then(() => {

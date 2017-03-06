@@ -14,7 +14,7 @@ export default function () {
         return;
       }
 
-      const distAngularCli = packages['@angular/cli'].dist;
+      const distAngularCli = packages['@speedray/cli'].dist;
       const oldCwd = process.cwd();
       process.chdir(distAngularCli);
 

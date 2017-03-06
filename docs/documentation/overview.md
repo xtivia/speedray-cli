@@ -8,7 +8,7 @@ The Angular CLI is a tool to initialize, develop, scaffold  and maintain [Angula
 ### Getting Started
 To install the Angular CLI:
 ```
-npm install -g @angular/cli
+npm install -g @speedray/cli
 ```
 
 Generating and serving an Angular project via a development server

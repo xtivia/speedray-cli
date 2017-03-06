@@ -5,4 +5,4 @@
 process.title = '@speedray/cli';
 
 require('../lib/bootstrap-local');
-require('../packages/@speedray/cli/bin/ng');
+require('../packages/@speedray/cli/bin/sr');

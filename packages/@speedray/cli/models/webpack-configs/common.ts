@@ -23,11 +23,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  * require('file-loader')
  */
 
+function startsWithIn(resource: string, paths: string[]): boolean {
+  if(paths && resource) {
+    for(var i=0;i<paths.length;i++) {
+      if(resource.startsWith(paths[i])) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 export function getCommonConfig(wco: WebpackConfigOptions) {
   const { projectRoot, buildOptions, appConfig } = wco;
 
   const appRoot = path.resolve(projectRoot, appConfig.root);
-  const nodeModules = path.resolve(projectRoot, 'node_modules');
+  const nodeModules: string[] = [path.resolve(projectRoot, 'node_modules'),
+                        // Handle node modules when linked not installed
+                        path.resolve(__dirname, '../../../../../node_modules')];
 
   let extraPlugins: any[] = [];
   let extraRules: any[] = [];
@@ -66,7 +79,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     extraPlugins.push(new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: ['main'],
-      minChunks: (module: any) => module.resource && module.resource.startsWith(nodeModules)
+      minChunks: (module: any) => module.resource && startsWithIn(module.resource,nodeModules)
     }));
   }
 
@@ -86,10 +99,10 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     devtool: buildOptions.sourcemap ? 'source-map' : false,
     resolve: {
       extensions: ['.ts', '.js'],
-      modules: [nodeModules],
+      modules: nodeModules,
     },
     resolveLoader: {
-      modules: [nodeModules]
+      modules: nodeModules
     },
     context: projectRoot,
     entry: entryPoints,
@@ -101,7 +114,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     },
     module: {
       rules: [
-        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader', exclude: [nodeModules] },
+        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader', exclude: [nodeModules.join(',')] },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.html$/, loader: 'raw-loader' },
         { test: /\.(eot|svg)$/, loader: `file-loader?name=[name]${hashFormat.file}.[ext]` },

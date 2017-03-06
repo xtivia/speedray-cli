@@ -32,7 +32,7 @@ function _angularImportsFromNode(node: ts.ImportDeclaration, sourceFile: ts.Sour
       return [];
   }
 
-  if (!modulePath.startsWith('@angular/')) {
+  if (!(modulePath.startsWith('@speedray/')||modulePath.startsWith('@angular/'))) {
     return [];
   }
 

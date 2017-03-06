@@ -2,7 +2,7 @@
   "name": "@speedray/cli",
   "version": "1.0.0-beta.1.1",
   "description": "CLI tool for Angular/Speedray",
-  "main": "packages/@angular/cli/lib/cli/index.js",
+  "main": "packages/@speedray/cli/lib/cli/index.js",
   "trackingCode": "UA-8594346-19",
   "bin": {
     "sr": "./bin/sr"
@@ -27,18 +27,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/angular-cli.git"
+    "url": "https://github.com/ddavis2xtivia/speedray-cli.git"
   },
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.0.0"
   },
   "author": "Angular Authors, Xtivia Authors",
-  "license": "LGPL-3",
+  "license": "LGPL-3.0",
   "bugs": {
-    "url": "https://github.com/angular/angular-cli/issues"
+    "url": "https://github.com/ddavis2xtivia/speedray-cli/issues"
   },
-  "homepage": "https://github.com/angular/angular-cli",
+  "homepage": "https://github.com/ddavis2xtivia/speedray-cli",
   "dependencies": {
     "@angular/compiler": "^2.3.1",
     "@angular/compiler-cli": "^2.3.1",
@@ -109,7 +109,7 @@
   },
   "ember-addon": {
     "paths": [
-      "./packages/@angular/cli/lib/addon"
+      "./packages/@speedray/cli/lib/addon"
     ]
   },
   "devDependencies": {

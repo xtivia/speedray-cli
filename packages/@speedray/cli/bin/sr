@@ -74,19 +74,6 @@ if (version.compare(new SemVer('6.9.0')) < 0
   `));
 }
 
-
-if (require('../package.json')['name'] == 'angular-cli'
-  && CliConfig.fromGlobal().get('warnings.packageDeprecation')) {
-  process.stderr.write(yellow(stripIndents`
-    As a forewarning, we are moving the CLI npm package to "@speedray/cli" with the next release,
-    which will only support Node 6.9 and greater. This package will be officially deprecated
-    shortly after.
-
-    To disable this warning use "sr set --global warnings.packageDeprecation=false".
-  `));
-}
-
-
 resolve('@speedray/cli', { basedir: process.cwd() },
   function (error, projectLocalCli) {
     var cli;

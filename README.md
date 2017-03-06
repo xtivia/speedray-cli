@@ -45,7 +45,7 @@ with NPM 3 or higher.
 
 **BEFORE YOU INSTALL:** please read the [prerequisites](#prerequisites)
 ```bash
-npm install -g @angular/cli
+npm install -g @speedray/cli
 ```
 
 ## Usage
@@ -104,15 +104,15 @@ To update Angular CLI to a new version, you must update both the global package 
 
 Global package:
 ```bash
-npm uninstall -g angular-cli @angular/cli
+npm uninstall -g angular-cli @speedray/cli
 npm cache clean
-npm install -g @angular/cli@latest
+npm install -g @speedray/cli@latest
 ```
 
 Local project package:
 ```bash
 rm -rf node_modules dist # use rmdir on Windows
-npm install --save-dev @angular/cli@latest
+npm install --save-dev @speedray/cli@latest
 npm install
 ```
 
@@ -131,25 +131,25 @@ npm link
 
 `npm link` is very similar to `npm install -g` except that instead of downloading the package
 from the repo, the just cloned `angular-cli/` folder becomes the global package.
-Any changes to the files in the `angular-cli/` folder will immediately affect the global `@angular/cli` package,
+Any changes to the files in the `angular-cli/` folder will immediately affect the global `@speedray/cli` package,
 allowing you to quickly test any changes you make to the cli project.
 
-Now you can use `@angular/cli` via the command line:
+Now you can use `@speedray/cli` via the command line:
 
 ```bash
 ng new foo
 cd foo
-npm link @angular/cli
+npm link @speedray/cli
 ng serve
 ```
 
-`npm link @angular/cli` is needed because by default the globally installed `@angular/cli` just loads
-the local `@angular/cli` from the project which was fetched remotely from npm.
-`npm link @angular/cli` symlinks the global `@angular/cli` package to the local `@angular/cli` package.
+`npm link @speedray/cli` is needed because by default the globally installed `@speedray/cli` just loads
+the local `@speedray/cli` from the project which was fetched remotely from npm.
+`npm link @speedray/cli` symlinks the global `@speedray/cli` package to the local `@speedray/cli` package.
 Now the `angular-cli` you cloned before is in three places:
 The folder you cloned it into, npm's folder where it stores global packages and the Angular CLI project you just created.
 
-You can also use `ng new foo --link-cli` to automatically link the `@angular/cli` package.
+You can also use `ng new foo --link-cli` to automatically link the `@speedray/cli` package.
 
 Please read the official [npm-link documentation](https://www.npmjs.org/doc/cli/npm-link.html)
 and the [npm-link cheatsheet](http://browsenpm.org/help#linkinganynpmpackagelocally) for more information.
@@ -166,5 +166,5 @@ MIT
 [david-badge-url]: https://david-dm.org/angular/angular-cli
 [david-dev-badge]: https://david-dm.org/angular/angular-cli/dev-status.svg
 [david-dev-badge-url]: https://david-dm.org/angular/angular-cli?type=dev
-[npm-badge]: https://img.shields.io/npm/v/@angular/cli.svg
-[npm-badge-url]: https://www.npmjs.com/package/@angular/cli
+[npm-badge]: https://img.shields.io/npm/v/@speedray/cli.svg
+[npm-badge-url]: https://www.npmjs.com/package/@speedray/cli

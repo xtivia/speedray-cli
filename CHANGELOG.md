@@ -4,42 +4,42 @@
 
 ### Bug Fixes
 
-* **@angular/cli:** don't load old ember config ([98a3430](https://github.com/angular/angular-cli/commit/98a3430)), closes [#4057](https://github.com/angular/angular-cli/issues/4057)
-* **@angular/cli:** don't rerun protractor on rebuild ([#4661](https://github.com/angular/angular-cli/issues/4661)) ([3a85ffc](https://github.com/angular/angular-cli/commit/3a85ffc))
-* **@angular/cli:** fixing the help command ([#4726](https://github.com/angular/angular-cli/issues/4726)) ([121c390](https://github.com/angular/angular-cli/commit/121c390))
-* **@angular/cli:** generate command now ignores duplicate component symbol ([#4446](https://github.com/angular/angular-cli/issues/4446)) ([9c25f74](https://github.com/angular/angular-cli/commit/9c25f74)), closes [#4323](https://github.com/angular/angular-cli/issues/4323)
-* **@angular/cli:** include polyfills before scripts in ng test ([ca29eab](https://github.com/angular/angular-cli/commit/ca29eab)), closes [#4545](https://github.com/angular/angular-cli/issues/4545) [#4656](https://github.com/angular/angular-cli/issues/4656)
-* **@angular/cli:** lint now works with excluded files. ([351f6b1](https://github.com/angular/angular-cli/commit/351f6b1))
-* **@angular/cli:** remove component generation from module generation ([#4706](https://github.com/angular/angular-cli/issues/4706)) ([9db71d8](https://github.com/angular/angular-cli/commit/9db71d8)), closes [#4209](https://github.com/angular/angular-cli/issues/4209)
-* **@angular/cli:** remove inexistent tslint override ([82b9715](https://github.com/angular/angular-cli/commit/82b9715)), closes [#4696](https://github.com/angular/angular-cli/issues/4696)
-* **@angular/cli:** show blueprints in completion script ([26b1ee4](https://github.com/angular/angular-cli/commit/26b1ee4)), closes [#4571](https://github.com/angular/angular-cli/issues/4571)
-* **@angular/cli:** use correct tslint rule args ([#4662](https://github.com/angular/angular-cli/issues/4662)) ([16bceee](https://github.com/angular/angular-cli/commit/16bceee)), closes [#4648](https://github.com/angular/angular-cli/issues/4648)
-* **@angular/cli:** use default .map filename ([#4742](https://github.com/angular/angular-cli/issues/4742)) ([78313b3](https://github.com/angular/angular-cli/commit/78313b3)), closes [#4741](https://github.com/angular/angular-cli/issues/4741)
+* **@speedray/cli:** don't load old ember config ([98a3430](https://github.com/angular/angular-cli/commit/98a3430)), closes [#4057](https://github.com/angular/angular-cli/issues/4057)
+* **@speedray/cli:** don't rerun protractor on rebuild ([#4661](https://github.com/angular/angular-cli/issues/4661)) ([3a85ffc](https://github.com/angular/angular-cli/commit/3a85ffc))
+* **@speedray/cli:** fixing the help command ([#4726](https://github.com/angular/angular-cli/issues/4726)) ([121c390](https://github.com/angular/angular-cli/commit/121c390))
+* **@speedray/cli:** generate command now ignores duplicate component symbol ([#4446](https://github.com/angular/angular-cli/issues/4446)) ([9c25f74](https://github.com/angular/angular-cli/commit/9c25f74)), closes [#4323](https://github.com/angular/angular-cli/issues/4323)
+* **@speedray/cli:** include polyfills before scripts in ng test ([ca29eab](https://github.com/angular/angular-cli/commit/ca29eab)), closes [#4545](https://github.com/angular/angular-cli/issues/4545) [#4656](https://github.com/angular/angular-cli/issues/4656)
+* **@speedray/cli:** lint now works with excluded files. ([351f6b1](https://github.com/angular/angular-cli/commit/351f6b1))
+* **@speedray/cli:** remove component generation from module generation ([#4706](https://github.com/angular/angular-cli/issues/4706)) ([9db71d8](https://github.com/angular/angular-cli/commit/9db71d8)), closes [#4209](https://github.com/angular/angular-cli/issues/4209)
+* **@speedray/cli:** remove inexistent tslint override ([82b9715](https://github.com/angular/angular-cli/commit/82b9715)), closes [#4696](https://github.com/angular/angular-cli/issues/4696)
+* **@speedray/cli:** show blueprints in completion script ([26b1ee4](https://github.com/angular/angular-cli/commit/26b1ee4)), closes [#4571](https://github.com/angular/angular-cli/issues/4571)
+* **@speedray/cli:** use correct tslint rule args ([#4662](https://github.com/angular/angular-cli/issues/4662)) ([16bceee](https://github.com/angular/angular-cli/commit/16bceee)), closes [#4648](https://github.com/angular/angular-cli/issues/4648)
+* **@speedray/cli:** use default .map filename ([#4742](https://github.com/angular/angular-cli/issues/4742)) ([78313b3](https://github.com/angular/angular-cli/commit/78313b3)), closes [#4741](https://github.com/angular/angular-cli/issues/4741)
 * **@ngtools/webpack:** fix error with object spread ([#4642](https://github.com/angular/angular-cli/issues/4642)) ([8b3e300](https://github.com/angular/angular-cli/commit/8b3e300)), closes [#4600](https://github.com/angular/angular-cli/issues/4600)
 
 
 ### Code Refactoring
 
-* **@angular/cli:** remove ng init & ng update ([#4628](https://github.com/angular/angular-cli/issues/4628)) ([a127cad](https://github.com/angular/angular-cli/commit/a127cad))
-* **@angular/cli:** rename config file from angular-cli.json to .angular-cli.json ([#4681](https://github.com/angular/angular-cli/issues/4681)) ([809340a](https://github.com/angular/angular-cli/commit/809340a))
-* **@angular/cli:** remove compression plugin
+* **@speedray/cli:** remove ng init & ng update ([#4628](https://github.com/angular/angular-cli/issues/4628)) ([a127cad](https://github.com/angular/angular-cli/commit/a127cad))
+* **@speedray/cli:** rename config file from angular-cli.json to .angular-cli.json ([#4681](https://github.com/angular/angular-cli/issues/4681)) ([809340a](https://github.com/angular/angular-cli/commit/809340a))
+* **@speedray/cli:** remove compression plugin
 
 
 
 ### Features
 
-* **@angular/cli:** add --stats-json flag to build ([#4189](https://github.com/angular/angular-cli/issues/4189)) ([469ca91](https://github.com/angular/angular-cli/commit/469ca91)), closes [#3179](https://github.com/angular/angular-cli/issues/3179)
-* **@angular/cli:** add in-browser development error overlay ([7ea8013](https://github.com/angular/angular-cli/commit/7ea8013)), closes [#4513](https://github.com/angular/angular-cli/issues/4513)
-* **@angular/cli:** add watch flag to serve/e2e ([#4749](https://github.com/angular/angular-cli/issues/4749)) ([9d29cbc](https://github.com/angular/angular-cli/commit/9d29cbc))
-* **@angular/cli:** added *.sublime-workspace to gitignore blueprint ([#4698](https://github.com/angular/angular-cli/issues/4698)) ([f8b5c94](https://github.com/angular/angular-cli/commit/f8b5c94))
-* **@angular/cli:** added argument for karma configuration file ([#4564](https://github.com/angular/angular-cli/issues/4564)) ([b9295e0](https://github.com/angular/angular-cli/commit/b9295e0)), closes [#183](https://github.com/angular/angular-cli/issues/183)
-* **@angular/cli:** allow assets from outside of app root. ([9e91d86](https://github.com/angular/angular-cli/commit/9e91d86)), closes [#3555](https://github.com/angular/angular-cli/issues/3555) [#4691](https://github.com/angular/angular-cli/issues/4691)
-* **@angular/cli:** allow component css imports ([#4667](https://github.com/angular/angular-cli/issues/4667)) ([e55cb82](https://github.com/angular/angular-cli/commit/e55cb82)), closes [#4285](https://github.com/angular/angular-cli/issues/4285)
-* **@angular/cli:** disable invalid commands on ejected apps ([6402a27](https://github.com/angular/angular-cli/commit/6402a27)), closes [#4680](https://github.com/angular/angular-cli/issues/4680)
-* **@angular/cli:** eject command ([7ac0d05](https://github.com/angular/angular-cli/commit/7ac0d05))
-* **@angular/cli:** extend karma.conf.js w/ kjhtml reporter ([4543be9](https://github.com/angular/angular-cli/commit/4543be9)), closes [#4567](https://github.com/angular/angular-cli/issues/4567)
-* **@angular/cli:** use environmentSource key for environments ([#4705](https://github.com/angular/angular-cli/issues/4705)) ([16bfdf0](https://github.com/angular/angular-cli/commit/16bfdf0)), closes [#3857](https://github.com/angular/angular-cli/issues/3857)
-* **@angular/cli:** version shows ejected app or not ([6b53cd0](https://github.com/angular/angular-cli/commit/6b53cd0))
+* **@speedray/cli:** add --stats-json flag to build ([#4189](https://github.com/angular/angular-cli/issues/4189)) ([469ca91](https://github.com/angular/angular-cli/commit/469ca91)), closes [#3179](https://github.com/angular/angular-cli/issues/3179)
+* **@speedray/cli:** add in-browser development error overlay ([7ea8013](https://github.com/angular/angular-cli/commit/7ea8013)), closes [#4513](https://github.com/angular/angular-cli/issues/4513)
+* **@speedray/cli:** add watch flag to serve/e2e ([#4749](https://github.com/angular/angular-cli/issues/4749)) ([9d29cbc](https://github.com/angular/angular-cli/commit/9d29cbc))
+* **@speedray/cli:** added *.sublime-workspace to gitignore blueprint ([#4698](https://github.com/angular/angular-cli/issues/4698)) ([f8b5c94](https://github.com/angular/angular-cli/commit/f8b5c94))
+* **@speedray/cli:** added argument for karma configuration file ([#4564](https://github.com/angular/angular-cli/issues/4564)) ([b9295e0](https://github.com/angular/angular-cli/commit/b9295e0)), closes [#183](https://github.com/angular/angular-cli/issues/183)
+* **@speedray/cli:** allow assets from outside of app root. ([9e91d86](https://github.com/angular/angular-cli/commit/9e91d86)), closes [#3555](https://github.com/angular/angular-cli/issues/3555) [#4691](https://github.com/angular/angular-cli/issues/4691)
+* **@speedray/cli:** allow component css imports ([#4667](https://github.com/angular/angular-cli/issues/4667)) ([e55cb82](https://github.com/angular/angular-cli/commit/e55cb82)), closes [#4285](https://github.com/angular/angular-cli/issues/4285)
+* **@speedray/cli:** disable invalid commands on ejected apps ([6402a27](https://github.com/angular/angular-cli/commit/6402a27)), closes [#4680](https://github.com/angular/angular-cli/issues/4680)
+* **@speedray/cli:** eject command ([7ac0d05](https://github.com/angular/angular-cli/commit/7ac0d05))
+* **@speedray/cli:** extend karma.conf.js w/ kjhtml reporter ([4543be9](https://github.com/angular/angular-cli/commit/4543be9)), closes [#4567](https://github.com/angular/angular-cli/issues/4567)
+* **@speedray/cli:** use environmentSource key for environments ([#4705](https://github.com/angular/angular-cli/issues/4705)) ([16bfdf0](https://github.com/angular/angular-cli/commit/16bfdf0)), closes [#3857](https://github.com/angular/angular-cli/issues/3857)
+* **@speedray/cli:** version shows ejected app or not ([6b53cd0](https://github.com/angular/angular-cli/commit/6b53cd0))
 * **@ngtools/webpack:** add an option to redirect files ([e0edccf](https://github.com/angular/angular-cli/commit/e0edccf))
 * **build:** add `--poll` option to build/serve/test commands ([57ef508](https://github.com/angular/angular-cli/commit/57ef508)), closes [#4268](https://github.com/angular/angular-cli/issues/4268) [#4715](https://github.com/angular/angular-cli/issues/4715)
 * **new:** read GIT_AUTHOR_NAME/_EMAIL from process.ENV for initial commit message ([fd4cf47](https://github.com/angular/angular-cli/commit/fd4cf47)), closes [#4012](https://github.com/angular/angular-cli/issues/4012)
@@ -47,13 +47,13 @@
 
 ### BREAKING CHANGES
 
-* @angular/cli: compressed output (.gz) is no longer generated on production builds.
-* @angular/cli: sourcemaps now are always [filename].map (e.g `main.bundle.js.map` instead of `main.bundle.map`).
-* @angular/cli: The configuration file angular-cli.json has been renamed to .angular-cli.json
-* @angular/cli: Generating a module with routing will no longer generate an associated component.
-* @angular/cli: 'assets' as a string in angular-cli.json is no longer allowed, use an array instead.
-* @angular/cli: Removing the `ng init` & `ng update` commands because their current implementation causes more problems than it solves. Once RC is released, we won't need to use those to update anymore as the step will be as simple as installing the latest version of the CLI.
-* @angular/cli: A new environmentSource entry replaces the previous source entry inside environments.
+* @speedray/cli: compressed output (.gz) is no longer generated on production builds.
+* @speedray/cli: sourcemaps now are always [filename].map (e.g `main.bundle.js.map` instead of `main.bundle.map`).
+* @speedray/cli: The configuration file angular-cli.json has been renamed to .angular-cli.json
+* @speedray/cli: Generating a module with routing will no longer generate an associated component.
+* @speedray/cli: 'assets' as a string in angular-cli.json is no longer allowed, use an array instead.
+* @speedray/cli: Removing the `ng init` & `ng update` commands because their current implementation causes more problems than it solves. Once RC is released, we won't need to use those to update anymore as the step will be as simple as installing the latest version of the CLI.
+* @speedray/cli: A new environmentSource entry replaces the previous source entry inside environments.
 	To migrate the code follow the example below:
 
 	Before:
@@ -88,16 +88,16 @@ Special thanks to: [Andrew Seguin](https://github.com/andrewseguin), [Bram Borgg
 ### Bug Fixes
 
 * **.nvmrc:** change Node.js version from 4 to 6 ([#4399](https://github.com/angular/angular-cli/issues/4399)) ([e6422e9](https://github.com/angular/angular-cli/commit/e6422e9))
-* **@angular/cli:** add a dependency to RXJS ([#4465](https://github.com/angular/angular-cli/issues/4465)) ([39fa206](https://github.com/angular/angular-cli/commit/39fa206))
-* **@angular/cli:** add environment file to compilerHost ([#4475](https://github.com/angular/angular-cli/issues/4475)) ([2797a89](https://github.com/angular/angular-cli/commit/2797a89)), closes [#4375](https://github.com/angular/angular-cli/issues/4375)
-* **@angular/cli:** Bail out if output path is the root folder ([#4490](https://github.com/angular/angular-cli/issues/4490)) ([22f4bea](https://github.com/angular/angular-cli/commit/22f4bea))
-* **@angular/cli:** Bail out if output path is the root folder pt2 ([#4518](https://github.com/angular/angular-cli/issues/4518)) ([488185b](https://github.com/angular/angular-cli/commit/488185b))
-* **@angular/cli:** create app.component.styl for Stylus. ([#4540](https://github.com/angular/angular-cli/issues/4540)) ([0f7a35f](https://github.com/angular/angular-cli/commit/0f7a35f))
-* **@angular/cli:** don't override base-href if not directly specified ([#4489](https://github.com/angular/angular-cli/issues/4489)) ([6bab5ec](https://github.com/angular/angular-cli/commit/6bab5ec))
-* **@angular/cli:** GlobCopyWebpackPlugin should wait until assets are added before completing ([849155c](https://github.com/angular/angular-cli/commit/849155c))
-* **@angular/cli:** improve bootstrapping time ([#4537](https://github.com/angular/angular-cli/issues/4537)) ([6b26f91](https://github.com/angular/angular-cli/commit/6b26f91))
-* **@angular/cli:** remove unneeded dependencies ([#4473](https://github.com/angular/angular-cli/issues/4473)) ([d8f36df](https://github.com/angular/angular-cli/commit/d8f36df))
-* **@angular/cli:** update dependency to remove install warning ([#4562](https://github.com/angular/angular-cli/issues/4562)) ([4e06612](https://github.com/angular/angular-cli/commit/4e06612))
+* **@speedray/cli:** add a dependency to RXJS ([#4465](https://github.com/angular/angular-cli/issues/4465)) ([39fa206](https://github.com/angular/angular-cli/commit/39fa206))
+* **@speedray/cli:** add environment file to compilerHost ([#4475](https://github.com/angular/angular-cli/issues/4475)) ([2797a89](https://github.com/angular/angular-cli/commit/2797a89)), closes [#4375](https://github.com/angular/angular-cli/issues/4375)
+* **@speedray/cli:** Bail out if output path is the root folder ([#4490](https://github.com/angular/angular-cli/issues/4490)) ([22f4bea](https://github.com/angular/angular-cli/commit/22f4bea))
+* **@speedray/cli:** Bail out if output path is the root folder pt2 ([#4518](https://github.com/angular/angular-cli/issues/4518)) ([488185b](https://github.com/angular/angular-cli/commit/488185b))
+* **@speedray/cli:** create app.component.styl for Stylus. ([#4540](https://github.com/angular/angular-cli/issues/4540)) ([0f7a35f](https://github.com/angular/angular-cli/commit/0f7a35f))
+* **@speedray/cli:** don't override base-href if not directly specified ([#4489](https://github.com/angular/angular-cli/issues/4489)) ([6bab5ec](https://github.com/angular/angular-cli/commit/6bab5ec))
+* **@speedray/cli:** GlobCopyWebpackPlugin should wait until assets are added before completing ([849155c](https://github.com/angular/angular-cli/commit/849155c))
+* **@speedray/cli:** improve bootstrapping time ([#4537](https://github.com/angular/angular-cli/issues/4537)) ([6b26f91](https://github.com/angular/angular-cli/commit/6b26f91))
+* **@speedray/cli:** remove unneeded dependencies ([#4473](https://github.com/angular/angular-cli/issues/4473)) ([d8f36df](https://github.com/angular/angular-cli/commit/d8f36df))
+* **@speedray/cli:** update dependency to remove install warning ([#4562](https://github.com/angular/angular-cli/issues/4562)) ([4e06612](https://github.com/angular/angular-cli/commit/4e06612))
 * **@ngtools/json-schema:** enum values properly handle defaults and null. ([#4387](https://github.com/angular/angular-cli/issues/4387)) ([ea9f334](https://github.com/angular/angular-cli/commit/ea9f334))
 * **@ngtools/json-schema:** support enums in d.ts ([#4426](https://github.com/angular/angular-cli/issues/4426)) ([6ff0f80](https://github.com/angular/angular-cli/commit/6ff0f80))
 * **@ngtools/webpack:** better ctor parameters in AOT ([#4428](https://github.com/angular/angular-cli/issues/4428)) ([7f25548](https://github.com/angular/angular-cli/commit/7f25548)), closes [#4427](https://github.com/angular/angular-cli/issues/4427)
@@ -111,18 +111,18 @@ Special thanks to: [Andrew Seguin](https://github.com/andrewseguin), [Bram Borgg
 
 ### Code Refactoring
 
-* **@angular/cli:** removed the github pages deploy command ([#4385](https://github.com/angular/angular-cli/issues/4385)) ([0f8689b](https://github.com/angular/angular-cli/commit/0f8689b))
+* **@speedray/cli:** removed the github pages deploy command ([#4385](https://github.com/angular/angular-cli/issues/4385)) ([0f8689b](https://github.com/angular/angular-cli/commit/0f8689b))
 
 
 ### Features
 
-* **@angular/cli:** add ability to exclude files and directories ([#4437](https://github.com/angular/angular-cli/issues/4437)) ([6e3186d](https://github.com/angular/angular-cli/commit/6e3186d)), closes [#4350](https://github.com/angular/angular-cli/issues/4350)
-* **@angular/cli:** add ng4 option to ng new ([#4507](https://github.com/angular/angular-cli/issues/4507)) ([c096afb](https://github.com/angular/angular-cli/commit/c096afb))
-* **@angular/cli:** Add options for third party package manager ([#4321](https://github.com/angular/angular-cli/issues/4321)) ([d2849c7](https://github.com/angular/angular-cli/commit/d2849c7))
-* **@angular/cli:** add schema to the config ([#4504](https://github.com/angular/angular-cli/issues/4504)) ([186d50d](https://github.com/angular/angular-cli/commit/186d50d))
-* **@angular/cli:** Generate completion.sh automatically. ([d2f8ca7](https://github.com/angular/angular-cli/commit/d2f8ca7)), closes [#3981](https://github.com/angular/angular-cli/issues/3981)
-* **@angular/cli:** provide '--sourcemaps' alias for build ([#4462](https://github.com/angular/angular-cli/issues/4462)) ([e0fb87c](https://github.com/angular/angular-cli/commit/e0fb87c))
-* **@angular/cli:** show detailed help for blueprints. ([#4267](https://github.com/angular/angular-cli/issues/4267)) ([b20d87e](https://github.com/angular/angular-cli/commit/b20d87e))
+* **@speedray/cli:** add ability to exclude files and directories ([#4437](https://github.com/angular/angular-cli/issues/4437)) ([6e3186d](https://github.com/angular/angular-cli/commit/6e3186d)), closes [#4350](https://github.com/angular/angular-cli/issues/4350)
+* **@speedray/cli:** add ng4 option to ng new ([#4507](https://github.com/angular/angular-cli/issues/4507)) ([c096afb](https://github.com/angular/angular-cli/commit/c096afb))
+* **@speedray/cli:** Add options for third party package manager ([#4321](https://github.com/angular/angular-cli/issues/4321)) ([d2849c7](https://github.com/angular/angular-cli/commit/d2849c7))
+* **@speedray/cli:** add schema to the config ([#4504](https://github.com/angular/angular-cli/issues/4504)) ([186d50d](https://github.com/angular/angular-cli/commit/186d50d))
+* **@speedray/cli:** Generate completion.sh automatically. ([d2f8ca7](https://github.com/angular/angular-cli/commit/d2f8ca7)), closes [#3981](https://github.com/angular/angular-cli/issues/3981)
+* **@speedray/cli:** provide '--sourcemaps' alias for build ([#4462](https://github.com/angular/angular-cli/issues/4462)) ([e0fb87c](https://github.com/angular/angular-cli/commit/e0fb87c))
+* **@speedray/cli:** show detailed help for blueprints. ([#4267](https://github.com/angular/angular-cli/issues/4267)) ([b20d87e](https://github.com/angular/angular-cli/commit/b20d87e))
 * **e2e:** use protractor api ([#4527](https://github.com/angular/angular-cli/issues/4527)) ([8d2d93a](https://github.com/angular/angular-cli/commit/8d2d93a)), closes [#4256](https://github.com/angular/angular-cli/issues/4256) [#4478](https://github.com/angular/angular-cli/issues/4478)
 * add support for [@angular](https://github.com/angular)/service-worker and manifest generation ([cb2e418](https://github.com/angular/angular-cli/commit/cb2e418)), closes [#4544](https://github.com/angular/angular-cli/issues/4544)
 * support TS 2.1 ([#4572](https://github.com/angular/angular-cli/issues/4572)) ([c617c21](https://github.com/angular/angular-cli/commit/c617c21))
@@ -131,12 +131,12 @@ Special thanks to: [Andrew Seguin](https://github.com/andrewseguin), [Bram Borgg
 ### BREAKING CHANGES
 
 * e2e: `ng e2e` no longer needs `ng serve` to be running.
-* @angular/cli: `--skip-npm` flag is now named `--skip-install`
-* @angular/cli: The deploy command is being removed from the core of the CLI.
+* @speedray/cli: `--skip-npm` flag is now named `--skip-install`
+* @speedray/cli: The deploy command is being removed from the core of the CLI.
 There are several options for deploying CLI-based applications outside the scope of this project.
 One of which being https://github.com/angular-buch/angular-cli-ghpages
-* @angular/cli: The default LCOV file is now `coverage/lcov.info` instead of `coverage/coverage.lcov`.
-* @angular/cli:`ng test --code-coverage` now uses `karma-coverage-istanbul-reporter` instead of `karma-remap-istanbul`.
+* @speedray/cli: The default LCOV file is now `coverage/lcov.info` instead of `coverage/coverage.lcov`.
+* @speedray/cli:`ng test --code-coverage` now uses `karma-coverage-istanbul-reporter` instead of `karma-remap-istanbul`.
 
 To update follow these steps in your project:
 - `npm uninstall karma-remap-istanbul --save-dev`
@@ -170,8 +170,8 @@ with
 
 ### Bug Fixes
 
-* **@angular/cli:** Backwards warning that global CLI is greater version than local CLI [#4341](https://github.com/angular/angular-cli/issues/4341) ([cc2651c](https://github.com/angular/angular-cli/commit/cc2651c))
-* **@angular/cli:** properly check the project status ([#4381](https://github.com/angular/angular-cli/issues/4381)) ([1dd5399](https://github.com/angular/angular-cli/commit/1dd5399)), closes [#4379](https://github.com/angular/angular-cli/issues/4379)
+* **@speedray/cli:** Backwards warning that global CLI is greater version than local CLI [#4341](https://github.com/angular/angular-cli/issues/4341) ([cc2651c](https://github.com/angular/angular-cli/commit/cc2651c))
+* **@speedray/cli:** properly check the project status ([#4381](https://github.com/angular/angular-cli/issues/4381)) ([1dd5399](https://github.com/angular/angular-cli/commit/1dd5399)), closes [#4379](https://github.com/angular/angular-cli/issues/4379)
 * **@ngtools/webpack:** change of CSS no longer breaks rebuild ([#4334](https://github.com/angular/angular-cli/issues/4334)) ([9afaa3a](https://github.com/angular/angular-cli/commit/9afaa3a)), closes [#4326](https://github.com/angular/angular-cli/issues/4326) [#4329](https://github.com/angular/angular-cli/issues/4329)
 * **@ngtools/webpack:** only diagnose each resource once ([#4374](https://github.com/angular/angular-cli/issues/4374)) ([b0c1551](https://github.com/angular/angular-cli/commit/b0c1551))
 * **@ngtools/webpack:** prevent emitting of sourcemaps ([#4221](https://github.com/angular/angular-cli/issues/4221)) ([a6b1bdd](https://github.com/angular/angular-cli/commit/a6b1bdd))
@@ -182,7 +182,7 @@ with
 
 ### Features
 
-* **@angular/cli:** move angular-cli to @angular/cli ([#4328](https://github.com/angular/angular-cli/issues/4328)) ([601f9b3](https://github.com/angular/angular-cli/commit/601f9b3))
+* **@speedray/cli:** move angular-cli to @speedray/cli ([#4328](https://github.com/angular/angular-cli/issues/4328)) ([601f9b3](https://github.com/angular/angular-cli/commit/601f9b3))
 
 
 <a name="1.0.0-beta.28"></a>
