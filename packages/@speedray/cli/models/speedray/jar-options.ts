@@ -1,4 +1,5 @@
 export interface SpeedrayJarOptions {
-    outputPath?: string,
-    inputPath?: string
+    outputJarPath?: string,
+    inputJarPath?: string,
+    watch?: boolean
 }

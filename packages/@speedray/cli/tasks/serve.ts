@@ -53,7 +53,7 @@ export default Task.extend({
       `);
       ui.writeLine('  The project will still live reload when HMR is enabled,');
       ui.writeLine('  but to take advantage of HMR additional application code is required');
-      ui.writeLine('  (not included in an Angular CLI project by default).');
+      ui.writeLine('  (not included in an Speedray CLI project by default).');
       ui.writeLine(`  See ${chalk.blue(webpackHmrLink)}`);
       ui.writeLine('  for information on working with HMR for Webpack.');
       entryPoints.push('webpack/hot/dev-server');

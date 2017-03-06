@@ -11,7 +11,7 @@ const fs = require('fs');
 
 
 export default Task.extend({
-  run: function (runTaskOptions: BuildTaskOptions) {
+  run: function (runTaskOptions: BuildTaskOptions, rebuildDoneCb: any) {
 
     const project = this.cliProject;
     const config = CliConfig.fromProject().config;
@@ -38,6 +38,7 @@ export default Task.extend({
         this.ui.writeLine(stats.toString(statsConfig));
 
         if (runTaskOptions.watch) {
+          rebuildDoneCb(err,stats);
           return;
         }
 

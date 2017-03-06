@@ -7,7 +7,7 @@ const SilentError = require('silent-error');
 
 
 export default Task.extend({
-  run: function (runTaskOptions: JarTaskOptions) {
+  run: function (runTaskOptions: JarTaskOptions, rebuildDoneCb: any) {
     const BuildTask = require('../build').default;
     const project = this.cliProject;
     const config = CliConfig.fromProject().config;
@@ -16,15 +16,32 @@ export default Task.extend({
         cliProject: project,
         ui: this.ui
       });
-      buildTask.run(runTaskOptions).then((results:any)=>{
-        jar(project, runTaskOptions).subscribe(written => {
-          resolve(written);
-        }, error => {
+      if(runTaskOptions.watch) {
+        buildTask.run(runTaskOptions, function rebuildDone(err: any, stats: any) {
+          if (err) {
+            return reject(err);
+          }
+          jar(project, runTaskOptions).subscribe(written => {
+            if(rebuildDoneCb) {
+              rebuildDoneCb(written);
+            }
+          }, error => {
+              reject(error);
+          });  
+        }).catch((error:any)=>{
           reject(error);
-        });          
-      }).catch((error:any)=>{
-        reject(error);
-      });
+        });
+      } else {
+        buildTask.run(runTaskOptions).then((results:any)=>{
+          jar(project, runTaskOptions).subscribe(written => {
+            resolve(written);
+          }, error => {
+            reject(error);
+          });          
+        }).catch((error:any)=>{
+          reject(error);
+        });
+      }
     });
   }
 });

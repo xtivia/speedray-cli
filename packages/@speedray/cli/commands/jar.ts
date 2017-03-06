@@ -10,8 +10,8 @@ const pollDefault = config.config.defaults && config.config.defaults.poll;
 
 // defaults for BuildOptions
 export const baseJarCommandOptions: any = baseBuildCommandOptions.concat([
-  { name: 'output-path', type: 'Path', default: 'dist', aliases: ['op'] },
-  { name: 'input-path', type: 'Path', default: 'liferay', aliases: ['ip'] }
+  { name: 'output-jar-path', type: 'Path', default: 'dist', aliases: ['ojp'] },
+  { name: 'input-jar-path', type: 'Path', default: 'liferay', aliases: ['ijp'] }
 ]);
 
 export interface JarTaskOptions extends SpeedrayJarOptions {

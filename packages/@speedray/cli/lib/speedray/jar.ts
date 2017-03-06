@@ -15,7 +15,7 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
     const packageOptions = require(path.resolve(project.root, 'package.json'));
     const config = CliConfig.fromProject().config;
 
-    var outputPath: string = path.resolve(project.root, options.outputPath);
+    var outputPath: string = path.resolve(project.root, options.outputJarPath);
     if(!fs.existsSync(outputPath)) {
         fs.mkdirSync(outputPath);
     }
@@ -23,7 +23,7 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
             packageOptions.speedray['portlet-name']+'.'+packageOptions.version+'.jar');
 
     replace.sync({
-    files: path.resolve(options.inputPath, '/src/main/resources/META-INF/MANIFEST.MF'),
+    files: path.resolve(options.inputJarPath, '/src/main/resources/META-INF/MANIFEST.MF'),
         from: /Bnd-LastModified: .*/,
         to: 'Bnd-LastModified: '+Date.now()
     });
@@ -42,11 +42,11 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
     });
 
     archive.pipe(output);
-
-    archive.directory(options.inputPath+'/src/main/resources/META-INF','/META-INF')
-        .directory(options.inputPath+'/src/main/resources/OSGI-INF','/OSGI-INF')
-        .directory(options.inputPath+'/src/main/resources/content','/content')
-        .directory(options.inputPath+'/dist','/META-INF/resources')
+    
+    archive.directory(options.inputJarPath+'/src/main/resources/META-INF','/META-INF')
+        .directory(options.inputJarPath+'/src/main/resources/OSGI-INF','/OSGI-INF')
+        .directory(options.inputJarPath+'/src/main/resources/content','/content')
+        .directory(options.inputJarPath+'/dist','/META-INF/resources')
         .finalize();
 
     return subject.asObservable();
