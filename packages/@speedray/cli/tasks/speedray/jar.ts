@@ -16,6 +16,7 @@ export default Task.extend({
         cliProject: project,
         ui: this.ui
       });
+      let self = this;
       if(runTaskOptions.watch) {
         buildTask.run(runTaskOptions, function rebuildDone(err: any, stats: any) {
           if (err) {
