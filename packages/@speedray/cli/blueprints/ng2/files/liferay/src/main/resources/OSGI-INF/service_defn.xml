@@ -10,6 +10,6 @@
   <property name="javax.portlet.init-param.template-path" type="String" value="/"/>
   <property name="com.liferay.portlet.instanceable" type="String" value="true"/>
   <property name="javax.portlet.name" type="String" value="<%= htmlComponentName %>"/>
-  <property name="javax.portlet.display-name" type="String" value="Speedray Client"/>
+  <property name="javax.portlet.display-name" type="String" value="<%= htmlComponentName %>"/>
   <property name="com.liferay.portlet.display-category" type="String" value="category.speedray"/>
 </scr:component>
