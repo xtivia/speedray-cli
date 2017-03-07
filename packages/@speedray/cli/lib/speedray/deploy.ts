@@ -15,7 +15,7 @@ export function deploy(project: any, options: DeployTaskOptions): Observable<str
 
     var outputPath: string = path.resolve(project.root, options.outputPath);
     var jarPath: string = path.resolve(outputPath, 
-            packageOptions.speedray['portlet-name']+'.'+packageOptions.version+'.jar');
+            packageOptions.name+'.'+packageOptions.version+'.jar');
 
     jar(project, options).subscribe(written => {
         let gogo = new Gogo({connectConfig:{ host: options.host, port: options.port }});
