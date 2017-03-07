@@ -17,7 +17,7 @@ export default Task.extend({
           ui: this.ui
         });
         if(runTaskOptions.watch) {
-          jarTask.run(runTaskOptions, function rebuildDoneCb(written: any) {
+          jarTask.run(runTaskOptions, function rebuildDone(written: any) {
             deploy(project, runTaskOptions).subscribe(results => {
               if(rebuildDoneCb) {
                 rebuildDoneCb(written);

@@ -24,7 +24,7 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-    "@speedray/cli": "<%= version %>",
+    "@speedray/cli": "ddavis2xtivia/speedray-cli",
     "@angular/compiler-cli": "<%= ng4 ? '>=4.0.0-beta <5.0.0' : '^2.4.0' %>",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",

@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "<%= sourceDir %>",
-      "outDir": "dist",
+      "outDir": "liferay/dist",
       "assets": [
         "assets",
         "favicon.ico"
