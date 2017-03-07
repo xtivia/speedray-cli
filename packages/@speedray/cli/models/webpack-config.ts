@@ -89,7 +89,7 @@ export class NgCliWebpackConfig {
     return Object.assign({}, targetDefaults[buildOptions.target], buildOptions);
   }
 
-  // Fill in defaults from .angular-cli.json
+  // Fill in defaults from .speedray-cli.json
   private mergeConfigs(buildOptions: BuildOptions, appConfig: any) {
     const mergeableOptions = {
       outputPath: appConfig.outDir,

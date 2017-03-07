@@ -26,7 +26,7 @@ function _createAotPlugin(wco: WebpackConfigOptions, options: any) {
         migrationMessage = '\n\n' + stripIndent`
           A new environmentSource entry replaces the previous source entry inside environments.
 
-          To migrate angular-cli.json follow the example below:
+          To migrate speedray-cli.json follow the example below:
 
           Before:
 

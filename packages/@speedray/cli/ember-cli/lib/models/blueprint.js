@@ -1286,7 +1286,7 @@ Blueprint.list = function(options) {
 */
 Blueprint.renamedFiles = {
   'gitignore': '.gitignore',
-  'angular-cli.json': '.angular-cli.json'
+  'speedray-cli.json': '.speedray-cli.json'
 };
 
 /**

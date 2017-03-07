@@ -86,7 +86,7 @@ export class CliConfig<JsonType> {
       content = JSON.parse(configContent);
     } catch (err) {
       throw new InvalidConfigError(
-        'Parsing .angular-cli.json failed. Please make sure your .angular-cli.json'
+        'Parsing .speedray-cli.json failed. Please make sure your .speedray-cli.json'
         + ' is valid JSON. Error:\n' + err
       );
     }

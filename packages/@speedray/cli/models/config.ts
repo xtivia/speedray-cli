@@ -8,8 +8,8 @@ import * as path from 'path';
 import {findUp} from '../utilities/find-up';
 
 
-export const CLI_CONFIG_FILE_NAME = '.angular-cli.json';
-const CLI_CONFIG_FILE_NAME_ALT = 'angular-cli.json';
+export const CLI_CONFIG_FILE_NAME = '.speedray-cli.json';
+const CLI_CONFIG_FILE_NAME_ALT = 'speedray-cli.json';
 
 
 function getUserHome() {
@@ -57,7 +57,7 @@ export class CliConfig extends CliConfigBase<ConfigInterface> {
     // If any of them returned true, output a deprecation warning.
     if (aliases.some(x => !!x)) {
       console.error(chalk.yellow(oneLine`
-        The "defaults.prefix" and "defaults.sourceDir" properties of .angular-cli.json
+        The "defaults.prefix" and "defaults.sourceDir" properties of .speedray-cli.json
         are deprecated in favor of "apps[0].root" and "apps[0].prefix".\n
         Please update in order to avoid errors in future versions of Angular CLI.
       `));
@@ -89,7 +89,7 @@ export class CliConfig extends CliConfigBase<ConfigInterface> {
     // If any of them returned true, output a deprecation warning.
     if (aliases.some(x => !!x)) {
       console.error(chalk.yellow(oneLine`
-        The "defaults.prefix" and "defaults.sourceDir" properties of .angular-cli.json
+        The "defaults.prefix" and "defaults.sourceDir" properties of .speedray-cli.json
         are deprecated in favor of "apps[0].root" and "apps[0].prefix".\n
         Please update in order to avoid errors in future versions of Angular CLI.
       `));

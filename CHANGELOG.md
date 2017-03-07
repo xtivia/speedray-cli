@@ -21,7 +21,7 @@
 ### Code Refactoring
 
 * **@speedray/cli:** remove ng init & ng update ([#4628](https://github.com/angular/angular-cli/issues/4628)) ([a127cad](https://github.com/angular/angular-cli/commit/a127cad))
-* **@speedray/cli:** rename config file from angular-cli.json to .angular-cli.json ([#4681](https://github.com/angular/angular-cli/issues/4681)) ([809340a](https://github.com/angular/angular-cli/commit/809340a))
+* **@speedray/cli:** rename config file from angular-cli.json to .speedray-cli.json ([#4681](https://github.com/angular/angular-cli/issues/4681)) ([809340a](https://github.com/angular/angular-cli/commit/809340a))
 * **@speedray/cli:** remove compression plugin
 
 
@@ -49,7 +49,7 @@
 
 * @speedray/cli: compressed output (.gz) is no longer generated on production builds.
 * @speedray/cli: sourcemaps now are always [filename].map (e.g `main.bundle.js.map` instead of `main.bundle.map`).
-* @speedray/cli: The configuration file angular-cli.json has been renamed to .angular-cli.json
+* @speedray/cli: The configuration file angular-cli.json has been renamed to .speedray-cli.json
 * @speedray/cli: Generating a module with routing will no longer generate an associated component.
 * @speedray/cli: 'assets' as a string in angular-cli.json is no longer allowed, use an array instead.
 * @speedray/cli: Removing the `ng init` & `ng update` commands because their current implementation causes more problems than it solves. Once RC is released, we won't need to use those to update anymore as the step will be as simple as installing the latest version of the CLI.

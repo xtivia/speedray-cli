@@ -45,7 +45,7 @@ const E2eCommand = Command.extend({
       const e2eConfig = CliConfig.fromProject().config.e2e;
 
       if (!e2eConfig.protractor.config) {
-        throw new SilentError('No protractor config found in .angular-cli.json.');
+        throw new SilentError('No protractor config found in .speedray-cli.json.');
       }
 
       commandOptions.config = e2eConfig.protractor.config;

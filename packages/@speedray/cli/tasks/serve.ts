@@ -33,7 +33,7 @@ export default Task.extend({
     rimraf.sync(path.resolve(this.project.root, outputPath));
 
     const serveDefaults = {
-      // default deployUrl to '' on serve to prevent the default from .angular-cli.json
+      // default deployUrl to '' on serve to prevent the default from .speedray-cli.json
       deployUrl: ''
     };
 
