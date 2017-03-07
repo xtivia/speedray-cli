@@ -16,14 +16,17 @@ export default Task.extend({
           cliProject: project,
           ui: this.ui
         });
+        let self = this;
         if(runTaskOptions.watch) {
           jarTask.run(runTaskOptions, function rebuildDone(written: any) {
             deploy(project, runTaskOptions).subscribe(results => {
               if(rebuildDoneCb) {
                 rebuildDoneCb(written);
+              } else {
+                self.ui.writeLine('\nA new version of the portlet was deployed\n');
               }
             }, error => {
-              this.ui.writeError('\nAn error occured during the deployment:\n' + (error));
+              self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
               reject(error);
             });
           }).catch((error:any)=>{
@@ -32,9 +35,10 @@ export default Task.extend({
         } else {
           jarTask.run(runTaskOptions).then((results:any)=>{
             deploy(project, runTaskOptions).subscribe(results => {
+              self.ui.writeLine('\nA new version of the portlet was deployed\n');
               resolve(results);
             }, error => {
-              this.ui.writeError('\nAn error occured during the deployment:\n' + (error));
+              self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
               reject(error);
             });
           }).catch((error:any)=>{
