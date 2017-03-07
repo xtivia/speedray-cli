@@ -20,7 +20,7 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
         fs.mkdirSync(outputPath);
     }
     var jarPath: string = path.resolve(outputPath, 
-            packageOptions.speedray['portlet-name']+'.'+packageOptions.version+'.jar');
+            packageOptions.name+'.'+packageOptions.version+'.jar');
 
     replace.sync({
     files: path.resolve(options.inputJarPath, '/src/main/resources/META-INF/MANIFEST.MF'),
