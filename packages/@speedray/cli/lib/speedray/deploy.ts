@@ -23,7 +23,7 @@ export function deploy(project: any, options: DeployTaskOptions): Observable<str
             subject.error(error);
             subject.complete();
         });
-        gogo.deploy(jarPath, packageOptions.speedray['portlet-name']).then((data:string) => {
+        gogo.deploy(jarPath, packageOptions.name).then((data:string) => {
             gogo.destroy();
             subject.next(data);
             subject.complete();
