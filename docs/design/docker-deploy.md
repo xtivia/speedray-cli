@@ -15,12 +15,12 @@ Provide tasks for common Docker workflows:
 
 1. Requires user to have Docker CLI tools installed.
    (See also: ["Implementation Approaches"](#implementation-approaches))
-1. User is free to use the Angular CLI without Docker (and vice versa). By default, do not generate Docker files upon creation of a new project (`ng new`).
+1. User is free to use the Speedray CLI without Docker (and vice versa). By default, do not generate Docker files upon creation of a new project (`ng new`).
 1. Don't recreate the wheel. Docker CLI tools are very full featured on their own. Implement the common Docker use cases that make it convenient for Angular applications.
 1. Don't inhibit users from using the standalone Docker CLI tools for other use cases.
 1. Assumes 1:1 Dockerfile with the Angular project. Support for multiple services under the same project is outside the scope of this initial design.
 1. Generated starter Dockerfile will use an Nginx base image for the default server. The built ng app and Nginx configuration for HTML5 Fallback will be copied into the image.
-1. User is free to modify and customize all generated files directly without involvement by the Angular CLI.
+1. User is free to modify and customize all generated files directly without involvement by the Speedray CLI.
 1. Image builds will support all Docker build options.
 1. Container deploys will support all Docker run options.
 1. Deploying to a Docker Machine can be local or remote.
@@ -353,7 +353,7 @@ Tradeoffs with this approach:
 * Does not require Docker CLI tools to be installed.
 * Requires cert files for access to remote Docker Machines.
 * Programmatic interface.
-* Requires more configuration on the part of Angular CLI.
+* Requires more configuration on the part of Speedray CLI.
 * Configuration imposes a learning curve on existing Docker users.
 * No Docker-Compose API support. Multi-container management features would need to be duplicated.
 * Maintenance effort to keep API updated.
@@ -407,7 +407,7 @@ Tradeoffs with this approach:
 * Requires user to manually install Docker CLI tools
 * Must build interface around CLI commands, formatting the command arguments and parsing the output.
 * Can leverage Docker-Compose and its configuration format for multi-container deploys.
-* Configuration of build and deploy options is simplified in Angular CLI.
+* Configuration of build and deploy options is simplified in Speedray CLI.
 * User has the flexibility of switching between `ng` commands and Docker CLI tools without having to maintain duplicate configuration.
 * Lower risk of Docker compatibility issues. User has control over their Docker version.
 
@@ -426,7 +426,7 @@ Module | Created | Status | Dependencies
 The "2. Docker CLI tools via `child_process.exec`" method is recommended based on the following:
 
 * The requirement of having the Docker CLI tools installed is not generally a problem, and they would likely already be installed by the majority of users using these features.
-* Maintenance to Angular CLI would likely be easier using the Docker CLI, having less configuration, documentation, and updates than the Remote API method.
+* Maintenance to Speedray CLI would likely be easier using the Docker CLI, having less configuration, documentation, and updates than the Remote API method.
 * Multi-container deploys is a common use-case. Utilizing the Docker Compose features, format, and documentation is a big win.
 * Since this project is a CLI itself, using the Docker CLI tools isn't too far a leap.
 * Users who do not use these features are not forced to install Docker CLI. Conversely, the Remote API method might incur a small penalty of installing unused NPM modules (ie. `dockerode`).

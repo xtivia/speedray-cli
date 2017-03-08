@@ -1,4 +1,4 @@
-## Angular CLI
+## Speedray CLI
 
 [![Join the chat at https://gitter.im/angular/angular-cli](https://badges.gitter.im/angular/angular-cli.svg)](https://gitter.im/angular/angular-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -37,8 +37,8 @@ with NPM 3 or higher.
 * [Usage](#usage)
 * [Generating a New Project](#generating-and-serving-an-angular-project-via-a-development-server)
 * [Generating Components, Directives, Pipes and Services](#generating-components-directives-pipes-and-services)
-* [Updating Angular CLI](#updating-angular-cli)
-* [Development Hints for hacking on Angular CLI](#development-hints-for-hacking-on-angular-cli)
+* [Updating Speedray CLI](#updating-angular-cli)
+* [Development Hints for hacking on Speedray CLI](#development-hints-for-hacking-on-angular-cli)
 * [License](#license)
 
 ## Installation
@@ -98,9 +98,9 @@ Interface | `ng g interface my-new-interface`
 Enum      | `ng g enum my-new-enum`
 Module    | `ng g module my-module`
 
-### Updating Angular CLI
+### Updating Speedray CLI
 
-To update Angular CLI to a new version, you must update both the global package and your project's local package.
+To update Speedray CLI to a new version, you must update both the global package and your project's local package.
 
 Global package:
 ```bash
@@ -119,7 +119,7 @@ npm install
 You can find more details about changes between versions in [CHANGELOG.md](https://github.com/angular/angular-cli/blob/master/CHANGELOG.md).
 
 
-## Development Hints for hacking on Angular CLI
+## Development Hints for hacking on Speedray CLI
 
 ### Working with master
 
@@ -147,7 +147,7 @@ ng serve
 the local `@speedray/cli` from the project which was fetched remotely from npm.
 `npm link @speedray/cli` symlinks the global `@speedray/cli` package to the local `@speedray/cli` package.
 Now the `angular-cli` you cloned before is in three places:
-The folder you cloned it into, npm's folder where it stores global packages and the Angular CLI project you just created.
+The folder you cloned it into, npm's folder where it stores global packages and the Speedray CLI project you just created.
 
 You can also use `ng new foo --link-cli` to automatically link the `@speedray/cli` package.
 

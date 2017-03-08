@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "https://github.com/ddavis2xtivia/speedray-cli/blob/master/packages/@speedray/cli/lib/config/schema.json#CliConfig",
-  "title": "Angular CLI Config Schema",
+  "title": "Speedray CLI Config Schema",
   "type": "object",
   "properties": {
     "$schema": {

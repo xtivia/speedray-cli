@@ -39,7 +39,7 @@ The loader works with the webpack plugin to compile your TypeScript. It's import
 * `typeChecking`. Optional, defaults to true. Enable type checking through your application. This will slow down compilation, but show syntactic and semantic errors in webpack.
 
 ## Features
-The benefits and ability of using [`@ngtools/webpack`](https://www.npmjs.com/~ngtools) standalone from the Angular CLI as presented in [Stephen Fluin's Angular CLI talk](https://youtu.be/uBRK6cTr4Vk?t=6m45s) at Angular Connect 2016:
+The benefits and ability of using [`@ngtools/webpack`](https://www.npmjs.com/~ngtools) standalone from the Speedray CLI as presented in [Stephen Fluin's Speedray CLI talk](https://youtu.be/uBRK6cTr4Vk?t=6m45s) at Angular Connect 2016:
 
 * Compiles SCSS/LESS
 * TypeScript transpilation

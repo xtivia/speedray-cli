@@ -1,12 +1,12 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# Angular CLI
+# Speedray CLI
 
 ### Overview
-The Angular CLI is a tool to initialize, develop, scaffold  and maintain [Angular](https://angular.io) applications
+The Speedray CLI is a tool to initialize, develop, scaffold  and maintain [Angular](https://angular.io) applications
 
 ### Getting Started
-To install the Angular CLI:
+To install the Speedray CLI:
 ```
 npm install -g @speedray/cli
 ```

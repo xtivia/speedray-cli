@@ -1,7 +1,7 @@
 # Include [Angular Material](https://material.angular.io)
 
 [Angular Material](https://material.angular.io) is a set of Material Design components for Angular apps.
-This guide will walk you through adding material design to your Angular CLI project and configuring it to use Angular Material.
+This guide will walk you through adding material design to your Speedray CLI project and configuring it to use Angular Material.
 
 Create a new project and navigate into the project...
 ```

@@ -1,6 +1,6 @@
-# Contributing to Angular CLI
+# Contributing to Speedray CLI
 
-We would love for you to contribute to Angular CLI and help make it even better
+We would love for you to contribute to Speedray CLI and help make it even better
 than it is today! As a contributor, here are the guidelines we would like you
 to follow:
 
@@ -18,7 +18,7 @@ Help us keep Angular open and inclusive. Please read and follow our [Code of Con
 
 ## <a name="question"></a> Got a Question or Problem?
 
-If you have questions about how to *use* Angular CLI, please direct them to [StackOverflow][stackoverflow]. Please note that Angular CLI is still in early developer preview, and the core team's capacity to answer usage questions is limited. We are also available on [Gitter][gitter].
+If you have questions about how to *use* Speedray CLI, please direct them to [StackOverflow][stackoverflow]. Please note that Speedray CLI is still in early developer preview, and the core team's capacity to answer usage questions is limited. We are also available on [Gitter][gitter].
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
@@ -28,7 +28,7 @@ If you find a bug in the source code or a mistake in the documentation, you can 
 ## <a name="feature"></a> Want a Feature?
 You can *request* a new feature by [submitting an issue](#submit-issue) to our [GitHub
 Repository][github]. If you would like to *implement* a new feature, please submit an issue with
-a proposal for your work first, to be sure that we can use it. Angular CLI is in developer preview
+a proposal for your work first, to be sure that we can use it. Speedray CLI is in developer preview
 and we are not ready to accept major contributions ahead of the full release.
 Please consider what kind of change it is:
 
@@ -48,7 +48,7 @@ features, by not reporting duplicate issues.  Providing the following informatio
 chances of your issue being dealt with quickly:
 
 * **Overview of the Issue** - if an error is being thrown a non-minified stack trace helps
-* **Angular CLI Version** - what version of the CLI is affected (e.g. 0.1.2)
+* **Speedray CLI Version** - what version of the CLI is affected (e.g. 0.1.2)
 * **Motivation for or Use Case** - explain what are you trying to do and why the current behavior is a bug for you
 * **Browsers and Operating System** - is this a problem with all browsers?
 * **Reproduce the Error** - provide a live example (using [Plunker][plunker],
@@ -75,7 +75,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 * Create your patch, **including appropriate test cases**.
 * Follow our [Coding Rules](#rules).
-* Run the full Angular CLI test suite, as described in the [developer documentation][dev-doc],
+* Run the full Speedray CLI test suite, as described in the [developer documentation][dev-doc],
   and ensure that all tests pass (coming soon).
 * Commit your changes using a descriptive commit message that follows our
   [commit message conventions](#commit). Adherence to these conventions
@@ -95,7 +95,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 * In GitHub, send a pull request to `angular-cli:master`.
 * If we suggest changes then:
   * Make the required updates.
-  * Re-run the Angular CLI test suites for JS and Dart to ensure tests are still passing.
+  * Re-run the Speedray CLI test suites for JS and Dart to ensure tests are still passing.
   * Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
 
     ```shell
@@ -146,7 +146,7 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.  But also,
-we use the git commit messages to **generate the Angular CLI change log**.
+we use the git commit messages to **generate the Speedray CLI change log**.
 
 ### Commit Message Format
 Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special

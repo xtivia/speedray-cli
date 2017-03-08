@@ -71,7 +71,7 @@ export default function() {
       json['compilerOptions']['sourceRoot'] = '/';
     }))
     .then(() => git('config', 'user.email', 'angular-core+e2e@google.com'))
-    .then(() => git('config', 'user.name', 'Angular CLI E2e'))
+    .then(() => git('config', 'user.name', 'Speedray CLI E2e'))
     .then(() => git('config', 'commit.gpgSign', 'false'))
     .then(() => gitCommit('tsconfig-e2e-update'));
 }

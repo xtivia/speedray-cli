@@ -115,7 +115,7 @@ export class Version {
   static assertPostWebpackVersion() {
     if (this.isPreWebpack()) {
       console.error(bold(red('\n' + stripIndents`
-        It seems like you're using a project generated using an old version of the Angular CLI.
+        It seems like you're using a project generated using an old version of the Speedray CLI.
         The latest CLI now uses webpack and has a lot of improvements including a simpler
         workflow, a faster build, and smaller bundles.
 
@@ -127,7 +127,7 @@ export class Version {
       // Verify that there's no build file.
       if (_hasOldCliBuildFile()) {
         console.error(bold(yellow('\n' + stripIndents`
-          It seems like you're using the newest version of the Angular CLI that uses webpack.
+          It seems like you're using the newest version of the Speedray CLI that uses webpack.
           This version does not require an angular-cli-build file, but your project has one.
           It will be ignored.
         ` + '\n')));

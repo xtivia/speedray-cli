@@ -96,7 +96,7 @@ export class CliConfig<JsonType> {
       others = otherContents.map(otherContent => JSON.parse(otherContent));
     } catch (err) {
       throw new InvalidConfigError(
-        `Parsing Angular CLI schema or other configuration files failed. Error:\n${err}`
+        `Parsing Speedray CLI schema or other configuration files failed. Error:\n${err}`
       );
     }
 

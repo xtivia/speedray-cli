@@ -2,7 +2,7 @@
   "$comment": "Please run `npm run build-config-interface` after changing this file. Thanks!",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "CliConfig",
-  "title": "Angular CLI Config Schema",
+  "title": "Speedray CLI Config Schema",
   "type": "object",
   "properties": {
     "project": {

@@ -1,6 +1,6 @@
-# Moving your project to Angular CLI
+# Moving your project to Speedray CLI
 
-The easiest way to move an existing project to Angular CLI is to copy your
+The easiest way to move an existing project to Speedray CLI is to copy your
 application files into a new, empty CLI project.
 
 Let's see how to do it step by step.
@@ -15,8 +15,8 @@ Start with preparing your existing project folder. We'll refer to it as `awesome
 - clean your folder from temporary files and ignored files using `git clean -fdx`.
 - rename your project folder to `old-awesome-app`.
 
-Now make a new project on the same parent folder as `old-awesome-app` using Angular CLI.
-- Verify you have the [Angular CLI prerequisites](https://github.com/angular/angular-cli#prerequisites).
+Now make a new project on the same parent folder as `old-awesome-app` using Speedray CLI.
+- Verify you have the [Speedray CLI prerequisites](https://github.com/angular/angular-cli#prerequisites).
 - Install the CLI globally: `npm install -g @speedray/cli`.
 - Make a new app: `ng new awesome-app`.
 - Move into the folder: `cd awesome-app`.

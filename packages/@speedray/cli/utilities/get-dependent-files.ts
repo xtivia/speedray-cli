@@ -75,7 +75,7 @@ export function hasIndexFile(dirPath: string): Promise<Boolean> {
 
 /**
  * Function to get all the templates, stylesheets, and spec files of a given component unit
- * Assumption: When any component/service/pipe unit is generated, Angular CLI has a blueprint for
+ * Assumption: When any component/service/pipe unit is generated, Speedray CLI has a blueprint for
  *   creating associated files with the name of the generated unit. So, there are two
  *   assumptions made:
  *   a. the function only returns associated files that have names matching to the given unit.

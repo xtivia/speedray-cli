@@ -12,7 +12,7 @@ function isDirectory(path) {
 }
 
 const init = (config) => {
-  // load Angular CLI config
+  // load Speedray CLI config
   if (!config.angularCli || !config.angularCli.config) {
     throw new Error('Missing \'angularCli.config\' entry in Karma config');
   }

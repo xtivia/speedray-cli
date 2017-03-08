@@ -3,7 +3,7 @@
 # Include [Bootstrap](http://getbootstrap.com/)
 
 [Bootstrap](http://getbootstrap.com/) is a popular CSS framework which can be used within an Angular project.
-This guide will walk you through adding bootstrap to your Angular CLI project and configuring it to use bootstrap.
+This guide will walk you through adding bootstrap to your Speedray CLI project and configuring it to use bootstrap.
 
 ## Using CSS
 

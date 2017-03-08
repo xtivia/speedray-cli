@@ -111,11 +111,11 @@ describe('Acceptance: ng new', function () {
     });
   });
 
-  it('Cannot run ng new, inside of Angular CLI project', function () {
+  it('Cannot run ng new, inside of Speedray CLI project', function () {
     return ng(['new', 'foo', '--skip-install', '--skip-git'])
       .then(function () {
         return ng(['new', 'foo', '--skip-install', '--skip-git']).then(() => {
-          throw new SilentError('Cannot run ng new, inside of Angular CLI project should fail.');
+          throw new SilentError('Cannot run ng new, inside of Speedray CLI project should fail.');
         }, () => {
           expect(!existsSync('foo'));
         });

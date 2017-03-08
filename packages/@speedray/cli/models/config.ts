@@ -19,7 +19,7 @@ function getUserHome() {
 
 export class CliConfig extends CliConfigBase<ConfigInterface> {
   static configFilePath(projectPath?: string): string {
-    // Find the configuration, either where specified, in the Angular CLI project
+    // Find the configuration, either where specified, in the Speedray CLI project
     // (if it's in node_modules) or from the current process.
     return (projectPath && findUp(CLI_CONFIG_FILE_NAME, projectPath))
         || (projectPath && findUp(CLI_CONFIG_FILE_NAME_ALT, projectPath))
@@ -59,7 +59,7 @@ export class CliConfig extends CliConfigBase<ConfigInterface> {
       console.error(chalk.yellow(oneLine`
         The "defaults.prefix" and "defaults.sourceDir" properties of .speedray-cli.json
         are deprecated in favor of "apps[0].root" and "apps[0].prefix".\n
-        Please update in order to avoid errors in future versions of Angular CLI.
+        Please update in order to avoid errors in future versions of Speedray CLI.
       `));
     }
 
@@ -91,7 +91,7 @@ export class CliConfig extends CliConfigBase<ConfigInterface> {
       console.error(chalk.yellow(oneLine`
         The "defaults.prefix" and "defaults.sourceDir" properties of .speedray-cli.json
         are deprecated in favor of "apps[0].root" and "apps[0].prefix".\n
-        Please update in order to avoid errors in future versions of Angular CLI.
+        Please update in order to avoid errors in future versions of Speedray CLI.
       `));
     }
 
