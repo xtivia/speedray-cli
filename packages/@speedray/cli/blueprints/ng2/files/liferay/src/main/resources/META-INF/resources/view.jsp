@@ -1,2 +1,2 @@
-\\<%@ include file="/init.jsp" %\\>
-\\<%@ include file="/index.html" %\\>
+<%= '\<%@ include file="/init.jsp" %\>' %>
+<%= '\<%@ include file="/index.html" %\>' %>

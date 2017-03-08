@@ -13,7 +13,7 @@ export function deploy(project: any, options: DeployTaskOptions): Observable<str
     const config = CliConfig.fromProject().config;
     const Gogo = require('./gogo-deploy').GogoDeployer;
 
-    var outputPath: string = path.resolve(project.root, options.outputPath);
+    var outputPath: string = path.resolve(project.root, options.outputJarPath);
     var jarPath: string = path.resolve(outputPath, 
             packageOptions.name+'.'+packageOptions.version+'.jar');
 

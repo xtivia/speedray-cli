@@ -7,6 +7,7 @@
     {
       "root": "<%= sourceDir %>",
       "outDir": "liferay/dist",
+      "deployUrl": "/o/<%= htmlComponentName %>",
       "assets": [
         "assets",
         "favicon.ico"

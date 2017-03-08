@@ -26,7 +26,7 @@ export default Task.extend({
             if(rebuildDoneCb) {
               rebuildDoneCb(written);
             } else {
-              self.ui.writeLine('\nA new version of the portlet JAR was created\n');
+              self.ui.writeLine('\nupdated jar with '+written+' bytes\n');
             }
           }, error => {
               reject(error);
@@ -37,7 +37,7 @@ export default Task.extend({
       } else {
         buildTask.run(runTaskOptions).then((results:any)=>{
           jar(project, runTaskOptions).subscribe(written => {
-            self.ui.writeLine('\nA new version of the portlet JAR was created\n');
+            self.ui.writeLine('\nupdated jar with '+written+' bytes\n');
             resolve(written);
           }, error => {
             reject(error);

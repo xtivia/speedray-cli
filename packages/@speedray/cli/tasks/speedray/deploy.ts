@@ -23,7 +23,7 @@ export default Task.extend({
               if(rebuildDoneCb) {
                 rebuildDoneCb(written);
               } else {
-                self.ui.writeLine('\nA new version of the portlet was deployed\n');
+                self.ui.writeLine(results);
               }
             }, error => {
               self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
@@ -35,7 +35,7 @@ export default Task.extend({
         } else {
           jarTask.run(runTaskOptions).then((results:any)=>{
             deploy(project, runTaskOptions).subscribe(results => {
-              self.ui.writeLine('\nA new version of the portlet was deployed\n');
+              self.ui.writeLine(results);
               resolve(results);
             }, error => {
               self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
