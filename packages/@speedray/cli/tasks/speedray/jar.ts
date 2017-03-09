@@ -22,7 +22,6 @@ export default Task.extend({
           if (err) {
             return reject(err);
           }
-          console.log(Object.keys(stats.compilation.assets));
           jar(project, runTaskOptions).subscribe(written => {
             if(rebuildDoneCb) {
               rebuildDoneCb(stats);

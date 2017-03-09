@@ -33,6 +33,7 @@ export const baseBuildCommandOptions: any = [
     name: 'output-hashing',
     type: String,
     values: ['none', 'all', 'media', 'bundles'],
+    default: 'all',
     description: 'define the output filename cache-busting hashing mode',
     aliases: ['oh']
   },

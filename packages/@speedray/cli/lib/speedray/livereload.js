@@ -7,6 +7,7 @@ function LiveReload(options) {
   this.port = this.options.port || 35729;
   this.ignore = this.options.ignore || null;
   this.quiet = this.options.quiet || false;
+  this.portletName = this.options.portletName;
 
   this.lastHash = null;
   this.lastChildHashes = [];
@@ -51,10 +52,9 @@ LiveReload.prototype.done = function done(stats) {
   var hash = stats.compilation.hash;
   var childHashes = (stats.compilation.children || []).map(child => child.hash);
   var files = Object.keys(stats.compilation.assets).map(file => {
-                return '/o/test-sr-one/'+file;
+                return '/o/'+this.portletName+'/'+file;
               });
   var include = files.filter(function(file) {
-    console.log('File: '+file);
     return !file.match(this.ignore);
   }, this);
 
@@ -97,6 +97,15 @@ LiveReload.prototype.scriptTag = function scriptTag(source) {
   else {
     return source;
   }
+};
+
+LiveReload.prototype.applyCompilation = function applyCompilation(compilation) {
+  compilation.mainTemplate.plugin('startup', this.scriptTag.bind(this));
+};
+
+LiveReload.prototype.apply = function apply(compiler) {
+  this.compiler = compiler;
+  compiler.plugin('compilation', this.applyCompilation.bind(this));
 };
 
 module.exports = LiveReload;

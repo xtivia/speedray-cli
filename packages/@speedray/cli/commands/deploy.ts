@@ -20,6 +20,7 @@ export interface DeployTaskOptions extends SpeedrayDeployOptions {
 const DeployCommand = Command.extend({
   name: 'deploy',
   description: 'Deploy a portlet jar to Liferay DXP',
+  aliases: ['de'],
 
   availableOptions: baseDeployCommandOptions.concat([
   ]),

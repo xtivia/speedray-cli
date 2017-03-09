@@ -95,6 +95,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     extraPlugins.push(new ProgressPlugin({ profile: buildOptions.verbose, colors: true }));
   }
 
+
   return {
     devtool: buildOptions.sourcemap ? 'source-map' : false,
     resolve: {

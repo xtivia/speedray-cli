@@ -14,6 +14,8 @@ export default Task.extend({
     const JarTask = require('./jar').default;
     const project = this.cliProject;
     const config = CliConfig.fromProject().config;
+    const packageOptions = require(path.resolve(project.root, 'package.json'));
+
     return new Promise((resolve, reject) => {
         const jarTask = new JarTask({
           cliProject: project,
@@ -22,7 +24,9 @@ export default Task.extend({
         let self = this;
         if(runTaskOptions.watch) {
           var firsttime = true;
-          let livereload = new LiveReload({});
+          let livereload = new LiveReload({
+            portletName: packageOptions.name
+          });
           livereload.start();
           jarTask.run(runTaskOptions, function rebuildDone(stats: any) {
             self.ui.writeLine('\nupdated jar\n');
