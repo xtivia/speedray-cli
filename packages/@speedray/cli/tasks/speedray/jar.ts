@@ -22,9 +22,10 @@ export default Task.extend({
           if (err) {
             return reject(err);
           }
+          console.log(Object.keys(stats.compilation.assets));
           jar(project, runTaskOptions).subscribe(written => {
             if(rebuildDoneCb) {
-              rebuildDoneCb(written);
+              rebuildDoneCb(stats);
             } else {
               self.ui.writeLine('\nupdated jar with '+written+' bytes\n');
             }
@@ -38,7 +39,7 @@ export default Task.extend({
         buildTask.run(runTaskOptions).then((results:any)=>{
           jar(project, runTaskOptions).subscribe(written => {
             self.ui.writeLine('\nupdated jar with '+written+' bytes\n');
-            resolve(written);
+            resolve(results);
           }, error => {
             reject(error);
           });          

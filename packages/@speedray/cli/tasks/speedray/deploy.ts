@@ -1,9 +1,12 @@
+const opn = require("opn");
+import * as path from 'path';
 import { DeployTaskOptions } from '../../commands/deploy';
 import { CliConfig } from '../../models/config';
 import { deploy } from '../../lib/speedray/deploy';
 
 const Task = require('../../ember-cli/lib/models/task');
 const SilentError = require('silent-error');
+const LiveReload = require('../../lib/speedray/livereload');
 
 
 export default Task.extend({
@@ -18,13 +21,22 @@ export default Task.extend({
         });
         let self = this;
         if(runTaskOptions.watch) {
-          jarTask.run(runTaskOptions, function rebuildDone(written: any) {
+          var firsttime = true;
+          let livereload = new LiveReload({});
+          livereload.start();
+          jarTask.run(runTaskOptions, function rebuildDone(stats: any) {
+            self.ui.writeLine('\nupdated jar\n');
             deploy(project, runTaskOptions).subscribe(results => {
-              if(rebuildDoneCb) {
-                rebuildDoneCb(written);
-              } else {
-                self.ui.writeLine(results);
+              if(firsttime) {
+                firsttime = false;
+                opn("http://localhost:8080/");
               }
+              if(rebuildDoneCb) {
+                rebuildDoneCb(results);
+              } else {
+                self.ui.writeLine('\n'+results+'\n');
+              }
+              livereload.done(stats)
             }, error => {
               self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
               reject(error);

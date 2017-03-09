@@ -25,7 +25,7 @@ export const E2eTask = Task.extend({
       };
 
       // use serve url as override for protractors baseUrl
-      if (e2eTaskOptions.serve) {
+      if (e2eTaskOptions.deploy) {
         additionalProtractorConfig.baseUrl = url.format({
           protocol: e2eTaskOptions.ssl ? 'https' : 'http',
           hostname: e2eTaskOptions.host,

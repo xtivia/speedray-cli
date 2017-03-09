@@ -2,14 +2,15 @@ const SilentError = require('silent-error');
 
 import { overrideOptions } from '../utilities/override-options';
 import { CliConfig } from '../models/config';
-import { ServeTaskOptions, baseServeCommandOptions } from './serve';
+import { DeployTaskOptions, baseDeployCommandOptions} from './deploy';
 import { checkPort } from '../utilities/check-port';
 const Command = require('../ember-cli/lib/models/command');
 
 
-export interface E2eTaskOptions extends ServeTaskOptions {
+export interface E2eTaskOptions extends DeployTaskOptions {
   config: string;
-  serve: boolean;
+  deploy: boolean;
+  ssl: string;
   webdriverUpdate: boolean;
   specs: string[];
   elementExplorer: boolean;
@@ -21,12 +22,12 @@ const E2eCommand = Command.extend({
   description: 'Run e2e tests in existing project',
   works: 'insideProject',
   availableOptions: overrideOptions(
-    baseServeCommandOptions.concat([
+    baseDeployCommandOptions.concat([
       { name: 'config', type: String, aliases: ['c'] },
       { name: 'specs', type: Array, default: [], aliases: ['sp'] },
       { name: 'element-explorer', type: Boolean, default: false, aliases: ['ee'] },
       { name: 'webdriver-update', type: Boolean, default: true, aliases: ['wu'] },
-      { name: 'serve', type: Boolean, default: true, aliases: ['s'] }
+      { name: 'deploy', type: Boolean, default: true, aliases: ['d'] }
     ]), [
       { name: 'port', default: 0 },
       { name: 'watch', default: false },
@@ -51,10 +52,10 @@ const E2eCommand = Command.extend({
       commandOptions.config = e2eConfig.protractor.config;
     }
 
-    if (commandOptions.serve) {
-      const ServeTask = require('../tasks/serve').default;
+    if (commandOptions.deploy) {
+      const DeployTask = require('../tasks/deploy').default;
 
-      const serve = new ServeTask({
+      const deploy = new DeployTask({
         ui: this.ui,
         project: this.project,
       });
@@ -72,7 +73,7 @@ const E2eCommand = Command.extend({
 
         checkPort(commandOptions.port, commandOptions.host)
           .then((port: number) => commandOptions.port = port)
-          .then(() => serve.run(commandOptions, rebuildCb))
+          .then(() => deploy.run(commandOptions, rebuildCb))
           .catch(reject);
       });
     } else {
