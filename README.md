@@ -154,8 +154,8 @@ and the [npm-link cheatsheet](http://browsenpm.org/help#linkinganynpmpackageloca
 MIT
 
 
-[travis-badge]: https://travis-ci.org/angular/angular-cli.svg?branch=master
-[travis-badge-url]: https://travis-ci.org/angular/angular-cli
+[travis-badge]: https://travis-ci.org/ddavis2xtivia/speedray-cli.svg?branch=master
+[travis-badge-url]: https://travis-ci.org/ddavis2xtivia/speedray-cli
 [david-badge]: https://david-dm.org/angular/angular-cli.svg
 [david-badge-url]: https://david-dm.org/angular/angular-cli
 [david-dev-badge]: https://david-dm.org/angular/angular-cli/dev-status.svg
