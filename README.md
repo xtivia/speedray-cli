@@ -156,9 +156,9 @@ MIT
 
 [travis-badge]: https://travis-ci.org/ddavis2xtivia/speedray-cli.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/ddavis2xtivia/speedray-cli
-[david-badge]: https://david-dm.org/angular/angular-cli.svg
-[david-badge-url]: https://david-dm.org/angular/angular-cli
-[david-dev-badge]: https://david-dm.org/angular/angular-cli/dev-status.svg
-[david-dev-badge-url]: https://david-dm.org/angular/angular-cli?type=dev
+[david-badge]: https://david-dm.org/ddavis2xtivia/speedray-cli.svg
+[david-badge-url]: https://david-dm.org/ddavis2xtivia/speedray-cli
+[david-dev-badge]: https://david-dm.org/dddavis2xtivia/speedray-cli/dev-status.svg
+[david-dev-badge-url]: https://david-dm.org/ddavis2xtivia/speedray-cli?type=dev
 [npm-badge]: https://img.shields.io/npm/v/@speedray/cli.svg
 [npm-badge-url]: https://www.npmjs.com/package/@speedray/cli
