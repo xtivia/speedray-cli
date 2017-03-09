@@ -111,7 +111,7 @@ Promise.resolve()
     return files
       .map((fileName) => path.relative(packagesRoot, fileName))
       .filter((fileName) => {
-        if (/^@angular[\\\/]cli[\\\/]blueprints/.test(fileName)) {
+        if (/^@speedray[\\\/]cli[\\\/]blueprints/.test(fileName)) {
           return true;
         }
         if (/\.d\.ts$/.test(fileName)) {
@@ -163,7 +163,7 @@ Promise.resolve()
   })
   .then(() => glob(path.join(dist, '**/*.spec.*')))
   .then(specFiles => specFiles.filter(fileName => {
-    return !/[\\\/]@angular[\\\/]cli[\\\/]blueprints/.test(fileName);
+    return !/[\\\/]@speedray[\\\/]cli[\\\/]blueprints/.test(fileName);
   }))
   .then(specFiles => {
     console.log(`Found ${specFiles.length} spec files...`);
