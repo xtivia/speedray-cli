@@ -8,6 +8,7 @@ function LiveReload(options) {
   this.ignore = this.options.ignore || null;
   this.quiet = this.options.quiet || false;
   this.portletName = this.options.portletName;
+  this.ui = this.options.ui;
 
   this.lastHash = null;
   this.lastChildHashes = [];
@@ -15,35 +16,45 @@ function LiveReload(options) {
   this.server = null;
 }
 
-function arraysEqual(a1, a2){
-  return a1.length==a2.length && a1.every(function(v,i){return v === a2[i]})
+function arraysEqual(a1, a2) {
+  return a1.length==a2.length && a1.every(function(v,i) {
+    return v === a2[i]
+  });
 }
 
 Object.defineProperty(LiveReload.prototype, 'isRunning', {
-  get: function() { return !!this.server; }
+  get: function() {
+    return !!this.server;
+  }
 });
 
 LiveReload.prototype.start = function start(cb) {
-  var port = this.port;
-  var quiet = this.quiet;
+  const port = this.port;
+  const quiet = this.quiet;
+  const self = this;
   if (servers[port]) {
     this.server = servers[port];
-    if(cb) cb();
-  }
-  else {
+    if(cb) {
+      cb();
+    } 
+  } else {
     this.server = servers[port] = lr(this.options);
     this.server.errorListener = function serverError(err) {
-      console.error('Live Reload disabled: ' + err.message);
+      self.ui.writeError('Live Reload disabled: ' + err.message);
       if (err.code !== 'EADDRINUSE') {
-        console.error(err.stack);
+        self.ui.writeError(err.stack);
       }
-      if(cb) cb();
+      if(cb) {
+        cb();
+      }
     };
     this.server.listen(this.port, function serverStarted(err) {
       if (!err && !quiet) {
-        console.log('Live Reload listening on port ' + port + '\n');
+        self.ui.writeLine('Live Reload listening on port ' + port + '\n');
       }
-      if(cb) cb();
+      if(cb) {
+        cb();
+      }
     });
   }
 };
@@ -52,8 +63,8 @@ LiveReload.prototype.done = function done(stats) {
   var hash = stats.compilation.hash;
   var childHashes = (stats.compilation.children || []).map(child => child.hash);
   var files = Object.keys(stats.compilation.assets).map(file => {
-                return '/o/'+this.portletName+'/'+file;
-              });
+    return '/o/'+this.portletName+'/'+file;
+  });
   var include = files.filter(function(file) {
     return !file.match(this.ignore);
   }, this);
@@ -93,8 +104,7 @@ LiveReload.prototype.scriptTag = function scriptTag(source) {
   var js = this.autoloadJs();
   if (this.options.appendScriptTag && this.isRunning) {
     return js + source;
-  }
-  else {
+  } else {
     return source;
   }
 };

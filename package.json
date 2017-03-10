@@ -73,7 +73,6 @@
     "karma-webpack": "^2.0.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
-    "livereload": "^0.6.0",
     "loader-utils": "^0.2.16",
     "lodash": "^4.11.1",
     "magic-string": "^0.19.0",
@@ -103,9 +102,9 @@
     "tiny-lr": "^1.0.3",
     "typescript": "~2.0.3",
     "url-loader": "^0.5.7",
+    "util": "^0.10.3",
     "walk-sync": "^0.3.1",
     "webpack": "~2.2.0",
-    "webpack-dev-server": "~2.3.0",
     "webpack-merge": "^2.4.0",
     "zone.js": "^0.7.2"
   },

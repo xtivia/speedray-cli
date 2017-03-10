@@ -1,7 +1,7 @@
 import { SpeedrayDeployOptions } from '../models/speedray/deploy-options';
 import { CliConfig } from '../models/config';
 import { Version } from '../upgrade/version';
-import { baseJarCommandOptions } from './jar'
+import { baseJarCommandOptions } from './jar';
 
 const Command = require('../ember-cli/lib/models/command');
 
@@ -28,18 +28,14 @@ const DeployCommand = Command.extend({
 
   run: function (commandOptions: DeployTaskOptions) {
     const project = this.project;
-    
     const config = CliConfig.fromProject().config;
     // Check angular version.
     Version.assertAngularVersionIs2_3_1OrHigher(project.root);
-
     const DeployTask = require('../tasks/speedray/deploy').default;
-
     const deployTask = new DeployTask({
       cliProject: project,
       ui: this.ui,
     });
-
     return deployTask.run(commandOptions);
   }
 });

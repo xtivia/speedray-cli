@@ -1,4 +1,4 @@
-const opn = require("opn");
+const opn = require('opn');
 import * as path from 'path';
 import { DeployTaskOptions } from '../../commands/deploy';
 import { CliConfig } from '../../models/config';
@@ -22,34 +22,35 @@ export default Task.extend({
           ui: this.ui
         });
         let self = this;
-        if(runTaskOptions.watch) {
-          var firsttime = true;
+        if (runTaskOptions.watch) {
+          let firsttime = true;
           let livereload = new LiveReload({
-            portletName: packageOptions.name
+            portletName: packageOptions.name,
+            ui: self.ui
           });
           livereload.start();
           jarTask.run(runTaskOptions, function rebuildDone(stats: any) {
             self.ui.writeLine('\nupdated jar\n');
             deploy(project, runTaskOptions).subscribe(results => {
-              if(firsttime) {
+              if (firsttime) {
                 firsttime = false;
-                opn("http://localhost:8080/");
+                opn('http://localhost:8080/');
               }
-              if(rebuildDoneCb) {
+              if (rebuildDoneCb) {
                 rebuildDoneCb(results);
               } else {
-                self.ui.writeLine('\n'+results+'\n');
+                self.ui.writeLine('\n' + results + '\n');
               }
-              livereload.done(stats)
+              livereload.done(stats);
             }, error => {
               self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
               reject(error);
             });
-          }).catch((error:any)=>{
+          }).catch((error: any) => {
             reject(error);
           });
         } else {
-          jarTask.run(runTaskOptions).then((results:any)=>{
+          jarTask.run(runTaskOptions).then((results: any) => {
             deploy(project, runTaskOptions).subscribe(results => {
               self.ui.writeLine(results);
               resolve(results);
@@ -57,7 +58,7 @@ export default Task.extend({
               self.ui.writeError('\nAn error occured during the deployment:\n' + (error));
               reject(error);
             });
-          }).catch((error:any)=>{
+          }).catch((error: any) => {
             reject(error);
           });
       }

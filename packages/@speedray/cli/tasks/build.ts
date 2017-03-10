@@ -38,7 +38,7 @@ export default Task.extend({
         this.ui.writeLine(stats.toString(statsConfig));
 
         if (runTaskOptions.watch) {
-          rebuildDoneCb(err,stats);
+          rebuildDoneCb(err, stats);
           return;
         }
 

@@ -24,9 +24,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  */
 
 function startsWithIn(resource: string, paths: string[]): boolean {
-  if(paths && resource) {
-    for(var i=0;i<paths.length;i++) {
-      if(resource.startsWith(paths[i])) {
+  if (paths && resource) {
+    for (let i = 0; i < paths.length; i++) {
+      if (resource.startsWith(paths[i])) {
         return true;
       }
     }
@@ -79,7 +79,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     extraPlugins.push(new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: ['main'],
-      minChunks: (module: any) => module.resource && startsWithIn(module.resource,nodeModules)
+      minChunks: (module: any) => module.resource && startsWithIn(module.resource, nodeModules)
     }));
   }
 
@@ -115,7 +115,8 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     },
     module: {
       rules: [
-        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader', exclude: [nodeModules.join(',')] },
+        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader',
+         exclude: [nodeModules.join(',')] },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.html$/, loader: 'raw-loader' },
         { test: /\.(eot|svg)$/, loader: `file-loader?name=[name]${hashFormat.file}.[ext]` },

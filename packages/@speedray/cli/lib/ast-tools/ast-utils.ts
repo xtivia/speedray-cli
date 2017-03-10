@@ -112,7 +112,7 @@ function _angularImportsFromNode(node: ts.ImportDeclaration,
       return {};
   }
 
-  if (!(modulePath.startsWith('@speedray/')||modulePath.startsWith('@angular/'))) {
+  if (!(modulePath.startsWith('@speedray/') || modulePath.startsWith('@angular/'))) {
     return {};
   }
 
