@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ddavis2xtivia/speedray-cli.git"
+    "url": "git+https://github.com/ddavis2xtivia/speedray-cli.git"
   },
   "engines": {
     "node": ">= 6.9.0",
@@ -153,5 +153,9 @@
     "tree-kill": "^1.0.0",
     "ts-node": "^2.0.0",
     "tslint": "^4.0.2"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
   }
 }

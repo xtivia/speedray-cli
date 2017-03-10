@@ -22,7 +22,7 @@ function removeResolvedKeys(json) {
       delete deps[key];
     } else if (key.startsWith('@ngtools/')) {
       delete deps[key];
-    } else if (key.startsWith('@speedray-cli/')) {
+    } else if (key.startsWith('@speedray/')) {
       delete deps[key];
     } else {
       deps[key] = removeResolvedKeys(deps[key]);
