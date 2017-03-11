@@ -11,7 +11,6 @@ import {findUp} from '../utilities/find-up';
 export const CLI_CONFIG_FILE_NAME = '.speedray-cli.json';
 const CLI_CONFIG_FILE_NAME_ALT = 'speedray-cli.json';
 
-
 function getUserHome() {
   return process.env[(process.platform.startsWith('win')) ? 'USERPROFILE' : 'HOME'];
 }
@@ -136,6 +135,7 @@ export class CliConfig extends CliConfigBase<ConfigInterface> {
     }
 
     configCacheMap.set(configPath, cliConfig);
+
     return cliConfig as CliConfig;
   }
 }

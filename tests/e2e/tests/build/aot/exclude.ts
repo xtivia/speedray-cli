@@ -16,7 +16,7 @@ export default function () {
     .then(() => ng('build', '--aot'))
     // Verify backwards compatibility with old project using the shared tsconfig.
     .then(() => moveFile('src/tsconfig.app.json', 'src/tsconfig.json'))
-    .then(() => updateJsonFile('.angular-cli.json', configJson => {
+    .then(() => updateJsonFile('.speedray-cli.json', configJson => {
       const app = configJson['apps'][0];
       app.tsconfig = 'tsconfig.json';
       delete app['testTsconfig'];

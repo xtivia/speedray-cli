@@ -11,7 +11,7 @@ export default function () {
     // Verify code coverage exclude work
     .then(() => expectFileToMatch('coverage/lcov.info', 'polyfills.ts'))
     .then(() => expectFileToMatch('coverage/lcov.info', 'test.ts'))
-    .then(() => updateJsonFile('.angular-cli.json', configJson => {
+    .then(() => updateJsonFile('.speedray-cli.json', configJson => {
       const test = configJson['test'];
       test['codeCoverage'] = {
         exclude: [

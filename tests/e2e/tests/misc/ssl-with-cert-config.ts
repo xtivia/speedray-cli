@@ -6,7 +6,7 @@ import { updateJsonFile } from '../../utils/project';
 
 export default function() {
   return Promise.resolve()
-    .then(() => updateJsonFile('.angular-cli.json', configJson => {
+    .then(() => updateJsonFile('.speedray-cli.json', configJson => {
       const app = configJson.defaults;
       app.serve = {
         ssl: true,
