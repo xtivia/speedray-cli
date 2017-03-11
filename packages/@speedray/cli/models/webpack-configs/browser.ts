@@ -3,7 +3,6 @@ import * as path from 'path';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 import { packageChunkSort } from '../../utilities/package-chunk-sort';
-import { BaseHrefWebpackPlugin } from '../../lib/base-href-webpack';
 import { extraEntryParser, lazyChunksFilter } from './utils';
 import { WebpackConfigOptions } from '../webpack-config';
 

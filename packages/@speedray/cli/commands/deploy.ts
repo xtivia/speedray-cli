@@ -1,11 +1,8 @@
 import { SpeedrayDeployOptions } from '../models/speedray/deploy-options';
-import { CliConfig } from '../models/config';
 import { Version } from '../upgrade/version';
 import { baseJarCommandOptions } from './jar';
 
 const Command = require('../ember-cli/lib/models/command');
-
-const config = CliConfig.fromProject() || CliConfig.fromGlobal();
 
 // defaults for BuildOptions
 export const baseDeployCommandOptions: any = baseJarCommandOptions.concat([

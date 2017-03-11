@@ -1,4 +1,3 @@
-import { CliConfig } from '../models/config';
 import { Version } from '../upgrade/version';
 import { SpeedrayJarOptions } from '../models/speedray/jar-options';
 import { baseBuildCommandOptions } from './build';

@@ -63,11 +63,7 @@ Navigate to `http://localhost:8080/`. The app will automatically reload if you c
 You can configure the default HTTP host and port used by the development server with two command-line options :
 
 ```bash
-<<<<<<< HEAD
-sr deploy --host 0.0.0.0 --port 4201 --live-reload-port 49153
-=======
-ng serve --host 0.0.0.0 --port 4201
->>>>>>> angular-cli/master
+sr deploy --host 0.0.0.0 --port 11311
 ```
 
 ### Generating Components, Directives, Pipes and Services
@@ -90,16 +86,6 @@ You can find all possible blueprints in the table below:
 
 Scaffold  | Usage
 ---       | ---
-<<<<<<< HEAD
-Component | `sr g component my-new-component`
-Directive | `sr g directive my-new-directive`
-Pipe      | `sr g pipe my-new-pipe`
-Service   | `sr g service my-new-service`
-Class     | `sr g class my-new-class`
-Interface | `sr g interface my-new-interface`
-Enum      | `sr g enum my-new-enum`
-Module    | `sr g module my-module`
-=======
 Component | `ng g component my-new-component`
 Directive | `ng g directive my-new-directive`
 Pipe      | `ng g pipe my-new-pipe`
@@ -109,42 +95,22 @@ Guard     | `ng g guard my-new-guard`
 Interface | `ng g interface my-new-interface`
 Enum      | `ng g enum my-new-enum`
 Module    | `ng g module my-module`
->>>>>>> angular-cli/master
 
 ### Updating Speedray CLI
 
-<<<<<<< HEAD
 To update Speedray CLI to a new version, you must update both the global package and your project's local package.
 
 Global package:
 ```bash
 npm uninstall -g @speedray/cli
-=======
-If you're using Angular CLI `beta.28` or less, you need to uninstall `angular-cli` package. It should be done due to changing of package's name and scope from `angular-cli` to `@angular/cli`:
-```bash
-npm uninstall -g angular-cli
-npm uninstall --save-dev angular-cli
-```
-
-To update Angular CLI to a new version, you must update both the global package and your project's local package.
-
-Global package:
-```bash
-npm uninstall -g @angular/cli
->>>>>>> angular-cli/master
 npm cache clean
 npm install -g @speedray/cli@latest
 ```
 
 Local project package:
 ```bash
-<<<<<<< HEAD
-rm -rf node_modules dist # use rmdir on Windows
-npm install --save-dev @speedray/cli@latest
-=======
 rm -rf node_modules dist # use rmdir /S/Q node_modules dist in Windows Command Prompt; use rm -r -fo node_modules,dist in Windows PowerShell
-npm install --save-dev @angular/cli@latest
->>>>>>> angular-cli/master
+npm install --save-dev @speedray/cli@latest
 npm install
 ```
 
