@@ -105,11 +105,11 @@ const init: any = (config: any) => {
   config.webpack = Object.assign(webpackConfig, config.webpack);
   config.webpackMiddleware = Object.assign(webpackMiddlewareConfig, config.webpackMiddleware);
 
-  // Replace the @angular/cli preprocessor with webpack+sourcemap.
+  // Replace the @speedray/cli preprocessor with webpack+sourcemap.
   Object.keys(config.preprocessors)
-    .filter((file) => config.preprocessors[file].indexOf('@angular/cli') !== -1)
+    .filter((file) => config.preprocessors[file].indexOf('@speedray/cli') !== -1)
     .map((file) => config.preprocessors[file])
-    .map((arr) => arr.splice(arr.indexOf('@angular/cli'), 1, 'webpack', 'sourcemap'));
+    .map((arr) => arr.splice(arr.indexOf('@speedray/cli'), 1, 'webpack', 'sourcemap'));
 
   // Add global scripts. This logic mimics the one in webpack-configs/common.
   if (appConfig.scripts && appConfig.scripts.length > 0) {
@@ -136,6 +136,6 @@ preprocessor.$inject = [];
 
 // Also export karma-webpack and karma-sourcemap-loader.
 module.exports = Object.assign({
-  'framework:@angular/cli': ['factory', init],
-  'preprocessor:@angular/cli': ['factory', preprocessor]
+  'framework:@speedray/cli': ['factory', init],
+  'preprocessor:@speedray/cli': ['factory', preprocessor]
 }, require('karma-webpack'), require('karma-sourcemap-loader'));

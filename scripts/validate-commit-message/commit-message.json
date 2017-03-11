@@ -12,7 +12,7 @@
     "test"
   ],
   "scopes": [
-    "@angular/cli",
+    "@speedray/cli",
     "@ngtools/json-schema",
     "@ngtools/logger",
     "@ngtools/webpack",

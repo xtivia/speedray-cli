@@ -16,7 +16,7 @@ Default applications are created in a directory of the same name, with an initia
 
 `--inline-template` (`it`) Should have an inline template.
 
-`--link-cli` Automatically link the `@angular/cli` package.
+`--link-cli` Automatically link the `@speedray/cli` package.
 
 `--ng4` Create a project with Angular 4 in the template.
 

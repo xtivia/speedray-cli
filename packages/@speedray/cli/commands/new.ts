@@ -38,7 +38,7 @@ const NewCommand = Command.extend({
       type: Boolean,
       default: false,
       aliases: ['lc'],
-      description: 'Automatically link the `@angular/cli` package.'
+      description: 'Automatically link the `@speedray/cli` package.'
     },
     {
       name: 'ng4',

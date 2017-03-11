@@ -2,7 +2,7 @@
   "extends": "../../../tsconfig.json",
 
   "compilerOptions": {
-    "outDir": "../../../dist/@angular/cli",
+    "outDir": "../../../dist/@speedray/cli",
     "rootDir": ".",
     "baseUrl": "",
     "paths": {
