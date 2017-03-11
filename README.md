@@ -63,7 +63,7 @@ Navigate to `http://localhost:8080/`. The app will automatically reload if you c
 You can configure the default HTTP host and port used by the development server with two command-line options :
 
 ```bash
-sr deploy --host 0.0.0.0 --port 11311
+sr deploy --host 127.0.0.1 --port 11311
 ```
 
 ### Generating Components, Directives, Pipes and Services
