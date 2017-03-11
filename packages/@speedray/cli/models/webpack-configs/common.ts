@@ -135,9 +135,6 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
         excludeChunks: lazyChunks,
         xhtml: true
       }),
-      new BaseHrefWebpackPlugin({
-        baseHref: buildOptions.baseHref
-      }),
       new webpack.optimize.CommonsChunkPlugin({
         minChunks: Infinity,
         name: 'inline'
