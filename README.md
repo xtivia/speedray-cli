@@ -159,7 +159,7 @@ The documentation for the Angular CLI is located in this repo's [wiki](https://g
 
 ## License
 
-MIT
+LGPL-3
 
 
 [travis-badge]: https://travis-ci.org/ddavis2xtivia/speedray-cli.svg?branch=master
