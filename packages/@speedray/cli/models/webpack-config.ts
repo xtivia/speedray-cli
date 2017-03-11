@@ -1,5 +1,4 @@
 const webpackMerge = require('webpack-merge');
-const util = require('util');
 import { CliConfig } from './config';
 import { BuildOptions } from './build-options';
 import {

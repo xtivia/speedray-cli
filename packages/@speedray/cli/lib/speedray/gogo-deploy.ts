@@ -44,7 +44,7 @@ GogoDeployer.prototype = _.create(GogoShell.prototype, {
     _getBundleStatusByBundleName: function(bundleName: any) {
         return this.sendCommand('lb -u -s | grep', bundleName)
             .then(function(data: any) {
-                return _.reduce(data.split('\n'), function(result: any, item: any, index: any) {
+                return _.reduce(data.split('\n'), function(result: any, item: any) {
                     const fields = item.split('|');
                     if (fields.length == 4) {
                         result.push({

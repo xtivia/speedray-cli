@@ -1,7 +1,5 @@
-import * as rimraf from 'rimraf';
 import * as path from 'path';
 import { JarTaskOptions } from '../../commands/jar';
-import { CliConfig } from '../../models/config';
 
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -13,7 +11,6 @@ const replace = require('replace-in-file');
 export function jar(project: any, options: JarTaskOptions): Observable<Number> {
     const subject = new ReplaySubject<Number>();
     const packageOptions = require(path.resolve(project.root, 'package.json'));
-    const config = CliConfig.fromProject().config;
 
     const outputPath: string = path.resolve(project.root, options.outputJarPath);
     if (!fs.existsSync(outputPath)) {

@@ -6,7 +6,6 @@ import { baseJarCommandOptions } from './jar';
 const Command = require('../ember-cli/lib/models/command');
 
 const config = CliConfig.fromProject() || CliConfig.fromGlobal();
-const pollDefault = config.config.defaults && config.config.defaults.poll;
 
 // defaults for BuildOptions
 export const baseDeployCommandOptions: any = baseJarCommandOptions.concat([
@@ -28,8 +27,7 @@ const DeployCommand = Command.extend({
 
   run: function (commandOptions: DeployTaskOptions) {
     const project = this.project;
-    const config = CliConfig.fromProject().config;
-    // Check angular version.
+     // Check angular version.
     Version.assertAngularVersionIs2_3_1OrHigher(project.root);
     const DeployTask = require('../tasks/speedray/deploy').default;
     const deployTask = new DeployTask({

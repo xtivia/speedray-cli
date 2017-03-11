@@ -8,7 +8,6 @@ import { CliConfig } from '../models/config';
 const VersionCommand = Command.extend({
   name: 'version',
   description: 'outputs Speedray CLI version',
-  description: 'Outputs Angular CLI version.',
   aliases: ['v', '--version', '-v'],
   works: 'everywhere',
 

@@ -1,11 +1,9 @@
 const opn = require('opn');
 import * as path from 'path';
 import { DeployTaskOptions } from '../../commands/deploy';
-import { CliConfig } from '../../models/config';
 import { deploy } from '../../lib/speedray/deploy';
 
 const Task = require('../../ember-cli/lib/models/task');
-const SilentError = require('silent-error');
 const LiveReload = require('../../lib/speedray/livereload');
 
 
@@ -13,7 +11,6 @@ export default Task.extend({
   run: function (runTaskOptions: DeployTaskOptions, rebuildDoneCb: any) {
     const JarTask = require('./jar').default;
     const project = this.cliProject;
-    const config = CliConfig.fromProject().config;
     const packageOptions = require(path.resolve(project.root, 'package.json'));
 
     return new Promise((resolve, reject) => {
@@ -50,7 +47,7 @@ export default Task.extend({
             reject(error);
           });
         } else {
-          jarTask.run(runTaskOptions).then((results: any) => {
+          jarTask.run(runTaskOptions).then(() => {
             deploy(project, runTaskOptions).subscribe(results => {
               self.ui.writeLine(results);
               resolve(results);

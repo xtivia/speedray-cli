@@ -19,17 +19,6 @@ const ProgressPlugin = require('webpack/lib/ProgressPlugin');
  * require('file-loader')
  */
 
-function startsWithIn(resource: string, paths: string[]): boolean {
-  if (paths && resource) {
-    for (let i = 0; i < paths.length; i++) {
-      if (resource.startsWith(paths[i])) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
 export function getCommonConfig(wco: WebpackConfigOptions) {
   const { projectRoot, buildOptions, appConfig } = wco;
 
@@ -107,22 +96,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
       ].concat(extraRules)
     },
     plugins: [
-<<<<<<< HEAD:packages/@speedray/cli/models/webpack-configs/common.ts
-      new webpack.NoEmitOnErrorsPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.resolve(appRoot, appConfig.index),
-        filename: path.resolve(buildOptions.outputPath, appConfig.index),
-        chunksSortMode: packageChunkSort(appConfig),
-        excludeChunks: lazyChunks,
-        xhtml: true
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        minChunks: Infinity,
-        name: 'inline'
-      })
-=======
       new webpack.NoEmitOnErrorsPlugin()
->>>>>>> angular-cli/master:packages/@angular/cli/models/webpack-configs/common.ts
     ].concat(extraPlugins),
     node: {
       fs: 'empty',

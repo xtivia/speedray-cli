@@ -5,9 +5,6 @@ import { baseBuildCommandOptions } from './build';
 
 const Command = require('../ember-cli/lib/models/command');
 
-const config = CliConfig.fromProject() || CliConfig.fromGlobal();
-const pollDefault = config.config.defaults && config.config.defaults.poll;
-
 // defaults for BuildOptions
 export const baseJarCommandOptions: any = baseBuildCommandOptions.concat([
   { name: 'output-jar-path', type: 'Path', default: 'dist', aliases: ['ojp'] },

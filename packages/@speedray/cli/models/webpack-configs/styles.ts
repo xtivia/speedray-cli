@@ -44,7 +44,6 @@ export function getStylesConfig(wco: WebpackConfigOptions) {
   const cssnanoPlugin = cssnano({ safe: true, autoprefixer: false });
 
   // Convert absolute resource URLs to account for base-href and deploy-url.
-  const baseHref = wco.buildOptions.baseHref;
   const deployUrl = wco.buildOptions.deployUrl;
   const postcssUrlOptions = {
     url: (URL: string) => {
@@ -54,13 +53,12 @@ export function getStylesConfig(wco: WebpackConfigOptions) {
       }
       // Join together base-href, deploy-url and the original URL.
       // Also dedupe multiple slashes into single ones.
-      return `/${baseHref || ''}/${deployUrl || ''}/${URL}`.replace(/\/\/+/g, '/');
+      return `/${deployUrl || ''}/${URL}`.replace(/\/\/+/g, '/');
     }
   };
   const urlPlugin = postcssUrl(postcssUrlOptions);
   // We need to save baseHref and deployUrl for the Ejected webpack config to work (we reuse
   //  the function defined above).
-  (postcssUrlOptions as any).baseHref = baseHref;
   (postcssUrlOptions as any).deployUrl = deployUrl;
   // Save the original options as arguments for eject.
   urlPlugin[postcssArgs] = postcssUrlOptions;
