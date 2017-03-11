@@ -1,17 +1,10 @@
 /* jshint node: true */
 'use strict';
 
-const config = require('../models/config');
 const path = require('path');
 
 module.exports = {
-  name: 'ng2',
-
-  config: function () {
-    this.project.ngConfigObj = this.project.ngConfigObj || config.CliConfig.fromProject();
-    this.project.ngConfig = this.project.ngConfig || (
-        this.project.ngConfigObj && this.project.ngConfigObj.config);
-  },
+  name: 'ng',
 
   blueprintsPath: function () {
     return path.join(__dirname, '../blueprints');

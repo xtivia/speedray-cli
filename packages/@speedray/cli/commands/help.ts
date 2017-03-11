@@ -13,7 +13,7 @@ const commandsToIgnore = [
 
 const HelpCommand = Command.extend({
   name: 'help',
-  description: 'Shows help for the CLI',
+  description: 'Shows help for the CLI.',
   works: 'everywhere',
 
   availableOptions: [],
@@ -55,7 +55,13 @@ const HelpCommand = Command.extend({
       });
 
       if (rawArgs.length > 0) {
-        if (cmd === rawArgs[0]) {
+        let commandInput = rawArgs[0];
+        const aliases = Command.prototype.aliases;
+        if (aliases && aliases.indexOf(commandInput) > -1) {
+          commandInput = Command.prototype.name;
+        }
+
+        if (cmd === commandInput) {
           if (command.printDetailedHelp(commandOptions)) {
             this.ui.writeLine(command.printDetailedHelp(commandOptions));
           } else {

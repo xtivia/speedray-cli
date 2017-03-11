@@ -9,7 +9,9 @@ Prototype of a CLI for Angular applications deployed to Liferay DXP based on the
 
 ## Note
 
-This project is very much still a work in progress.
+The CLI is now in Release Candidate (RC).
+If you are updating from a beta version, check out our [RC Update Guide]
+(https://github.com/angular/angular-cli/wiki/stories-rc-update).
 
 The CLI is now in beta.
 If you wish to collaborate while the project is still young, check out [our issue list](https://github.com/ddavis2xtivia/speedray-cli/issues).
@@ -33,6 +35,7 @@ with NPM 3 or higher and Liferay DXP FP 11 or higher.
 * [Generating Components, Directives, Pipes and Services](#generating-components-directives-pipes-and-services)
 * [Updating Speedray CLI](#updating-angular-cli)
 * [Development Hints for hacking on Speedray CLI](#development-hints-for-hacking-on-angular-cli)
+* [Documentation](#documentation)
 * [License](#license)
 
 ## Installation
@@ -57,10 +60,14 @@ sr deploy --watch
 ```
 Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
-You can configure the default HTTP port and the one used by the LiveReload server with two command-line options :
+You can configure the default HTTP host and port used by the development server with two command-line options :
 
 ```bash
+<<<<<<< HEAD
 sr deploy --host 0.0.0.0 --port 4201 --live-reload-port 49153
+=======
+ng serve --host 0.0.0.0 --port 4201
+>>>>>>> angular-cli/master
 ```
 
 ### Generating Components, Directives, Pipes and Services
@@ -83,6 +90,7 @@ You can find all possible blueprints in the table below:
 
 Scaffold  | Usage
 ---       | ---
+<<<<<<< HEAD
 Component | `sr g component my-new-component`
 Directive | `sr g directive my-new-directive`
 Pipe      | `sr g pipe my-new-pipe`
@@ -91,22 +99,52 @@ Class     | `sr g class my-new-class`
 Interface | `sr g interface my-new-interface`
 Enum      | `sr g enum my-new-enum`
 Module    | `sr g module my-module`
+=======
+Component | `ng g component my-new-component`
+Directive | `ng g directive my-new-directive`
+Pipe      | `ng g pipe my-new-pipe`
+Service   | `ng g service my-new-service`
+Class     | `ng g class my-new-class`
+Guard     | `ng g guard my-new-guard`
+Interface | `ng g interface my-new-interface`
+Enum      | `ng g enum my-new-enum`
+Module    | `ng g module my-module`
+>>>>>>> angular-cli/master
 
 ### Updating Speedray CLI
 
+<<<<<<< HEAD
 To update Speedray CLI to a new version, you must update both the global package and your project's local package.
 
 Global package:
 ```bash
 npm uninstall -g @speedray/cli
+=======
+If you're using Angular CLI `beta.28` or less, you need to uninstall `angular-cli` package. It should be done due to changing of package's name and scope from `angular-cli` to `@angular/cli`:
+```bash
+npm uninstall -g angular-cli
+npm uninstall --save-dev angular-cli
+```
+
+To update Angular CLI to a new version, you must update both the global package and your project's local package.
+
+Global package:
+```bash
+npm uninstall -g @angular/cli
+>>>>>>> angular-cli/master
 npm cache clean
 npm install -g @speedray/cli@latest
 ```
 
 Local project package:
 ```bash
+<<<<<<< HEAD
 rm -rf node_modules dist # use rmdir on Windows
 npm install --save-dev @speedray/cli@latest
+=======
+rm -rf node_modules dist # use rmdir /S/Q node_modules dist in Windows Command Prompt; use rm -r -fo node_modules,dist in Windows PowerShell
+npm install --save-dev @angular/cli@latest
+>>>>>>> angular-cli/master
 npm install
 ```
 
@@ -148,6 +186,10 @@ You can also use `sr new foo --link-cli` to automatically link the `@speedray/cl
 Please read the official [npm-link documentation](https://www.npmjs.org/doc/cli/npm-link.html)
 and the [npm-link cheatsheet](http://browsenpm.org/help#linkinganynpmpackagelocally) for more information.
 
+
+## Documentation
+
+The documentation for the Angular CLI is located in this repo's [wiki](https://github.com/angular/angular-cli/wiki).
 
 ## License
 

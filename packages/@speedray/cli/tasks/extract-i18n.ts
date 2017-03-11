@@ -5,15 +5,14 @@ import * as rimraf from 'rimraf';
 const Task = require('../ember-cli/lib/models/task');
 
 import {XI18nWebpackConfig} from '../models/webpack-xi18n-config';
-import {CliConfig} from '../models/config';
-
+import {getAppFromConfig} from '../utilities/app-utils';
 
 export const Extracti18nTask = Task.extend({
   run: function (runTaskOptions: any) {
 
     const project = this.project;
 
-    const appConfig = CliConfig.fromProject().config.apps[0];
+    const appConfig = getAppFromConfig(runTaskOptions.app);
 
     const buildDir = '.tmp';
     const genDir = runTaskOptions.outputPath || appConfig.root;
@@ -22,9 +21,12 @@ export const Extracti18nTask = Task.extend({
       genDir,
       buildDir,
       i18nFormat: runTaskOptions.i18nFormat,
+      locale: runTaskOptions.locale,
+      outFile: runTaskOptions.outFile,
       verbose: runTaskOptions.verbose,
-      progress: runTaskOptions.progress
-    }).config;
+      progress: runTaskOptions.progress,
+      app: runTaskOptions.app,
+    }, appConfig).buildConfig();
 
     const webpackCompiler = webpack(config);
 
@@ -52,7 +54,6 @@ export const Extracti18nTask = Task.extend({
           this.ui.writeError('\nAn error occured during the i18n extraction:\n'
             + ((err && err.stack) || err));
         }
-        throw err;
       });
   }
 });

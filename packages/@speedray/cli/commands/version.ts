@@ -8,12 +8,15 @@ import { CliConfig } from '../models/config';
 const VersionCommand = Command.extend({
   name: 'version',
   description: 'outputs Speedray CLI version',
+  description: 'Outputs Angular CLI version.',
   aliases: ['v', '--version', '-v'],
   works: 'everywhere',
 
   availableOptions: [{
     name: 'verbose',
-    type: Boolean, 'default': false
+    type: Boolean,
+    'default': false,
+    description: 'Adds more details to output logging.'
   }],
 
   run: function (options: any) {
@@ -75,8 +78,8 @@ const VersionCommand = Command.extend({
   getDependencyVersions: function(pkg: any, prefix: string): any {
     const modules: any = {};
 
-    Object.keys(pkg.dependencies || {})
-      .concat(Object.keys(pkg.devDependencies || {}))
+    Object.keys(pkg['dependencies'] || {})
+      .concat(Object.keys(pkg['devDependencies'] || {}))
       .filter(depName => depName && depName.startsWith(prefix))
       .forEach(key => modules[key] = this.getVersion(key));
 

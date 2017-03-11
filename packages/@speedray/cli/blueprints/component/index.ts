@@ -1,4 +1,6 @@
 import { NodeHost } from '../../lib/ast-tools';
+import { CliConfig } from '../../models/config';
+import { getAppFromConfig } from '../../utilities/app-utils';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -71,14 +73,21 @@ export default Blueprint.extend({
       type: Boolean,
       default: false,
       description: 'Specifies if declaring module exports the component.'
+    },
+    {
+      name: 'app',
+      type: String,
+      aliases: ['a'],
+      description: 'Specifies app name to use.'
     }
   ],
 
   beforeInstall: function (options: any) {
+    const appConfig = getAppFromConfig(this.options.app);
     if (options.module) {
       // Resolve path to module
       const modulePath = options.module.endsWith('.ts') ? options.module : `${options.module}.ts`;
-      const parsedPath = dynamicPathParser(this.project, modulePath);
+      const parsedPath = dynamicPathParser(this.project, modulePath, appConfig);
       this.pathToModule = path.join(this.project.root, parsedPath.dir, parsedPath.base);
 
       if (!fs.existsSync(this.pathToModule)) {
@@ -86,7 +95,7 @@ export default Blueprint.extend({
       }
     } else {
       try {
-        this.pathToModule = findParentModule(this.project, this.dynamicPath.dir);
+        this.pathToModule = findParentModule(this.project.root, appConfig.root, this.generatePath);
       } catch (e) {
         if (!options.skipImport) {
           throw `Error locating module for declaration\n\t${e}`;
@@ -96,16 +105,12 @@ export default Blueprint.extend({
   },
 
   normalizeEntityName: function (entityName: string) {
-    const parsedPath = dynamicPathParser(this.project, entityName);
+    const appConfig = getAppFromConfig(this.options.app);
+    const parsedPath = dynamicPathParser(this.project, entityName, appConfig);
 
     this.dynamicPath = parsedPath;
 
-    let defaultPrefix = '';
-    if (this.project.ngConfig &&
-        this.project.ngConfig.apps[0] &&
-        this.project.ngConfig.apps[0].prefix) {
-      defaultPrefix = this.project.ngConfig.apps[0].prefix;
-    }
+    const defaultPrefix = (appConfig && appConfig.prefix) || '';
 
     let prefix = (this.options.prefix === 'false' || this.options.prefix === '')
                  ? '' : (this.options.prefix || defaultPrefix);
@@ -121,36 +126,25 @@ export default Blueprint.extend({
   },
 
   locals: function (options: any) {
-    this.styleExt = 'css';
-    if (this.project.ngConfig &&
-        this.project.ngConfig.defaults &&
-        this.project.ngConfig.defaults.styleExt) {
-      this.styleExt = this.project.ngConfig.defaults.styleExt;
-    }
+    this.styleExt = CliConfig.getValue('defaults.styleExt') || 'css';
 
     options.inlineStyle = options.inlineStyle !== undefined ?
-      options.inlineStyle :
-      this.project.ngConfigObj.get('defaults.component.inlineStyle');
+      options.inlineStyle : CliConfig.getValue('defaults.component.inlineStyle');
 
     options.inlineTemplate = options.inlineTemplate !== undefined ?
-      options.inlineTemplate :
-      this.project.ngConfigObj.get('defaults.component.inlineTemplate');
+      options.inlineTemplate : CliConfig.getValue('defaults.component.inlineTemplate');
 
     options.flat = options.flat !== undefined ?
-      options.flat :
-      this.project.ngConfigObj.get('defaults.component.flat');
+      options.flat : CliConfig.getValue('defaults.component.flat');
 
     options.spec = options.spec !== undefined ?
-      options.spec :
-      this.project.ngConfigObj.get('defaults.component.spec');
+      options.spec : CliConfig.getValue('defaults.component.spec');
 
     options.viewEncapsulation = options.viewEncapsulation !== undefined ?
-      options.viewEncapsulation :
-      this.project.ngConfigObj.get('defaults.component.viewEncapsulation');
+      options.viewEncapsulation : CliConfig.getValue('defaults.component.viewEncapsulation');
 
     options.changeDetection = options.changeDetection !== undefined ?
-      options.changeDetection :
-      this.project.ngConfigObj.get('defaults.component.changeDetection');
+      options.changeDetection : CliConfig.getValue('defaults.component.changeDetection');
 
     return {
       dynamicPath: this.dynamicPath.dir.replace(this.dynamicPath.appRoot, ''),
@@ -184,6 +178,8 @@ export default Blueprint.extend({
   },
 
   fileMapTokens: function (options: any) {
+    const appConfig = getAppFromConfig(this.options.app);
+
     // Return custom template variables here.
     return {
       __path__: () => {
@@ -191,7 +187,7 @@ export default Blueprint.extend({
         if (!options.locals.flat) {
           dir += path.sep + options.dasherizedModuleName;
         }
-        const srcDir = this.project.ngConfig.apps[0].root;
+        const srcDir = appConfig.root;
         this.appDir = dir.substr(dir.indexOf(srcDir) + srcDir.length);
         this.generatePath = dir;
         return dir;
@@ -203,10 +199,6 @@ export default Blueprint.extend({
   },
 
   afterInstall: function (options: any) {
-    if (options.dryRun) {
-      return;
-    }
-
     const returns: Array<any> = [];
     const className = stringUtils.classify(`${options.entity.name}Component`);
     const fileName = stringUtils.dasherize(`${options.entity.name}.component`);
@@ -214,6 +206,12 @@ export default Blueprint.extend({
     const importPath = componentDir ? `./${componentDir}/${fileName}` : `./${fileName}`;
 
     if (!options.skipImport) {
+      if (options.dryRun) {
+        this._writeStatusToUI(chalk.yellow,
+          'update',
+          path.relative(this.project.root, this.pathToModule));
+        return;
+      }
       const preChange = fs.readFileSync(this.pathToModule, 'utf8');
 
       returns.push(

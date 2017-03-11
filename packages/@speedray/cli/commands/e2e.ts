@@ -4,6 +4,7 @@ import { overrideOptions } from '../utilities/override-options';
 import { CliConfig } from '../models/config';
 import { DeployTaskOptions, baseDeployCommandOptions} from './deploy';
 import { checkPort } from '../utilities/check-port';
+import { oneLine } from 'common-tags';
 const Command = require('../ember-cli/lib/models/command');
 
 
@@ -19,23 +20,67 @@ export interface E2eTaskOptions extends DeployTaskOptions {
 const E2eCommand = Command.extend({
   name: 'e2e',
   aliases: ['e'],
-  description: 'Run e2e tests in existing project',
+  description: 'Run e2e tests in existing project.',
   works: 'insideProject',
-  availableOptions: overrideOptions(
-    baseDeployCommandOptions.concat([
-      { name: 'config', type: String, aliases: ['c'] },
-      { name: 'specs', type: Array, default: [], aliases: ['sp'] },
-      { name: 'element-explorer', type: Boolean, default: false, aliases: ['ee'] },
-      { name: 'webdriver-update', type: Boolean, default: true, aliases: ['wu'] },
-      { name: 'deploy', type: Boolean, default: true, aliases: ['d'] }
-    ]), [
-      { name: 'port', default: 0 },
-      { name: 'watch', default: false },
-    ]
-  ),
+  availableOptions: overrideOptions([
+    ...baseDeployCommandOptions,
+    {
+      name: 'config',
+      type: String,
+      aliases: ['c'],
+      description: oneLine`
+        Use a specific config file.
+        Defaults to the protractor config file in angular-cli.json.
+      `
+    },
+    {
+      name: 'specs',
+      type: Array,
+      default: [],
+      aliases: ['sp'],
+      description: oneLine`
+        Override specs in the protractor config.
+        Can send in multiple specs by repeating flag (ng e2e --specs=spec1.ts --specs=spec2.ts).
+      `
+    },
+    {
+      name: 'element-explorer',
+      type: Boolean,
+      default: false,
+      aliases: ['ee'],
+      description: 'Start Protractor\'s Element Explorer for debugging.'
+    },
+    {
+      name: 'webdriver-update',
+      type: Boolean,
+      default: true,
+      aliases: ['wu'],
+      description: 'Try to update webdriver.'
+    },
+    {
+      name: 'deploy',
+      type: Boolean,
+      default: true,
+      aliases: ['d'],
+      description: oneLine`
+        Compile and Deploy the app.
+        All non-reload related serve options are also available (e.g. --port=11311).
+      `
+    }
+  ], [
+    {
+      name: 'port',
+      default: 0,
+      description: 'The port to use to serve the application.'
+    },
+    {
+      name: 'watch',
+      default: false,
+      description: 'Run build when files change.'
+    },
+  ]),
   run: function (commandOptions: E2eTaskOptions) {
     const E2eTask = require('../tasks/e2e').E2eTask;
-    this.project.ngConfig = this.project.ngConfig || CliConfig.fromProject();
 
     const e2eTask = new E2eTask({
       ui: this.ui,

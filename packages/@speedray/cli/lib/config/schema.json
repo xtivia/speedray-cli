@@ -29,6 +29,10 @@
       "items": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the app."
+          },
           "root": {
             "type": "string",
             "description": "The root directory of the app."
@@ -94,8 +98,12 @@
           },
           "tsconfig": {
             "type": "string",
-            "default": "tsconfig.json",
+            "default": "tsconfig.app.json",
             "description": "The name of the TypeScript configuration file."
+          },
+          "testTsconfig": {
+            "type": "string",
+            "description": "The name of the TypeScript configuration file for unit tests."
           },
           "prefix": {
             "type": "string",
@@ -262,6 +270,20 @@
             }
           },
           "additionalProperties": false
+        },
+        "codeCoverage": {
+          "type": "object",
+          "properties": {
+            "exclude": {
+              "description": "Globs to exclude from code coverage.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -325,6 +347,22 @@
         },
         "directive": {
           "description": "Options for generating a directive.",
+          "type": "object",
+          "properties": {
+            "flat": {
+              "description": "Flag to indicate if a dir is created.",
+              "type": "boolean",
+              "default": true
+            },
+            "spec": {
+              "description": "Specifies if a spec file is generated.",
+              "type": "boolean",
+              "default": true
+            }
+          }
+        },
+        "guard": {
+          "description": "Options for generating a guard.",
           "type": "object",
           "properties": {
             "flat": {
@@ -411,6 +449,24 @@
               "description": "The host the application will be served on",
               "type": "string",
               "default": "localhost"
+
+            },
+            "ssl": {
+              "description": "Enables ssl for the application",
+              "type": "boolean",
+              "default": false
+
+            },
+            "sslKey": {
+              "description": "The ssl key used by the server",
+              "type": "string",
+              "default": "ssl/server.key"
+
+            },
+            "sslCert": {
+              "description": "The ssl certificate used by the server",
+              "type": "string",
+              "default": "ssl/server.crt"
             }
           }
         }

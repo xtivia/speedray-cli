@@ -1,4 +1,6 @@
 import {NodeHost} from '../../lib/ast-tools';
+import {CliConfig} from '../../models/config';
+import {getAppFromConfig} from '../../utilities/app-utils';
 
 const path = require('path');
 const fs = require('fs');
@@ -41,14 +43,21 @@ export default Blueprint.extend({
       type: Boolean,
       default: false,
       description: 'Specifies if declaring module exports the pipe.'
+    },
+    {
+      name: 'app',
+      type: String,
+      aliases: ['a'],
+      description: 'Specifies app name to use.'
     }
   ],
 
   beforeInstall: function(options: any) {
+    const appConfig = getAppFromConfig(this.options.app);
     if (options.module) {
       // Resolve path to module
       const modulePath = options.module.endsWith('.ts') ? options.module : `${options.module}.ts`;
-      const parsedPath = dynamicPathParser(this.project, modulePath);
+      const parsedPath = dynamicPathParser(this.project, modulePath, appConfig);
       this.pathToModule = path.join(this.project.root, parsedPath.dir, parsedPath.base);
 
       if (!fs.existsSync(this.pathToModule)) {
@@ -56,7 +65,7 @@ export default Blueprint.extend({
       }
     } else {
       try {
-        this.pathToModule = findParentModule(this.project, this.dynamicPath.dir);
+        this.pathToModule = findParentModule(this.project.root, appConfig.root, this.generatePath);
       } catch (e) {
         if (!options.skipImport) {
           throw `Error locating module for declaration\n\t${e}`;
@@ -66,7 +75,8 @@ export default Blueprint.extend({
   },
 
   normalizeEntityName: function (entityName: string) {
-    const parsedPath = dynamicPathParser(this.project, entityName);
+    const appConfig = getAppFromConfig(this.options.app);
+    const parsedPath = dynamicPathParser(this.project, entityName, appConfig);
 
     this.dynamicPath = parsedPath;
     return parsedPath.name;
@@ -74,12 +84,10 @@ export default Blueprint.extend({
 
   locals: function (options: any) {
     options.flat = options.flat !== undefined ?
-      options.flat :
-      this.project.ngConfigObj.get('defaults.pipe.flat');
+      options.flat : CliConfig.getValue('defaults.pipe.flat');
 
     options.spec = options.spec !== undefined ?
-      options.spec :
-      this.project.ngConfigObj.get('defaults.pipe.spec');
+      options.spec : CliConfig.getValue('defaults.pipe.spec');
 
     return {
       dynamicPath: this.dynamicPath.dir,
@@ -112,10 +120,6 @@ export default Blueprint.extend({
   },
 
   afterInstall: function(options: any) {
-    if (options.dryRun) {
-      return;
-    }
-
     const returns: Array<any> = [];
     const className = stringUtils.classify(`${options.entity.name}Pipe`);
     const fileName = stringUtils.dasherize(`${options.entity.name}.pipe`);
@@ -125,6 +129,12 @@ export default Blueprint.extend({
     const importPath = relativeDir ? `./${relativeDir}/${fileName}` : `./${fileName}`;
 
     if (!options.skipImport) {
+      if (options.dryRun) {
+        this._writeStatusToUI(chalk.yellow,
+          'update',
+          path.relative(this.project.root, this.pathToModule));
+        return;
+      }
       returns.push(
         astUtils.addDeclarationToModule(this.pathToModule, className, importPath)
           .then((change: any) => change.apply(NodeHost))
@@ -135,9 +145,9 @@ export default Blueprint.extend({
             }
             return result;
           }));
-      this._writeStatusToUI(chalk.yellow,
-                            'update',
-                            path.relative(this.project.root, this.pathToModule));
+        this._writeStatusToUI(chalk.yellow,
+          'update',
+          path.relative(this.project.root, this.pathToModule));
     }
 
     return Promise.all(returns);

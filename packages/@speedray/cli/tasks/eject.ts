@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as ts from 'typescript';
 import * as webpack from 'webpack';
 
+import { getAppFromConfig } from '../utilities/app-utils';
 import { EjectTaskOptions } from '../commands/eject';
 import { NgCliWebpackConfig } from '../models/webpack-config';
 import { CliConfig } from '../models/config';
@@ -18,17 +19,20 @@ const angularCliPlugins = require('../plugins/webpack');
 
 
 const autoprefixer = require('autoprefixer');
+const postcssUrl = require('postcss-url');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SilentError = require('silent-error');
 const Task = require('../ember-cli/lib/models/task');
 
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const LoaderOptionsPlugin = webpack.LoaderOptionsPlugin;
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 
 
 export const pluginArgs = Symbol('plugin-args');
+export const postcssArgs = Symbol('postcss-args');
+
+const pree2eNpmScript = `webdriver-manager update --standalone false --gecko false --quiet`;
 
 
 class JsonWebpackSerializer {
@@ -135,6 +139,15 @@ class JsonWebpackSerializer {
           if (x && x.toString() == autoprefixer()) {
             this.variableImports['autoprefixer'] = 'autoprefixer';
             return this._escape('autoprefixer()');
+          } else if (x && x.toString() == postcssUrl()) {
+            this.variableImports['postcss-url'] = 'postcssUrl';
+            let args = '';
+            if (x[postcssArgs] && x[postcssArgs].url) {
+              this.variables['baseHref'] = JSON.stringify(x[postcssArgs].baseHref);
+              this.variables['deployUrl'] = JSON.stringify(x[postcssArgs].deployUrl);
+              args = `{"url": ${x[postcssArgs].url.toString()}}`;
+            }
+            return this._escape(`postcssUrl(${args})`);
           } else if (x && x.postcssPlugin == 'cssnano') {
             this.variableImports['cssnano'] = 'cssnano';
             return this._escape('cssnano({ safe: true, autoprefixer: false })');
@@ -164,6 +177,9 @@ class JsonWebpackSerializer {
           break;
         case webpack.NoEmitOnErrorsPlugin:
           this._addImport('webpack', 'NoEmitOnErrorsPlugin');
+          break;
+        case (<any>webpack).HashedModuleIdsPlugin:
+          this._addImport('webpack', 'HashedModuleIdsPlugin');
           break;
         case webpack.optimize.UglifyJsPlugin:
           this._addImport('webpack.optimize', 'UglifyJsPlugin');
@@ -308,7 +324,7 @@ class JsonWebpackSerializer {
     });
   }
 
-  private _replacer(key: string, value: any) {
+  private _replacer(_key: string, value: any) {
     if (value === undefined) {
       return value;
     }
@@ -385,15 +401,17 @@ export default Task.extend({
     const project = this.cliProject;
     const cliConfig = CliConfig.fromProject();
     const config = cliConfig.config;
-    const tsConfigPath = path.join(process.cwd(), config.apps[0].root, config.apps[0].tsconfig);
-    const outputPath = runTaskOptions.outputPath || config.apps[0].outDir;
+    const appConfig = getAppFromConfig(runTaskOptions.app);
+
+    const tsConfigPath = path.join(process.cwd(), appConfig.root, appConfig.tsconfig);
+    const outputPath = runTaskOptions.outputPath || appConfig.outDir;
     const force = runTaskOptions.force;
 
     if (project.root === outputPath) {
       throw new SilentError ('Output path MUST not be project root directory!');
     }
 
-    const webpackConfig = new NgCliWebpackConfig(runTaskOptions).config;
+    const webpackConfig = new NgCliWebpackConfig(runTaskOptions, appConfig).buildConfig();
     const serializer = new JsonWebpackSerializer(process.cwd(), outputPath);
     const output = serializer.serialize(webpackConfig);
     const webpackConfigStr = `${serializer.generateVariables()}\n\nmodule.exports = ${output};\n`;
@@ -413,44 +431,64 @@ export default Task.extend({
         const scripts = packageJson['scripts'];
         if (scripts['build'] && scripts['build'] !== 'ng build' && !force) {
           throw new SilentError(oneLine`
-            Your package.json scripts needs to not contain a build script as it will be overwritten.
+            Your package.json scripts must not contain a build script as it will be overwritten.
           `);
         }
         if (scripts['start'] && scripts['start'] !== 'ng serve' && !force) {
           throw new SilentError(oneLine`
-            Your package.json scripts needs to not contain a start script as it will be overwritten.
+            Your package.json scripts must not contain a start script as it will be overwritten.
+          `);
+        }
+        if (scripts['pree2e'] && scripts['prepree2e'] !== 'npm start' && !force) {
+          throw new SilentError(oneLine`
+            Your package.json scripts needs to not contain a prepree2e script as it will be
+            overwritten.
+          `);
+        }
+        if (scripts['pree2e'] && scripts['pree2e'] !== pree2eNpmScript && !force) {
+          throw new SilentError(oneLine`
+            Your package.json scripts must not contain a pree2e script as it will be
+            overwritten.
           `);
         }
         if (scripts['e2e'] && scripts['e2e'] !== 'ng e2e' && !force) {
           throw new SilentError(oneLine`
-            Your package.json scripts needs to not contain a e2e script as it will be overwritten.
+            Your package.json scripts must not contain a e2e script as it will be overwritten.
           `);
         }
         if (scripts['test'] && scripts['test'] !== 'ng test' && !force) {
           throw new SilentError(oneLine`
-            Your package.json scripts needs to not contain a test script as it will be overwritten.
+            Your package.json scripts must not contain a test script as it will be overwritten.
           `);
         }
 
         packageJson['scripts']['build'] = 'webpack';
-        packageJson['scripts']['start'] = 'webpack-dev-server';
+        packageJson['scripts']['start'] = 'webpack-dev-server --port=4200';
         packageJson['scripts']['test'] = 'karma start ./karma.conf.js';
+        packageJson['scripts']['prepree2e'] = 'npm start';
+        packageJson['scripts']['pree2e'] = pree2eNpmScript;
         packageJson['scripts']['e2e'] = 'protractor ./protractor.conf.js';
 
         // Add new dependencies based on our dependencies.
         const ourPackageJson = require('../package.json');
+        if (!packageJson['devDependencies']) {
+          packageJson['devDependencies'] = {};
+        }
         packageJson['devDependencies']['webpack-dev-server']
             = ourPackageJson['dependencies']['webpack-dev-server'];
 
-        // Update all loaders from webpack.
+        // Update all loaders from webpack, plus postcss plugins.
         [
+          'autoprefixer',
           'css-loader',
+          'cssnano',
           'exports-loader',
           'file-loader',
           'json-loader',
           'karma-sourcemap-loader',
           'less-loader',
           'postcss-loader',
+          'postcss-url',
           'raw-loader',
           'sass-loader',
           'script-loader',
@@ -487,13 +525,13 @@ export default Task.extend({
         console.log(yellow(stripIndent`
           ==========================================================================================
           Ejection was successful.
-          
+
           To run your builds, you now need to do the following commands:
              - "npm run build" to build.
              - "npm run test" to run unit tests.
              - "npm start" to serve the app using webpack-dev-server.
              - "npm run e2e" to run protractor.
-          
+
           Running the equivalent CLI commands will result in an error.
 
           ==========================================================================================
