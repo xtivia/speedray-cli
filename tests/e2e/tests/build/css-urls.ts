@@ -48,7 +48,7 @@ export default function () {
     .then(() => expectFileMatchToExist('./dist', /global-img-relative\.[0-9a-f]{20}\.svg/))
     .then(() => expectFileMatchToExist('./dist', /component-img-relative\.[0-9a-f]{20}\.svg/))
     // Also check with base-href and deploy-url flags.
-    .then(() => ng('build', '--base-href=/base/', '--deploy-url=deploy/',
+    .then(() => ng('build', '--deploy-url=deploy/',
       '--extract-css', '--aot'))
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\('\/base\/deploy\/assets\/global-img-absolute\.svg'\)/))

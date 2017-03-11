@@ -61,7 +61,7 @@ const E2eCommand = Command.extend({
       name: 'deploy',
       type: Boolean,
       default: true,
-      aliases: ['d'],
+      aliases: ['de'],
       description: oneLine`
         Compile and Deploy the app.
         All non-reload related serve options are also available (e.g. --port=11311).

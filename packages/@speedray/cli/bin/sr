@@ -83,7 +83,7 @@ if (packageJsonProjectPath && fs.existsSync(packageJsonProjectPath)) {
   const devDeps = packageJsonProject['devDependencies'] || {};
   const hasDevDep = !!devDeps['@speedray/cli'];
 
-  if (hasOldDep || hasOldDevDep || !hasDevDep) {
+  if (!hasDevDep) {
     const warnings = [
       'Please take the following steps to avoid issues:'
     ];
