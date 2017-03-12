@@ -9,10 +9,6 @@ Prototype of a CLI for Angular applications deployed to Liferay DXP based on the
 
 ## Note
 
-The CLI is now in Release Candidate (RC).
-If you are updating from a beta version, check out our [RC Update Guide]
-(https://github.com/angular/angular-cli/wiki/stories-rc-update).
-
 The CLI is now in beta.
 If you wish to collaborate while the project is still young, check out [our issue list](https://github.com/ddavis2xtivia/speedray-cli/issues).
 
