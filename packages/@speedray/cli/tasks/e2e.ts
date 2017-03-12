@@ -54,7 +54,7 @@ export const E2eTask = Task.extend({
           } catch (e) {
             throw new SilentError(stripIndents`
               Cannot automatically find webdriver-manager to update.
-              Update webdriver-manager manually and run 'ng e2e --no-webdriver-update' instead.
+              Update webdriver-manager manually and run 'sr e2e --no-webdriver-update' instead.
             `);
           }
         }

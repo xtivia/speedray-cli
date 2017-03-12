@@ -3,7 +3,6 @@ const SilentError = require('silent-error');
 import { overrideOptions } from '../utilities/override-options';
 import { CliConfig } from '../models/config';
 import { DeployTaskOptions, baseDeployCommandOptions} from './deploy';
-import { checkPort } from '../utilities/check-port';
 import { oneLine } from 'common-tags';
 const Command = require('../ember-cli/lib/models/command');
 
@@ -30,7 +29,7 @@ const E2eCommand = Command.extend({
       aliases: ['c'],
       description: oneLine`
         Use a specific config file.
-        Defaults to the protractor config file in angular-cli.json.
+        Defaults to the protractor config file in speedray-cli.json.
       `
     },
     {
@@ -40,7 +39,7 @@ const E2eCommand = Command.extend({
       aliases: ['sp'],
       description: oneLine`
         Override specs in the protractor config.
-        Can send in multiple specs by repeating flag (ng e2e --specs=spec1.ts --specs=spec2.ts).
+        Can send in multiple specs by repeating flag (sr e2e --specs=spec1.ts --specs=spec2.ts).
       `
     },
     {
@@ -64,14 +63,14 @@ const E2eCommand = Command.extend({
       aliases: ['de'],
       description: oneLine`
         Compile and Deploy the app.
-        All non-reload related serve options are also available (e.g. --port=11311).
+        All non-reload related deploy options are also available (e.g. --port=11311).
       `
     }
   ], [
     {
       name: 'port',
-      default: 0,
-      description: 'The port to use to serve the application.'
+      default: 11311,
+      description: 'The port to use to deploy the application.'
     },
     {
       name: 'watch',
@@ -98,11 +97,11 @@ const E2eCommand = Command.extend({
     }
 
     if (commandOptions.deploy) {
-      const DeployTask = require('../tasks/deploy').default;
+      const DeployTask = require('../tasks/speedray/deploy').default;
 
       const deploy = new DeployTask({
         ui: this.ui,
-        project: this.project,
+        cliProject: this.project,
       });
 
       // Protractor will end the proccess, so we don't need to kill the dev server
@@ -116,10 +115,7 @@ const E2eCommand = Command.extend({
           }
         }
 
-        checkPort(commandOptions.port, commandOptions.host)
-          .then((port: number) => commandOptions.port = port)
-          .then(() => deploy.run(commandOptions, rebuildCb))
-          .catch(reject);
+        deploy.run(commandOptions, rebuildCb).catch(reject);
       });
     } else {
       return e2eTask.run(commandOptions);
