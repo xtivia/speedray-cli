@@ -34,7 +34,7 @@ const GenerateCommand = EmberGenerateCommand.extend({
 
     if (!rawArgs[1]) {
       SilentError.debugOrThrow('@speedray/cli/commands/generate',
-        `The \`ng generate ${rawArgs[0]}\` command requires a name to be specified.`);
+        `The \`sr generate ${rawArgs[0]}\` command requires a name to be specified.`);
     }
 
     // Override default help to hide ember blueprints
