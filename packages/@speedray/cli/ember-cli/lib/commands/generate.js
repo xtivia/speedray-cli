@@ -42,9 +42,9 @@ module.exports = Command.extend({
     var blueprintName = rawArgs[0];
 
     if (!blueprintName) {
-      return Promise.reject(new SilentError('The `ng generate` command requires a ' +
+      return Promise.reject(new SilentError('The `sr generate` command requires a ' +
                                             'blueprint name to be specified. ' +
-                                            'For more details, use `ng help`.'));
+                                            'For more details, use `sr help`.'));
     }
     var Task = this.tasks.GenerateFromBlueprint;
     var task = new Task({
