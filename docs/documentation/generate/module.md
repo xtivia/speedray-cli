@@ -1,9 +1,9 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng generate module
+# sr generate module
 
 ## Overview
-`ng generate module [name]` generates an NgModule
+`sr generate module [name]` generates an NgModule
 
 ## Options
 `--app` Specifies app name or index to use.
