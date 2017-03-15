@@ -11,6 +11,7 @@ import { CliConfig } from '../models/config';
 const fs = require('fs');
 const Task = require('../ember-cli/lib/models/task');
 const SilentError = require('silent-error');
+const swagger = require('../lib/speedray/swagger');
 
 
 export default Task.extend({
@@ -42,7 +43,9 @@ export default Task.extend({
         this.ui.writeLine(stats.toString(statsConfig));
 
         if (runTaskOptions.watch) {
-          rebuildDoneCb(err, stats);
+          if(rebuildDoneCb) {
+            rebuildDoneCb(err, stats);
+          }
           return;
         }
 
@@ -63,9 +66,19 @@ export default Task.extend({
       };
 
       if (runTaskOptions.watch) {
+        swagger.watch('services.yaml', 'src/generated', (err: number) => {
+          if(err) {
+            return reject();
+          }
+        });
         webpackCompiler.watch({ poll: runTaskOptions.poll }, callback);
       } else {
-        webpackCompiler.run(callback);
+        swagger.generate('services.yaml', 'src/generated', (err: number) => {
+          if(err) {
+            return reject();
+          }
+          webpackCompiler.run(callback);
+        });
       }
     })
     .catch((err: Error) => {
