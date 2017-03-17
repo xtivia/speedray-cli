@@ -429,12 +429,12 @@ export default Task.extend({
       .then((packageJson: string) => JSON.parse(packageJson))
       .then((packageJson: any) => {
         const scripts = packageJson['scripts'];
-        if (scripts['build'] && scripts['build'] !== 'ng build' && !force) {
+        if (scripts['build'] && scripts['build'] !== 'sr build' && !force) {
           throw new SilentError(oneLine`
             Your package.json scripts must not contain a build script as it will be overwritten.
           `);
         }
-        if (scripts['start'] && scripts['start'] !== 'ng serve' && !force) {
+        if (scripts['start'] && scripts['start'] !== 'sr deploy' && !force) {
           throw new SilentError(oneLine`
             Your package.json scripts must not contain a start script as it will be overwritten.
           `);
@@ -451,12 +451,12 @@ export default Task.extend({
             overwritten.
           `);
         }
-        if (scripts['e2e'] && scripts['e2e'] !== 'ng e2e' && !force) {
+        if (scripts['e2e'] && scripts['e2e'] !== 'sr e2e' && !force) {
           throw new SilentError(oneLine`
             Your package.json scripts must not contain a e2e script as it will be overwritten.
           `);
         }
-        if (scripts['test'] && scripts['test'] !== 'ng test' && !force) {
+        if (scripts['test'] && scripts['test'] !== 'sr test' && !force) {
           throw new SilentError(oneLine`
             Your package.json scripts must not contain a test script as it will be overwritten.
           `);

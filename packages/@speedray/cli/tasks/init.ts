@@ -55,9 +55,9 @@ export default Task.extend({
     const packageName = commandOptions.name !== '.' && commandOptions.name || project.name();
 
     if (!packageName) {
-      const message = 'The `ng ' + this.name + '` command requires a ' +
+      const message = 'The `sr ' + this.name + '` command requires a ' +
         'package.json in current folder with name attribute or a specified name via arguments. ' +
-        'For more details, use `ng help`.';
+        'For more details, use `sr help`.';
 
       return Promise.reject(new SilentError(message));
     }

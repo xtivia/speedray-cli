@@ -43,7 +43,7 @@ export default Task.extend({
         this.ui.writeLine(stats.toString(statsConfig));
 
         if (runTaskOptions.watch) {
-          if(rebuildDoneCb) {
+          if (rebuildDoneCb) {
             rebuildDoneCb(err, stats);
           }
           return;
@@ -67,14 +67,14 @@ export default Task.extend({
 
       if (runTaskOptions.watch) {
         swagger.watch('services.yaml', 'src/generated', (err: number) => {
-          if(err) {
+          if (err) {
             return reject();
           }
         });
         webpackCompiler.watch({ poll: runTaskOptions.poll }, callback);
       } else {
         swagger.generate('services.yaml', 'src/generated', (err: number) => {
-          if(err) {
+          if (err) {
             return reject();
           }
           webpackCompiler.run(callback);

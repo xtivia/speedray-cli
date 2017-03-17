@@ -23,7 +23,7 @@ export default Task.extend({
     if (lintConfigs.length === 0) {
       ui.writeLine(chalk.yellow(oneLine`
         No lint config(s) found.
-        If this is not intended, run "ng update".
+        If this is not intended, run "sr update".
       `));
 
       return Promise.resolve(0);
