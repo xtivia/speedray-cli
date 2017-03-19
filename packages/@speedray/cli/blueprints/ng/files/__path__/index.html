@@ -1,4 +1,12 @@
-<div id="<portlet:namespace />">
-  <base href="<%= '\<%= pagePath %\>' %>">
-  <<%= prefix %>-root>Loading...</<%= prefix %>-root>
-</div>
+<base href="<%= '\<%= pagePath %\>' %>">
+<<%= prefix %>-<%= htmlComponentName %><portlet:namespace />>
+  <div class="loading-icon loading-icon-lg"></div>
+</<%= prefix %>-<%= htmlComponentName %><portlet:namespace />>
+<script type="text/javascript">
+window['speedrayPortletRootDiv'] = function speedrayPortletRootDiv(s) {
+    var els = document.getElementsByTagName(s + '<portlet:namespace />');
+    if (els && els.length > 0) {
+        return els[0];
+    }
+};
+</script>

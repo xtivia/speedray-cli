@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
+let selector: Element = window['speedrayPortletRootDiv']('<%= prefix %>-<%= htmlComponentName %>');
+
 @Component({
-  selector: '<%= prefix %>-root',<% if (inlineTemplate) { %>
+  selector: selector.tagName,<% if (inlineTemplate) { %>
   template: `
   <h1>
     {{title}}
