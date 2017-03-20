@@ -37,7 +37,10 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
     archive.directory(options.inputJarPath + '/src/main/resources/META-INF', '/META-INF')
         .directory(options.inputJarPath + '/src/main/resources/OSGI-INF', '/OSGI-INF')
         .directory(options.inputJarPath + '/src/main/resources/content', '/content')
-        .directory(options.inputJarPath + '/dist', '/META-INF/resources')
-        .finalize();
+        .directory(options.inputJarPath + '/dist', '/META-INF/resources');
+    if (fs.existsSync(options.inputJarPath + '/build/classes/main')) {
+        archive.directory(options.inputJarPath + '/build/classes/main', '/');
+    }
+    archive.finalize();
     return subject.asObservable();
 }

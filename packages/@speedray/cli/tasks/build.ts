@@ -12,6 +12,7 @@ const fs = require('fs');
 const Task = require('../ember-cli/lib/models/task');
 const SilentError = require('silent-error');
 const swagger = require('../lib/speedray/swagger');
+const gradle = require('../lib/speedray/gradle');
 
 
 export default Task.extend({
@@ -71,13 +72,23 @@ export default Task.extend({
             return reject();
           }
         });
+        gradle.watch((err: number) => {
+          if (err) {
+            return reject();
+          }
+        });
         webpackCompiler.watch({ poll: runTaskOptions.poll }, callback);
       } else {
         swagger.generate('services.yaml', 'src/generated', (err: number) => {
           if (err) {
             return reject();
           }
-          webpackCompiler.run(callback);
+          gradle.gradle((err: number) => {
+            if (err) {
+              return reject();
+            }
+            webpackCompiler.run(callback);
+          });
         });
       }
     })
