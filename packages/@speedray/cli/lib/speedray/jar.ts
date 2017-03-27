@@ -16,12 +16,16 @@ export function jar(project: any, options: JarTaskOptions): Observable<Number> {
     if (!fs.existsSync(outputPath)) {
         fs.mkdirSync(outputPath);
     }
-    const jarPath: string = path.resolve(outputPath, packageOptions.name + '.' +
-            packageOptions.version + '.jar');
+    const jarPath: string = path.resolve(outputPath, packageOptions.name + '.jar');
     replace.sync({
         files: path.resolve(options.inputJarPath, '/src/main/resources/META-INF/MANIFEST.MF'),
             from: /Bnd-LastModified: .*/,
             to: 'Bnd-LastModified: ' + Date.now()
+    });
+    replace.sync({
+        files: path.resolve(options.inputJarPath, '/src/main/resources/META-INF/MANIFEST.MF'),
+            from: /Bundle-Version: .*/,
+            to: 'Bundle-Version: ' + packageOptions.version
     });
     const archive: any = archiver('zip');
     const output: any = fs.createWriteStream(jarPath);
