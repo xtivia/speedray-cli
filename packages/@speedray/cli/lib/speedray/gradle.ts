@@ -3,7 +3,7 @@ const fs = require('fs');
 
 export function gradle(callback: Function) {
     if (fs.existsSync('liferay/build.gradle')) {
-        const codegen = childProcess.spawn('gradle compileJava',
+        const codegen = childProcess.spawn('gradle --no-daemon compileJava',
             { cwd: process.cwd() + '/liferay', shell: true });
 
         codegen.stdout.on('data', (data: string) => {
