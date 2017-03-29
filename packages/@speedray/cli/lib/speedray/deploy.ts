@@ -12,8 +12,7 @@ export function deploy(project: any, options: DeployTaskOptions): Observable<str
     const Gogo = require('./gogo-deploy').GogoDeployer;
 
     let outputPath: string = path.resolve(project.root, options.outputJarPath);
-    let jarPath: string = path.resolve(outputPath,
-            packageOptions.name + '.' + packageOptions.version + '.jar');
+    let jarPath: string = path.resolve(outputPath, packageOptions.name + '.jar');
 
     jar(project, options).subscribe(() => {
         let gogo = new Gogo({connectConfig: { host: options.host, port: options.port }});
