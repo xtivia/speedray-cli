@@ -1,9 +1,11 @@
 const childProcess = require('child_process');
 const fs = require('fs');
-
+const path = require('path');
 export function gradle(callback: Function) {
     if (fs.existsSync('liferay/build.gradle')) {
-        const codegen = childProcess.spawn('gradle --no-daemon compileJava',
+        const gradlePath = process.env.GRADLE_HOME ? process.env.GRADLE_HOME + path.sep + 'bin'
+                            + path.sep + 'gradle' : 'gradle';
+        const codegen = childProcess.spawn(gradlePath + ' --no-daemon compileJava',
             { cwd: process.cwd() + '/liferay', shell: true });
 
         codegen.stdout.on('data', (data: string) => {
