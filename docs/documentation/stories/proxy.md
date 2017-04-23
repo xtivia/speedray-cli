@@ -22,7 +22,7 @@ You can read more about what options are available here [webpack-dev-server prox
 and then we edit the `package.json` file's start script to be
 
 ```json
-"start": "ng serve --proxy-config proxy.conf.json",
+"start": "sr serve --proxy-config proxy.conf.json",
 ```
 
 now run it with `npm start`

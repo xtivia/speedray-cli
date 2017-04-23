@@ -12,4 +12,4 @@
 
 `--spec` Specifies if a spec file is generated.
 
-`--routing` Specifies if a routing module file should be generated.
+`--routing` Specifies if a routisr module file should be generated.

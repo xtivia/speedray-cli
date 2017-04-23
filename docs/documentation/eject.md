@@ -1,22 +1,22 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng eject
+# sr eject
 
 ## Overview
-`ng eject` ejects your app and output the proper webpack configuration and scripts
+`sr eject` ejects your app and output the proper webpack configuration and scripts
 
-### Ejecting the CLI
+### Ejectisr the CLI
 
 ```bash
-ng eject
+sr eject
 ```
 
 ## Options
-  `--aot` Build using Ahead of Time compilation.
+  `--aot` Build usisr Ahead of Time compilation.
 
   `--app` (`-a`) Specifies app name to use.
 
-  `--base-href` (`-bh`) Base url for the application being built.
+  `--base-href` (`-bh`) Base url for the application beisr built.
 
   `--deploy-url` (`-d`) URL where files will be deployed.
 
@@ -32,11 +32,11 @@ ng eject
 
   `--locale` Locale to use for i18n.
 
-  `--output-hashing` (`-oh`) Define the output filename cache-busting hashing mode. Possible values: `none`, `all`, `media`, `bundles`
+  `--output-hashing` (`-oh`) Define the output filename cache-bustisr hashisr mode. Possible values: `none`, `all`, `media`, `bundles`
 
   `--output-path` (`-op`) Path where output will be placed.
 
-  `--poll` Enable and define the file watching poll time period (milliseconds) .
+  `--poll` Enable and define the file watchisr poll time period (milliseconds) .
 
   `--progress` (`-pr`) Log progress to the console while building.
 
@@ -44,7 +44,7 @@ ng eject
 
   `--target` (`-t`, `-dev`, `-prod`) Defines the build target.
 
-  `--vendor-chunk` (`-vc`) Use a separate bundle containing only vendor libraries.
+  `--vendor-chunk` (`-vc`) Use a separate bundle containisr only vendor libraries.
 
   `--verbose` (`-v`) Adds more details to output logging.
 

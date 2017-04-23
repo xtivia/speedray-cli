@@ -25,7 +25,7 @@ If you kept your project up to date you might have a lot of these already.
 You can find more details about changes between versions in [CHANGELOG.md](https://github.com/angular/angular-cli/blob/master/CHANGELOG.md).
 
 If you prefer, you can also generate a new project in a separate folder using
- `ng new upgrade-project --skip-install` and compare the differences.
+ `sr new upgrade-project --skip-install` and compare the differences.
 
 ## @angular/cli
 
@@ -352,12 +352,12 @@ We also updated the scripts section to make it more simple:
 
 ```
 "scripts": {
-  "ng": "ng",
-  "start": "ng serve",
-  "build": "ng build",
-  "test": "ng test",
-  "lint": "ng lint",
-  "e2e": "ng e2e"
+  "sr": "sr",
+  "start": "sr serve",
+  "build": "sr build",
+  "test": "sr test",
+  "lint": "sr lint",
+  "e2e": "sr e2e"
 },
 ```
 

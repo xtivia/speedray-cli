@@ -12,7 +12,7 @@ This guide will walk you through adding bootstrap to your Speedray CLI project a
 Create a new project and navigate into the project
 
 ```
-ng new my-app
+sr new my-app
 cd my-app
 ```
 
@@ -46,7 +46,7 @@ Now that the project is set up it must be configured to include the bootstrap CS
   ],
   ```
 
-**Note:** When you make changes to `.speedray-cli.json` you will need to re-start `ng serve` to pick up configuration changes.
+**Note:** When you make changes to `.speedray-cli.json` you will need to re-start `sr serve` to pick up configuration changes.
 
 ### Testing Project
 
@@ -56,7 +56,7 @@ Open `app.component.html` and add the following markup:
 <button class="btn btn-primary">Test Button</button>
 ```
 
-With the application configured, run `ng serve` to run your application in develop mode.
+With the application configured, run `sr serve` to run your application in develop mode.
 In your browser navigate to the application `localhost:4200`.
 Verify the bootstrap styled button appears.
 
@@ -67,7 +67,7 @@ Verify the bootstrap styled button appears.
 Create a new project and navigate into the project
 
 ```
-ng new my-app --style=scss
+sr new my-app --style=scss
 cd my-app
 ```
 
@@ -111,7 +111,7 @@ Open `app.component.html` and add the following markup:
 <button class="btn btn-primary">Test Button</button>
 ```
 
-With the application configured, run `ng serve` to run your application in develop mode.
+With the application configured, run `sr serve` to run your application in develop mode.
 In your browser navigate to the application `localhost:4200`.
 Verify the bootstrap styled button appears.
 To ensure your variables are used open `_variables.scss` and add the following:

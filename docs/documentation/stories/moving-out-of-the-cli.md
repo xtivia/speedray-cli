@@ -4,7 +4,7 @@ Each project is unique, and even though we try to cater to most setups in Speedr
 you need a custom setup.
 
 Even if you need to use a different build system, you can still use other Speedray CLI features
-like `ng generate`, `ng lint`, `ng test` and `ng e2e` by leaving in `.speedray-cli.json` and
+like `sr generate`, `sr lint`, `sr test` and `sr e2e` by leaving in `.speedray-cli.json` and
 supporting files like `src/test.ts`.
 
 Moving out of the CLI is very similar to [Moving into the CLI](moving-into-the-cli).

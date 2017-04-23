@@ -1,9 +1,9 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng generate
+# sr generate
 
 ## Overview
-`ng generate [name]` generates the specified blueprint
+`sr generate [name]` generates the specified blueprint
 
 ## Available blueprints:
  - [class](generate/class)

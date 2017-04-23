@@ -1,9 +1,9 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng generate component
+# sr generate component
 
 ## Overview
-`ng generate component [name]` generates a component
+`sr generate component [name]` generates a component
 
 ## Options
 `--app` Specifies app name or index to use.
@@ -12,17 +12,17 @@
 
 `--flat` Flag to indicate if a dir is created.
 
-`--export` Specifies if declaring module exports the component.
+`--export` Specifies if declarisr module exports the component.
 
 `--inline-style` (`-is`) Specifies if the style will be in the ts file.
 
 `--inline-template` (`-it`) Specifies if the template will be in the ts file.
 
-`--module` (`-m`) Allows specification of the declaring module.
+`--module` (`-m`) Allows specification of the declarisr module.
 
 `--prefix` Specifies whether to use the prefix.
 
-`--skip-import` Allows for skipping the module import.
+`--skip-import` Allows for skippisr the module import.
 
 `--spec` Specifies if a spec file is generated.
 

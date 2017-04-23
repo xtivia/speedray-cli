@@ -1,14 +1,14 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng test
+# sr test
 
 ## Overview
-`ng test` compiles the application into an output directory
+`sr test` compiles the application into an output directory
 
 ### Running unit tests
 
 ```bash
-ng test
+sr test
 ```
 
 Tests will execute after a build is executed via [Karma](http://karma-runner.github.io/0.13/index.html), and it will automatically watch your files for changes. You can run tests a single time via `--watch=false` or `--single-run`.

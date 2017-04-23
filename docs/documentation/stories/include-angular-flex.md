@@ -23,7 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 })
 ```
 
-Run `ng serve` to run your application in develop mode, and navigate to `http://localhost:4200`
+Run `sr serve` to run your application in develop mode, and navigate to `http://localhost:4200`
 
 Add the following to `src/app/app.component.css`...
 ```css

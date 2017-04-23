@@ -38,7 +38,7 @@ module.exports = setupForCorporateProxy(proxyConfig);
 and edit the `package.json` file's start script accordingly
 
 ```json
-"start": "ng serve --proxy-config proxy.conf.js",
+"start": "sr serve --proxy-config proxy.conf.js",
 ```
 
 This way if you have a `http_proxy` or `HTTP_PROXY` environment variable defined, an agent will automatically be added to pass calls through your corporate proxy when running `npm start`.

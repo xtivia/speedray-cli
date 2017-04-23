@@ -5,7 +5,7 @@ This guide will walk you through adding material design to your Speedray CLI pro
 
 Create a new project and navigate into the project...
 ```
-ng new my-app
+sr new my-app
 cd my-app
 ```
 
@@ -40,7 +40,7 @@ To add an angular CSS theme and material icons to your app...
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 ```
 
-Run `ng serve` to run your application in development mode, and navigate to `http://localhost:4200`.
+Run `sr serve` to run your application in development mode, and navigate to `http://localhost:4200`.
 
 To verify Angular Material has been set up correctly, change `src/app/app.component.html` to the following...
 ```html

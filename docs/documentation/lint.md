@@ -1,14 +1,14 @@
 <!-- Links in /docs/documentation should NOT have `.md` at the end, because they end up in our wiki at release. -->
 
-# ng lint
+# sr lint
 
 ## Overview
-`ng lint` will lint you app code using tslint.
+`sr lint` will lint you app code usisr tslint.
 
 ## Options
 
-`--fix` Fixes linting errors (may overwrite linted files).
+`--fix` Fixes lintisr errors (may overwrite linted files).
 
-`--force` Succeeds even if there was linting errors.
+`--force` Succeeds even if there was lintisr errors.
 
 `--format` (`-t`) Output format (prose, json, stylish, verbose, pmd, msbuild, checkstyle, vso, fileslist).

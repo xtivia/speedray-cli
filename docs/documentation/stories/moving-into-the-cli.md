@@ -18,9 +18,9 @@ Start with preparing your existing project folder. We'll refer to it as `awesome
 Now make a new project on the same parent folder as `old-awesome-app` using Speedray CLI.
 - Verify you have the [Speedray CLI prerequisites](https://github.com/angular/angular-cli#prerequisites).
 - Install the CLI globally: `npm install -g @speedray/cli`.
-- Make a new app: `ng new awesome-app`.
+- Make a new app: `sr new awesome-app`.
 - Move into the folder: `cd awesome-app`.
-- Test your app works: `ng serve --open`.
+- Test your app works: `sr serve --open`.
 
 Copy over your app files.
 - Remove the existing app: `rm -rf src/app src/styles.css src/index.html e2e`.

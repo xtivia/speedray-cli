@@ -31,5 +31,5 @@ Finally add the Bootstrap CSS to the `apps[0].styles` array:
 ],
 ```
 
-Restart `ng serve` if you're running it, and Bootstrap 4 should be working on
+Restart `sr serve` if you're running it, and Bootstrap 4 should be working on
 your app.

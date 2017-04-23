@@ -11,7 +11,7 @@ Angular library to use Firebase in your apps.
 Create a new project and navigate into the project.
 
 ```bash
-$ ng new my-app
+$ sr new my-app
 $ cd my-app
 ```
 

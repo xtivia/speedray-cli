@@ -22,11 +22,11 @@ When generating a new project you can also define which extension you want for
 style files:
 
 ```bash
-ng new sassy-project --style=sass
+sr new sassy-project --style=sass
 ```
 
 Or set the default style on an existing project:
 
 ```bash
-ng set defaults.styleExt scss
+sr set defaults.styleExt scss
 ```
