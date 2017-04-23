@@ -1,3 +1,65 @@
+<a name="1.0.0-rc.4"></a>
+# [1.0.0-rc.4](https://github.com/angular/angular-cli/compare/v1.0.0-rc.2...v1.0.0-rc.4) (2017-03-20)
+
+### Notes
+
+* To align with @angular/core behavior, all `templateUrl` and `styleUrls` are now treated as relative - developers should use the `./foo.html` form in all cases.
+* Certain systems have issues installing the `node-sass` dependency, causing `npm install` to fail. `node-sass` is now an optional dependency, which will prevent installation failures on unsupported systems.
+* The CLI no longer depends on a specific Angular version - this should lead to fewer version mismatch errors.
+
+### Bug Fixes
+
+* **@angular/cli:** all styleUrls and templateUrl are relative ([9b52253](https://github.com/angular/angular-cli/commit/9b52253)), closes [#5056](https://github.com/angular/angular-cli/issues/5056)
+* **@angular/cli:** don't fail install due to node-sass ([#5282](https://github.com/angular/angular-cli/issues/5282)) ([1e47657](https://github.com/angular/angular-cli/commit/1e47657)), closes [#4429](https://github.com/angular/angular-cli/issues/4429)
+* **@angular/cli:** fix error handling on test ([9cda847](https://github.com/angular/angular-cli/commit/9cda847)), closes [#2778](https://github.com/angular/angular-cli/issues/2778) [#3424](https://github.com/angular/angular-cli/issues/3424)
+* **@angular/cli:** fix test typings ([303b2c0](https://github.com/angular/angular-cli/commit/303b2c0)), closes [#3911](https://github.com/angular/angular-cli/issues/3911) [#5332](https://github.com/angular/angular-cli/issues/5332) [#5351](https://github.com/angular/angular-cli/issues/5351)
+* **@angular/cli:** generating will dasherize all new dirs ([#5437](https://github.com/angular/angular-cli/issues/5437)) ([d6504e2](https://github.com/angular/angular-cli/commit/d6504e2)), closes [#5424](https://github.com/angular/angular-cli/issues/5424)
+* **@angular/cli:** ignore the whole "coverage" directory ([1fa27aa](https://github.com/angular/angular-cli/commit/1fa27aa))
+* **@angular/cli:** obey the flat option when generating modules ([#5411](https://github.com/angular/angular-cli/issues/5411)) ([0fe1949](https://github.com/angular/angular-cli/commit/0fe1949)), closes [#5373](https://github.com/angular/angular-cli/issues/5373)
+* **@angular/cli:** remove dependencies to [@angular](https://github.com/angular) ([b965a49](https://github.com/angular/angular-cli/commit/b965a49))
+* **@angular/cli:** sourcemaps should be the main option, sourcemap an alias ([d94040b](https://github.com/angular/angular-cli/commit/d94040b))
+* **@angular/cli:** updates module.id subsequent variable typing ([#5500](https://github.com/angular/angular-cli/issues/5500)) ([7087195](https://github.com/angular/angular-cli/commit/7087195))
+* **@ngtools/webpack:** add parent nodes and keep program ([ebb495d](https://github.com/angular/angular-cli/commit/ebb495d)), closes [#5143](https://github.com/angular/angular-cli/issues/5143) [#4817](https://github.com/angular/angular-cli/issues/4817)
+* **@ngtools/webpack:** only remove moduleId in decorators ([82ddc5c](https://github.com/angular/angular-cli/commit/82ddc5c)), closes [#5509](https://github.com/angular/angular-cli/issues/5509)
+* **@ngtools/webpack:** remove webpack plugins peer deps on [@angular](https://github.com/angular)/core ([507b399](https://github.com/angular/angular-cli/commit/507b399))
+* **@ngtools/webpack:** when an error happens rediagnose the file ([4bd8bd2](https://github.com/angular/angular-cli/commit/4bd8bd2)), closes [#4810](https://github.com/angular/angular-cli/issues/4810) [#5404](https://github.com/angular/angular-cli/issues/5404)
+
+
+
+<a name="1.0.0-rc.2"></a>
+# [1.0.0-rc.2](https://github.com/angular/angular-cli/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2017-03-13)
+
+### Bug Fixes
+
+* **@angular/cli:** add missing alias for guard blueprint ([#5339](https://github.com/angular/angular-cli/issues/5339)) ([9b70fda](https://github.com/angular/angular-cli/commit/9b70fda)), closes [#5336](https://github.com/angular/angular-cli/issues/5336)
+* **@angular/cli:** Align tsconfig output dir to out-tsc. Add out-tsc to .gitignore ([e9372d3](https://github.com/angular/angular-cli/commit/e9372d3)), closes [#5220](https://github.com/angular/angular-cli/issues/5220)
+* **@angular/cli:** don't break deployUrl with scheme ([501e974](https://github.com/angular/angular-cli/commit/501e974)), closes [#5254](https://github.com/angular/angular-cli/issues/5254)
+* **@angular/cli:** eject command removes EOF ([7461528](https://github.com/angular/angular-cli/commit/7461528)), closes [#5387](https://github.com/angular/angular-cli/issues/5387)
+* **@angular/cli:** enforce loglevel warn for npm-install ([07e93c0](https://github.com/angular/angular-cli/commit/07e93c0)), closes [#5010](https://github.com/angular/angular-cli/issues/5010)
+* **@angular/cli:** ensure lint generates well-formed machine output ([c99cf96](https://github.com/angular/angular-cli/commit/c99cf96)), closes [#5259](https://github.com/angular/angular-cli/issues/5259) [#5224](https://github.com/angular/angular-cli/issues/5224)
+* **@angular/cli:** fix e2e after eject ([3b39843](https://github.com/angular/angular-cli/commit/3b39843)), closes [#4957](https://github.com/angular/angular-cli/issues/4957)
+* **@angular/cli:** Fix filtering files on completion ([cf14a15](https://github.com/angular/angular-cli/commit/cf14a15)), closes [#4664](https://github.com/angular/angular-cli/issues/4664) [#4972](https://github.com/angular/angular-cli/issues/4972)
+* **@angular/cli:** fix ide import errors ([8a1b1f9](https://github.com/angular/angular-cli/commit/8a1b1f9))
+* **@angular/cli:** fix issue with console prompt bailing early ([#5218](https://github.com/angular/angular-cli/issues/5218)) ([3515c3b](https://github.com/angular/angular-cli/commit/3515c3b)), closes [#4614](https://github.com/angular/angular-cli/issues/4614) [#5127](https://github.com/angular/angular-cli/issues/5127)
+* **@angular/cli:** fix TS2.1 typeroots ([#5251](https://github.com/angular/angular-cli/issues/5251)) ([1c2f361](https://github.com/angular/angular-cli/commit/1c2f361)), closes [#5082](https://github.com/angular/angular-cli/issues/5082)
+* **@angular/cli:** Fixing aliases for blueprint help ([b6cc79c](https://github.com/angular/angular-cli/commit/b6cc79c))
+* **@angular/cli:** Fixing generate help command fix ([7f0333a](https://github.com/angular/angular-cli/commit/7f0333a))
+* **@angular/cli:** Fixing set prefix issue ([#5301](https://github.com/angular/angular-cli/issues/5301)) ([1f8363a](https://github.com/angular/angular-cli/commit/1f8363a))
+* **@angular/cli:** Fixing setting enums ([7e2c04f](https://github.com/angular/angular-cli/commit/7e2c04f))
+* **@angular/cli:** karma config is default for test command ([#5263](https://github.com/angular/angular-cli/issues/5263)) ([c2a8569](https://github.com/angular/angular-cli/commit/c2a8569))
+* **@angular/cli:** Log xi18n errors ([a54115c](https://github.com/angular/angular-cli/commit/a54115c)), closes [#5129](https://github.com/angular/angular-cli/issues/5129) [#5223](https://github.com/angular/angular-cli/issues/5223)
+* **@angular/cli:** make flag values case insensitive ([#5355](https://github.com/angular/angular-cli/issues/5355)) ([8d8ddfc](https://github.com/angular/angular-cli/commit/8d8ddfc)), closes [#5344](https://github.com/angular/angular-cli/issues/5344)
+* **@angular/cli:** only adjust root relative stylesheet urls ([1e7d519](https://github.com/angular/angular-cli/commit/1e7d519)), closes [#5238](https://github.com/angular/angular-cli/issues/5238)
+* **@angular/cli:** remove outdated test command option `--build` ([fcb1f35](https://github.com/angular/angular-cli/commit/fcb1f35)), closes [#5235](https://github.com/angular/angular-cli/issues/5235)
+* **@angular/cli:** remove providers from routing modules ([#5349](https://github.com/angular/angular-cli/issues/5349)) ([c8e5359](https://github.com/angular/angular-cli/commit/c8e5359))
+* **@angular/cli:** rephrased warning message ([e314135](https://github.com/angular/angular-cli/commit/e314135)), closes [#5006](https://github.com/angular/angular-cli/issues/5006)
+* **@angular/cli:** use inheritance for ng4 ([7c3ce6b](https://github.com/angular/angular-cli/commit/7c3ce6b)), closes [#5111](https://github.com/angular/angular-cli/issues/5111)
+* **@angular/cli:** yarn install does not support --quiet ([#5310](https://github.com/angular/angular-cli/issues/5310)) ([5e54a01](https://github.com/angular/angular-cli/commit/5e54a01))
+* **@angular/cli:** bump to tslint 4.5.0 ([a78a727](https://github.com/angular/angular-cli/commit/a78a727)), closes [#5099](https://github.com/angular/angular-cli/issues/5099)
+* **@angular/cli:** use standard stackTraceLimit ([#5284](https://github.com/angular/angular-cli/issues/5284)) ([5c9c653](https://github.com/angular/angular-cli/commit/5c9c653))
+
+
+
 <a name="1.0.0-rc.1"></a>
 # [1.0.0-rc.1](https://github.com/angular/angular-cli/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2017-03-03)
 

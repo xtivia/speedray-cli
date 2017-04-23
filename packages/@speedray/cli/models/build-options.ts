@@ -3,7 +3,7 @@ export interface BuildOptions {
   environment?: string;
   outputPath?: string;
   aot?: boolean;
-  sourcemap?: boolean;
+  sourcemaps?: boolean;
   vendorChunk?: boolean;
   deployUrl?: string;
   verbose?: boolean;

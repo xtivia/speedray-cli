@@ -1,9 +1,9 @@
+// @ignoreDep @angular/compiler-cli
 import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
 
-import {__NGTOOLS_PRIVATE_API_2} from '@angular/compiler-cli';
-import {AngularCompilerOptions} from '@angular/tsc-wrapped';
+const {__NGTOOLS_PRIVATE_API_2} = require('@angular/compiler-cli');
 const ContextElementDependency = require('webpack/lib/dependencies/ContextElementDependency');
 
 import {WebpackResourceLoader} from './resource_loader';
@@ -40,7 +40,7 @@ export class AotPlugin implements Tapable {
   private _options: AotPluginOptions;
 
   private _compilerOptions: ts.CompilerOptions;
-  private _angularCompilerOptions: AngularCompilerOptions;
+  private _angularCompilerOptions: any;
   private _program: ts.Program;
   private _rootFilePath: string[];
   private _compilerHost: WebpackCompilerHost;
@@ -96,7 +96,8 @@ export class AotPlugin implements Tapable {
     if (!options.hasOwnProperty('tsConfigPath')) {
       throw new Error('Must specify "tsConfigPath" in the configuration of @ngtools/webpack.');
     }
-    this._tsConfigPath = options.tsConfigPath;
+    // TS represents paths internally with '/' and expects the tsconfig path to be in this format
+    this._tsConfigPath = options.tsConfigPath.replace(/\\/g, '/');
 
     // Check the base path.
     const maybeBasePath = path.resolve(process.cwd(), this._tsConfigPath);
@@ -411,6 +412,11 @@ export class AotPlugin implements Tapable {
           this._rootFilePath, this._compilerOptions, this._compilerHost, this._program);
       })
       .then(() => {
+        // Re-diagnose changed files.
+        const changedFilePaths = this._compilerHost.getChangedFilePaths();
+        changedFilePaths.forEach(filePath => this.diagnose(filePath));
+      })
+      .then(() => {
         if (this._typeCheck) {
           const diagnostics = this._program.getGlobalDiagnostics();
           if (diagnostics.length > 0) {
@@ -461,7 +467,9 @@ export class AotPlugin implements Tapable {
           });
       })
       .then(() => {
-        this._compilerHost.resetChangedFileTracker();
+        if (this._compilation.errors == 0) {
+          this._compilerHost.resetChangedFileTracker();
+        }
 
         cb();
       }, (err: any) => {

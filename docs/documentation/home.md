@@ -49,9 +49,10 @@ End-to-end tests are run via [Protractor](https://angular.github.io/protractor/)
 * [sr test](test)
 * [sr e2e](e2e)
 * [sr build](build)
-* [sr get/sr set](config)
-* [sr docs](docs)
+* [sr get/ng set](config)
+* [sr doc](doc)
 * [sr eject](eject)
+* [sr xi18n](xi18n)
 
 ### Additional Information
 There are several [stories](stories) which will walk you through settisr up
