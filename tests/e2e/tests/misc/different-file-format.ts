@@ -1,4 +1,4 @@
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import * as fs from '../../utils/fs';
 
 
@@ -11,5 +11,5 @@ export default function() {
   return Promise.resolve()
     .then(() => fs.prependToFile('./src/tsconfig.app.json', '\ufeff', options))
     .then(() => fs.prependToFile('./.speedray-cli.json', '\ufeff', options))
-    .then(() => ng('build', '--env=dev'));
+    .then(() => sr('build', '--env=dev'));
 }

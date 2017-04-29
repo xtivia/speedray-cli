@@ -4,7 +4,7 @@ import {
   replaceInFile
 } from '../../../utils/fs';
 import { expectToFail } from '../../../utils/utils';
-import { ng } from '../../../utils/process';
+import { sr } from '../../../utils/process';
 import { stripIndents } from 'common-tags';
 import { updateJsonFile } from '../../../utils/project';
 import { getGlobalVariable } from '../../../utils/env';
@@ -45,7 +45,7 @@ export default function () {
         .then(() => replaceInFile('src/app/app.component.ts',
           './app.component.css', `./app.component.${ext}`))
         // run build app
-        .then(() => ng('build', '--extract-css', '--sourcemap'))
+        .then(() => sr('build', '--extract-css', '--sourcemap'))
         // verify global styles
         .then(() => expectFileToMatch('dist/styles.bundle.css',
           /body\s*{\s*background-color: #00f;\s*}/))
@@ -55,12 +55,12 @@ export default function () {
         .then(() => expectToFail(() =>
           expectFileToMatch('dist/styles.bundle.css', '"mappings":""')))
         // verify component styles
-        .then(() => expectFileToMatch('dist/main.bundle.js',
+        .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
           /.outer.*.inner.*background:\s*#[fF]+/))
-        .then(() => expectFileToMatch('dist/main.bundle.js',
+        .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
           /h1.*background:\s*#000+/))
-        // Also check imports work on ng test
-        .then(() => !ejected && ng('test', '--single-run'))
+        // Also check imports work on sr test
+        .then(() => !ejected && sr('test', '--single-run'))
         // change files back
         .then(() => updateJsonFile('.speedray-cli.json', configJson => {
           const app = configJson['apps'][0];

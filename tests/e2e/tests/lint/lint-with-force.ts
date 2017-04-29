@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { writeFile } from '../../utils/fs';
 import { oneLine } from 'common-tags';
 
@@ -7,7 +7,7 @@ export default function () {
 
   return Promise.resolve()
     .then(() => writeFile(fileName, 'const foo = "";\n'))
-    .then(() => ng('lint', '--force'))
+    .then(() => sr('lint', '--force'))
     .then(({ stdout }) => {
       if (!stdout.match(/" should be '/)) {
         throw new Error(`Expected to match "" should be '" in ${stdout}.`);

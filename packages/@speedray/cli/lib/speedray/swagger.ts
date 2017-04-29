@@ -33,8 +33,13 @@ export function generate(yaml: string, output: string, callback: Function) {
 
 export function watch(yaml: string, output: string, callback: Function) {
     if (fs.existsSync(yaml)) {
-        fs.watch(yaml, (_: string, filename: string) => {
-                return generate(filename, output, callback);
+        generate(yaml, output, (code: any) => {
+            if (code) {
+                return callback(code);
+            }
+            fs.watch(yaml, (_: string, filename: string) => {
+                    return generate(filename, output, callback);
+            });
         });
     }
 }

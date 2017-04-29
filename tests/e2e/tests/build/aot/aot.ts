@@ -1,8 +1,8 @@
-import {ng} from '../../../utils/process';
+import {sr} from '../../../utils/process';
 import {expectFileToMatch} from '../../../utils/fs';
 
 export default function() {
-  return ng('build', '--aot')
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+  return sr('build', '--aot')
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /bootstrapModuleFactory.*\/\* AppModuleNgFactory \*\//));
 }

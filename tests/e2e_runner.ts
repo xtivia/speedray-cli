@@ -28,7 +28,7 @@ Error.stackTraceLimit = Infinity;
  *   --nobuild        Skip building the packages. Use with --nolink and --reuse to quickly
  *                    rerun tests.
  *   --nolink         Skip linking your local @speedray/cli directory. Can save a few seconds.
- *   --ng-sha=SHA     Use a specific ng-sha. Similar to nightly but point to a master SHA instead
+ *   --sr-sha=SHA     Use a specific sr-sha. Similar to nightly but point to a master SHA instead
  *                    of using the latest.
  *   --glob           Run tests matching this glob pattern (relative to tests/e2e/).
  *   --ignore         Ignore tests matching this glob pattern.
@@ -40,7 +40,7 @@ Error.stackTraceLimit = Infinity;
  */
 const argv = minimist(process.argv.slice(2), {
   'boolean': ['debug', 'nolink', 'nightly', 'noproject', 'verbose', 'eject'],
-  'string': ['glob', 'ignore', 'reuse', 'ng-sha', ]
+  'string': ['glob', 'ignore', 'reuse', 'sr-sha', ]
 });
 
 

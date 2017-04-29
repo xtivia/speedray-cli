@@ -1,9 +1,9 @@
 import * as path from 'path';
-import { ng } from '../../../utils/process';
+import { sr } from '../../../utils/process';
 import { oneLine } from 'common-tags';
 
 export default function () {
-  return ng('generate', 'component', 'test-component')
+  return sr('generate', 'component', 'test-component')
     .then((output) => {
       if (!output.stdout.match(/update src[\\|\/]app[\\|\/]app.module.ts/)) {
         throw new Error(oneLine`
@@ -12,7 +12,7 @@ export default function () {
           in ${output}.`);
       }
     })
-    .then(() => ng('generate', 'component', 'test-component'))
+    .then(() => sr('generate', 'component', 'test-component'))
     .then((output) => {
       if (!output.stdout.match(/identical src[\\|\/]app[\\|\/]app.module.ts/)) {
         throw new Error(oneLine`

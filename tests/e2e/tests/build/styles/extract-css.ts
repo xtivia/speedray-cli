@@ -3,7 +3,7 @@ import {
   expectFileToExist,
   expectFileToMatch
 } from '../../../utils/fs';
-import { ng } from '../../../utils/process';
+import { sr } from '../../../utils/process';
 import { updateJsonFile } from '../../../utils/project';
 import { expectToFail } from '../../../utils/utils';
 import { oneLineTrim } from 'common-tags';
@@ -31,7 +31,7 @@ export default function () {
       ];
       app['scripts'] = [{ input: 'common-entry-script.js', output: 'common-entry' }];
     }))
-    .then(() => ng('build', '--extract-css'))
+    .then(() => sr('build', '--extract-css'))
     // files were created successfully
     .then(() => expectFileToMatch('dist/styles.bundle.css', '.string-style'))
     .then(() => expectFileToMatch('dist/styles.bundle.css', '.input-style'))
@@ -59,7 +59,7 @@ export default function () {
       <script type="text/javascript" src="main.bundle.js"></script>
     `))
     // also check when css isn't extracted
-    .then(() => ng('build', '--no-extract-css'))
+    .then(() => sr('build', '--no-extract-css'))
     // files were created successfully
     .then(() => expectFileToMatch('dist/styles.bundle.js', '.string-style'))
     .then(() => expectFileToMatch('dist/styles.bundle.js', '.input-style'))

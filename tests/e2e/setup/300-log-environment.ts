@@ -1,4 +1,4 @@
-import {node, ng, npm} from '../utils/process';
+import {node, sr, npm} from '../utils/process';
 
 const packages = require('../../../lib/packages');
 
@@ -17,5 +17,5 @@ export default function() {
     })
     .then(() => node('--version'))
     .then(() => npm('--version'))
-    .then(() => ng('version'));
+    .then(() => sr('version'));
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-const ng = require('../helpers/ng');
+const sr = require('../helpers/sr');
 const tmp = require('../helpers/tmp');
 const fs = require('fs-extra');
 const existsSync = require('exists-sync');
@@ -16,7 +16,7 @@ describe('Acceptance: sr generate module', function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
     }).then(function () {
-      return ng(['new', 'foo', '--skip-install']);
+      return sr(['new', 'foo', '--skip-install']);
     });
   });
 
@@ -27,20 +27,20 @@ describe('Acceptance: sr generate module', function () {
   });
 
   it('will fail if no name is specified', function () {
-    return ng(['generate', 'module']).catch((error) => {
+    return sr(['generate', 'module']).catch((error) => {
       expect(error).to.equal('The `sr generate module` command requires a name to be specified.');
     });
   });
 
   it('sr generate module my-module', function () {
-    return ng(['generate', 'module', 'my-module']).then(() => {
+    return sr(['generate', 'module', 'my-module']).then(() => {
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.ts'))).to.equal(true);
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.spec.ts'))).to.equal(false);
     });
   });
 
   it('sr generate module  generate routing file when passed flag --routing', function () {
-    return ng(['generate', 'module', 'my-module', '--routing']).then(() => {
+    return sr(['generate', 'module', 'my-module', '--routing']).then(() => {
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.ts'))).to.equal(true);
       expect(existsSync(path.join(testPath, 'my-module', 'my-module-routing.module.ts'))).to.equal(true);
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.spec.ts'))).to.equal(false);
@@ -48,22 +48,22 @@ describe('Acceptance: sr generate module', function () {
   });
 
   it('sr generate module my-module --spec', function () {
-    return ng(['generate', 'module', 'my-module', '--spec']).then(() => {
+    return sr(['generate', 'module', 'my-module', '--spec']).then(() => {
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.ts'))).to.equal(true);
       expect(existsSync(path.join(testPath, 'my-module', 'my-module.module.spec.ts'))).to.equal(true);
     });
   });
 
   it('sr generate module TwoWord', function () {
-    return ng(['generate', 'module', 'TwoWord']).then(() => {
+    return sr(['generate', 'module', 'TwoWord']).then(() => {
       expect(existsSync(path.join(testPath, 'two-word', 'two-word.module.ts'))).to.equal(true);
       expect(existsSync(path.join(testPath, 'two-word', 'two-word.module.spec.ts'))).to.equal(false);
     });
   });
 
   it('sr generate module parent/child', function () {
-    return ng(['generate', 'module', 'parent']).then(() =>
-      ng(['generate', 'module', 'parent/child']).then(() => {
+    return sr(['generate', 'module', 'parent']).then(() =>
+      sr(['generate', 'module', 'parent/child']).then(() => {
         expect(existsSync(path.join(testPath, 'parent/child', 'child.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'parent/child', 'child.module.spec.ts'))).to.equal(false);
       })
@@ -76,7 +76,7 @@ describe('Acceptance: sr generate module', function () {
       process.chdir(path.join(testPath, './sub-dir'));
       return resolve();
     }).then(() =>
-      ng(['generate', 'module', 'child']).then(() => {
+      sr(['generate', 'module', 'child']).then(() => {
         expect(existsSync(path.join(testPath, 'sub-dir/child', 'child.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'sub-dir/child', 'child.module.spec.ts'))).to.equal(false);
       })
@@ -89,7 +89,7 @@ describe('Acceptance: sr generate module', function () {
       process.chdir(path.join(testPath, './sub-dir'));
       return resolve();
     }).then(() =>
-      ng(['generate', 'module', 'child', '--routing']).then(() => {
+      sr(['generate', 'module', 'child', '--routing']).then(() => {
         expect(existsSync(path.join(testPath, 'sub-dir/child', 'child.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'sub-dir/child', 'child-routing.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'sub-dir/child', 'child.module.spec.ts'))).to.equal(false);
@@ -98,8 +98,8 @@ describe('Acceptance: sr generate module', function () {
   });
 
   it('sr generate module should generate parent/child module with routing file when passed --routing flag', function () {
-    return ng(['generate', 'module', 'parent']).then(() =>
-      ng(['generate', 'module', 'parent/child', '--routing']).then(() => {
+    return sr(['generate', 'module', 'parent']).then(() =>
+      sr(['generate', 'module', 'parent/child', '--routing']).then(() => {
         expect(existsSync(path.join(testPath, 'parent/child', 'child.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'parent/child', 'child-routing.module.ts'))).to.equal(true);
         expect(existsSync(path.join(testPath, 'parent/child', 'child.module.spec.ts'))).to.equal(false);

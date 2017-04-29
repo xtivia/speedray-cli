@@ -1,7 +1,7 @@
 import {oneLine} from 'common-tags';
 import * as fs from 'fs';
 
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {writeFile} from '../../utils/fs';
 import {addImportToModule} from '../../utils/ast';
 
@@ -48,17 +48,17 @@ export default function() {
   let newHashes: Map<string, string>;
   // First, collect the hashes.
   return Promise.resolve()
-    .then(() => ng('generate', 'module', 'lazy', '--routing'))
+    .then(() => sr('generate', 'module', 'lazy', '--routing'))
     .then(() => addImportToModule('src/app/app.module.ts', oneLine`
       RouterModule.forRoot([{ path: "lazy", loadChildren: "./lazy/lazy.module#LazyModule" }])
     `, '@angular/router'))
     .then(() => addImportToModule(
       'src/app/app.module.ts', 'ReactiveFormsModule', '@angular/forms'))
-    .then(() => ng('build', '--prod'))
+    .then(() => sr('build', '--prod'))
     .then(() => {
       oldHashes = generateFileHashMap();
     })
-    .then(() => ng('build', '--prod'))
+    .then(() => sr('build', '--prod'))
     .then(() => {
       newHashes = generateFileHashMap();
     })
@@ -67,7 +67,7 @@ export default function() {
       oldHashes = newHashes;
     })
     .then(() => writeFile('src/styles.css', 'body { background: blue; }'))
-    .then(() => ng('build', '--prod'))
+    .then(() => sr('build', '--prod'))
     .then(() => {
       newHashes = generateFileHashMap();
     })
@@ -76,7 +76,7 @@ export default function() {
       oldHashes = newHashes;
     })
     .then(() => writeFile('src/app/app.component.css', 'h1 { margin: 10px; }'))
-    .then(() => ng('build', '--prod'))
+    .then(() => sr('build', '--prod'))
     .then(() => {
       newHashes = generateFileHashMap();
     })
@@ -86,7 +86,7 @@ export default function() {
     })
     .then(() => addImportToModule(
       'src/app/lazy/lazy.module.ts', 'ReactiveFormsModule', '@angular/forms'))
-    .then(() => ng('build', '--prod'))
+    .then(() => sr('build', '--prod'))
     .then(() => {
       newHashes = generateFileHashMap();
     })

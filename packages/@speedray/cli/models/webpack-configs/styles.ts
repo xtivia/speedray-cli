@@ -44,7 +44,7 @@ export function getStylesConfig(wco: WebpackConfigOptions) {
   const cssnanoPlugin = cssnano({ safe: true, autoprefixer: false });
 
   // Convert absolute resource URLs to account for base-href and deploy-url.
-  const baseHref = wco.buildOptions.baseHref || '';
+  const baseHref = '';
   const deployUrl = wco.buildOptions.deployUrl || '';
   const postcssUrlOptions = {
     url: (URL: string) => {

@@ -12,7 +12,7 @@ const karmaGoodRegEx = /Executed 3 of 3 SUCCESS \(\d+\.\d+ secs/;
 
 export default function () {
   let originalSpec: string;
-  return silentExecAndWaitForOutputToMatch('ng', ['test', '--no-progress'], karmaGoodRegEx)
+  return silentExecAndWaitForOutputToMatch('sr', ['test', '--no-progress'], karmaGoodRegEx)
     .then(() => readFile('src/app/app.component.spec.ts'))
     .then((data) => originalSpec = data)
     // Trigger a failed rebuild, which shouldn't run tests again.

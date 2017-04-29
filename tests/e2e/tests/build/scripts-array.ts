@@ -3,7 +3,7 @@ import {
   expectFileToMatch,
   appendToFile
 } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { updateJsonFile } from '../../utils/project';
 import { oneLineTrim } from 'common-tags';
 
@@ -30,7 +30,7 @@ export default function () {
       ];
       app['styles'] = [{ input: 'common-entry-style.css', output: 'common-entry' }];
     }))
-    .then(() => ng('build', '--extract-css'))
+    .then(() => sr('build', '--extract-css'))
     // files were created successfully
     .then(() => expectFileToMatch('dist/scripts.bundle.js', 'string-script'))
     .then(() => expectFileToMatch('dist/scripts.bundle.js', 'input-script'))
@@ -53,5 +53,5 @@ export default function () {
       <script type="text/javascript" src="main.bundle.js"></script>
     `))
      // ensure scripts aren't using script-loader when imported from the app
-    .then(() => expectFileToMatch('dist/main.bundle.js', 'console.log(\'string-script\');'));
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js', 'console.log(\'string-script\');'));
 }

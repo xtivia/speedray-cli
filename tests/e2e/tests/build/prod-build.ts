@@ -1,7 +1,7 @@
 import {join} from 'path';
 import {readdirSync} from 'fs';
 import {expectFileToExist, expectFileToMatch} from '../../utils/fs';
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {expectGitToBeClean} from '../../utils/git';
 import {getGlobalVariable} from '../../utils/env';
 
@@ -10,9 +10,9 @@ export default function() {
   // Skip this in ejected tests.
   const ejected = getGlobalVariable('argv').eject;
 
-  // Can't use the `ng` helper because somewhere the environment gets
+  // Can't use the `sr` helper because somewhere the environment gets
   // stuck to the first build done
-  return ng('build', '--prod')
+  return sr('build', '--prod')
     .then(() => expectFileToExist(join(process.cwd(), 'dist')))
     // Check for cache busting hash script src
     .then(() => expectFileToMatch('dist/index.html', /main\.[0-9a-f]{20}\.bundle\.js/))

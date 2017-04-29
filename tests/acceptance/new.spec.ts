@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const ng = require('../helpers/ng');
+const sr = require('../helpers/sr');
 const existsSync = require('exists-sync');
 const expect = require('chai').expect;
 const forEach = require('lodash/forEach');
@@ -12,7 +12,7 @@ const util = require('util');
 const EOL = require('os').EOL;
 const SilentError = require('silent-error');
 
-describe('Acceptance: ng new', function () {
+describe('Acceptance: sr new', function () {
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
@@ -51,50 +51,50 @@ describe('Acceptance: ng new', function () {
   }
 
   function confirmBlueprinted() {
-    return confirmBlueprintedForDir('blueprints/ng');
+    return confirmBlueprintedForDir('blueprints/sr');
   }
 
   it('requires a valid name (!)', () => {
-    return ng(['new', '!', '--skip-install', '--skip-git', '--inline-template'])
+    return sr(['new', '!', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => { throw new Error(); }, () => {});
   });
   it('requires a valid name (abc-.)', () => {
-    return ng(['new', 'abc-.', '--skip-install', '--skip-git', '--inline-template'])
+    return sr(['new', 'abc-.', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => { throw new Error(); }, () => {});
   });
   it('requires a valid name (abc-)', () => {
-    return ng(['new', 'abc-', '--skip-install', '--skip-git', '--inline-template'])
+    return sr(['new', 'abc-', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => { throw new Error(); }, () => {});
   });
   it('requires a valid name (abc-def-)', () => {
-    return ng(['new', 'abc-def-', '--skip-install', '--skip-git', '--inline-template'])
+    return sr(['new', 'abc-def-', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => { throw new Error(); }, () => {});
   });
   it('requires a valid name (abc-123)', () => {
-    return ng(['new', 'abc-123', '--skip-install', '--skip-git', '--inline-template'])
+    return sr(['new', 'abc-123', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => { throw new Error(); }, () => {});
   });
   it('requires a valid name (abc)', () => {
-    return ng(['new', 'abc', '--skip-install', '--skip-git', '--inline-template']);
+    return sr(['new', 'abc', '--skip-install', '--skip-git', '--inline-template']);
   });
   it('requires a valid name (abc-def)', () => {
-    return ng(['new', 'abc-def', '--skip-install', '--skip-git', '--inline-template']);
+    return sr(['new', 'abc-def', '--skip-install', '--skip-git', '--inline-template']);
   });
 
-  it('ng new foo, where foo does not yet exist, works', function () {
-    return ng(['new', 'foo', '--skip-install']).then(confirmBlueprinted);
+  it('sr new foo, where foo does not yet exist, works', function () {
+    return sr(['new', 'foo', '--skip-install']).then(confirmBlueprinted);
   });
 
-  it('ng new with empty app does throw exception', function () {
-    expect(ng(['new', ''])).to.throw;
+  it('sr new with empty app does throw exception', function () {
+    expect(sr(['new', ''])).to.throw;
   });
 
-  it('ng new without app name does throw exception', function () {
-    expect(ng(['new', ''])).to.throw;
+  it('sr new without app name does throw exception', function () {
+    expect(sr(['new', ''])).to.throw;
   });
 
-  it('ng new with app name creates new directory and has a dasherized package name', function () {
-    return ng(['new', 'FooApp', '--skip-install', '--skip-git']).then(function () {
+  it('sr new with app name creates new directory and has a dasherized package name', function () {
+    return sr(['new', 'FooApp', '--skip-install', '--skip-git']).then(function () {
       expect(!existsSync('FooApp'));
 
       const pkgJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -102,8 +102,8 @@ describe('Acceptance: ng new', function () {
     });
   });
 
-  it('ng new has a .editorconfig file', function () {
-    return ng(['new', 'FooApp', '--skip-install', '--skip-git']).then(function () {
+  it('sr new has a .editorconfig file', function () {
+    return sr(['new', 'FooApp', '--skip-install', '--skip-git']).then(function () {
       expect(!existsSync('FooApp'));
 
       const editorConfig = fs.readFileSync('.editorconfig', 'utf8');
@@ -111,11 +111,11 @@ describe('Acceptance: ng new', function () {
     });
   });
 
-  it('Cannot run ng new, inside of Speedray CLI project', function () {
-    return ng(['new', 'foo', '--skip-install', '--skip-git'])
+  it('Cannot run sr new, inside of Speedray CLI project', function () {
+    return sr(['new', 'foo', '--skip-install', '--skip-git'])
       .then(function () {
-        return ng(['new', 'foo', '--skip-install', '--skip-git']).then(() => {
-          throw new SilentError('Cannot run ng new, inside of Speedray CLI project should fail.');
+        return sr(['new', 'foo', '--skip-install', '--skip-git']).then(() => {
+          throw new SilentError('Cannot run sr new, inside of Speedray CLI project should fail.');
         }, () => {
           expect(!existsSync('foo'));
         });
@@ -123,14 +123,14 @@ describe('Acceptance: ng new', function () {
       .then(confirmBlueprinted);
   });
 
-  it('ng new without skip-git flag creates .git dir', function () {
-    return ng(['new', 'foo', '--skip-install']).then(function () {
+  it('sr new without skip-git flag creates .git dir', function () {
+    return sr(['new', 'foo', '--skip-install']).then(function () {
       expect(existsSync('.git'));
     });
   });
 
-  it('ng new with --dry-run does not create new directory', function () {
-    return ng(['new', 'foo', '--dry-run']).then(function () {
+  it('sr new with --dry-run does not create new directory', function () {
+    return sr(['new', 'foo', '--dry-run']).then(function () {
       const cwd = process.cwd();
       expect(cwd).to.not.match(/foo/, 'does not change cwd to foo in a dry run');
       expect(!existsSync(path.join(cwd, 'foo')), 'does not create new directory');
@@ -138,8 +138,8 @@ describe('Acceptance: ng new', function () {
     });
   });
 
-  it('ng new with --directory uses given directory name and has correct package name', function () {
-    return ng(['new', 'foo', '--skip-install', '--skip-git', '--directory=bar'])
+  it('sr new with --directory uses given directory name and has correct package name', function () {
+    return sr(['new', 'foo', '--skip-install', '--skip-git', '--directory=bar'])
       .then(function () {
         const cwd = process.cwd();
         expect(cwd).to.not.match(/foo/, 'does not use app name for directory name');
@@ -153,16 +153,16 @@ describe('Acceptance: ng new', function () {
       });
   });
 
-  it('ng new --inline-template does not generate a template file', () => {
-    return ng(['new', 'foo', '--skip-install', '--skip-git', '--inline-template'])
+  it('sr new --inline-template does not generate a template file', () => {
+    return sr(['new', 'foo', '--skip-install', '--skip-git', '--inline-template'])
       .then(() => {
         const templateFile = path.join('src', 'app', 'app.component.html');
         expect(existsSync(templateFile)).to.equal(false);
       });
   });
 
-  it('ng new --inline-style does not gener a style file', () => {
-    return ng(['new', 'foo', '--skip-install', '--skip-git', '--inline-style'])
+  it('sr new --inline-style does not gener a style file', () => {
+    return sr(['new', 'foo', '--skip-install', '--skip-git', '--inline-style'])
       .then(() => {
         const styleFile = path.join('src', 'app', 'app.component.css');
         expect(existsSync(styleFile)).to.equal(false);
@@ -170,7 +170,7 @@ describe('Acceptance: ng new', function () {
   });
 
   it('should skip spec files when passed --skip-tests', () => {
-    return ng(['new', 'foo', '--skip-install', '--skip-git', '--skip-tests'])
+    return sr(['new', 'foo', '--skip-install', '--skip-git', '--skip-tests'])
       .then(() => {
         const specFile = path.join('src', 'app', 'app.component.spec.ts');
         expect(existsSync(specFile)).to.equal(false);

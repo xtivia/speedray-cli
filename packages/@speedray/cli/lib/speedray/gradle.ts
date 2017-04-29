@@ -33,8 +33,13 @@ export function gradle(callback: Function) {
 
 export function watch(callback: Function) {
     if (fs.existsSync('liferay/build.gradle')) {
-        fs.watch('liferay/src/main/java', { recursive: true }, () => {
-                return gradle(callback);
+        gradle((code: any) => {
+            if (code) {
+                return callback(code);
+            }
+            fs.watch('liferay/src/main/java', { recursive: true }, () => {
+                    return gradle(callback);
+            });
         });
     }
 }

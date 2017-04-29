@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as glob from 'glob';
 import * as rimrafPackage from 'rimraf';
 import {dirname} from 'path';
 import {stripIndents} from 'common-tags';
@@ -6,11 +7,20 @@ import {stripIndents} from 'common-tags';
 
 export function readFile(fileName: string) {
   return new Promise<string>((resolve, reject) => {
-    fs.readFile(fileName, 'utf-8', (err: any, data: string) => {
-      if (err) {
+    glob(fileName, (err: any, files: Array<string>) => {
+      if(err)  {
         reject(err);
+      }
+      if(files && files.length > 0) {
+        fs.readFile(files[0], 'utf-8', (err: any, data: string) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
+        });
       } else {
-        resolve(data);
+        reject('Files not found ' + fileName);
       }
     });
   });

@@ -3,7 +3,7 @@
 var MockUI = require('./mock-ui');
 var Cli = require('@speedray/cli/lib/cli');
 
-module.exports = function ng(args) {
+module.exports = function sr(args) {
   var cli;
 
   process.env.PWD = process.cwd();

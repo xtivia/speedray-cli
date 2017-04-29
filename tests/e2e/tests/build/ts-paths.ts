@@ -1,6 +1,6 @@
 import {updateTsConfig} from '../../utils/project';
 import {writeMultipleFiles, appendToFile, createDir} from '../../utils/fs';
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {stripIndents} from 'common-tags';
 
 
@@ -32,5 +32,5 @@ export default function() {
     console.log(meaning2)
     console.log(meaning3)
   `))
-  .then(() => ng('build'));
+  .then(() => sr('build'));
 }

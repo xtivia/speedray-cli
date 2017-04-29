@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require('fs-extra');
-var ng = require('../helpers/ng');
+var sr = require('../helpers/sr');
 var existsSync = require('exists-sync');
 var expect = require('chai').expect;
 var path = require('path');
@@ -14,12 +14,12 @@ const denodeify = require('denodeify');
 const readFile = denodeify(fs.readFile);
 
 
-describe('Acceptance: ng generate service', function () {
+describe('Acceptance: sr generate service', function () {
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
     }).then(function () {
-      return ng(['new', 'foo', '--skip-install']);
+      return sr(['new', 'foo', '--skip-install']);
     });
   });
 
@@ -29,13 +29,13 @@ describe('Acceptance: ng generate service', function () {
     return tmp.teardown('./tmp');
   });
 
-  it('ng generate service my-svc', function () {
+  it('sr generate service my-svc', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'service', 'my-svc'])
+    return sr(['generate', 'service', 'my-svc'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(true);
@@ -47,13 +47,13 @@ describe('Acceptance: ng generate service', function () {
       });
   });
 
-  it('ng generate service my-svc --no-spec', function () {
+  it('sr generate service my-svc --no-spec', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'service', 'my-svc', '--no-spec'])
+    return sr(['generate', 'service', 'my-svc', '--no-spec'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(false);
@@ -65,22 +65,22 @@ describe('Acceptance: ng generate service', function () {
       });
   });
 
-  it('ng generate service test' + path.sep + 'my-svc', function () {
+  it('sr generate service test' + path.sep + 'my-svc', function () {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'service', 'test' + path.sep + 'my-svc']).then(() => {
+    return sr(['generate', 'service', 'test' + path.sep + 'my-svc']).then(() => {
       var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-svc.service.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
   });
 
-  it('ng generate service test' + path.sep + '..' + path.sep + 'my-svc', function () {
-    return ng(['generate', 'service', 'test' + path.sep + '..' + path.sep + 'my-svc']).then(() => {
+  it('sr generate service test' + path.sep + '..' + path.sep + 'my-svc', function () {
+    return sr(['generate', 'service', 'test' + path.sep + '..' + path.sep + 'my-svc']).then(() => {
       var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-svc.service.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
   });
 
-  it('ng generate service my-svc from a child dir', () => {
+  it('sr generate service my-svc from a child dir', () => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -90,7 +90,7 @@ describe('Acceptance: ng generate service', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'service', 'my-svc'])
+        return sr(['generate', 'service', 'my-svc'])
       })
       .then(() => {
         var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-svc.service.ts');
@@ -98,7 +98,7 @@ describe('Acceptance: ng generate service', function () {
       });
   });
 
-  it('ng generate service child-dir' + path.sep + 'my-svc from a child dir', () => {
+  it('sr generate service child-dir' + path.sep + 'my-svc from a child dir', () => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'child-dir'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -108,7 +108,7 @@ describe('Acceptance: ng generate service', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'service', 'child-dir' + path.sep + 'my-svc'])
+        return sr(['generate', 'service', 'child-dir' + path.sep + 'my-svc'])
       })
       .then(() => {
         var testPath = path.join(
@@ -117,7 +117,7 @@ describe('Acceptance: ng generate service', function () {
       });
   });
 
-  it('ng generate service child-dir' + path.sep + '..' + path.sep + 'my-svc from a child dir',
+  it('sr generate service child-dir' + path.sep + '..' + path.sep + 'my-svc from a child dir',
     () => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
       return new Promise(function (resolve) {
@@ -128,7 +128,7 @@ describe('Acceptance: ng generate service', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(
+          return sr(
             ['generate', 'service', 'child-dir' + path.sep + '..' + path.sep + 'my-svc'])
         })
         .then(() => {
@@ -138,7 +138,7 @@ describe('Acceptance: ng generate service', function () {
         });
     });
 
-  it('ng generate service ' + path.sep + 'my-svc from a child dir, gens under ' +
+  it('sr generate service ' + path.sep + 'my-svc from a child dir, gens under ' +
     path.join('src', 'app'),
     () => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
@@ -150,7 +150,7 @@ describe('Acceptance: ng generate service', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'service', path.sep + 'my-svc'])
+          return sr(['generate', 'service', path.sep + 'my-svc'])
         })
         .then(() => {
           var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-svc.service.ts');
@@ -158,9 +158,9 @@ describe('Acceptance: ng generate service', function () {
         });
     });
 
-  it('ng generate service ..' + path.sep + 'my-svc from root dir will fail', () => {
-    return ng(['generate', 'service', '..' + path.sep + 'my-svc']).then(() => {
-      throw new SilentError(`ng generate service ..${path.sep}my-svc from root dir should fail.`);
+  it('sr generate service ..' + path.sep + 'my-svc from root dir will fail', () => {
+    return sr(['generate', 'service', '..' + path.sep + 'my-svc']).then(() => {
+      throw new SilentError(`sr generate service ..${path.sep}my-svc from root dir should fail.`);
     }, (err) => {
       expect(err).to.equal(`Invalid path: "..${path.sep}my-svc" cannot be above the "src${path.sep}app" directory`);
     });

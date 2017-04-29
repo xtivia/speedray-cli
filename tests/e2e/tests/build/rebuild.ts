@@ -3,7 +3,7 @@ import {
   exec,
   waitForAnyProcessOutputToMatch,
   silentExecAndWaitForOutputToMatch,
-  ng,
+  sr,
 } from '../../utils/process';
 import {writeFile, writeMultipleFiles, appendToFile, expectFileToMatch} from '../../utils/fs';
 import {wait} from '../../utils/utils';
@@ -23,7 +23,7 @@ export default function() {
   let oldNumberOfChunks = 0;
   const chunkRegExp = /chunk\s+\{/g;
 
-  return silentExecAndWaitForOutputToMatch('ng', ['serve'],
+  return silentExecAndWaitForOutputToMatch('sr', ['serve'],
       /webpack: bundle is now VALID|webpack: Compiled successfully./)
     // Should trigger a rebuild.
     .then(() => exec('touch', 'src/main.ts'))
@@ -36,7 +36,7 @@ export default function() {
       oldNumberOfChunks = stdout.split(chunkRegExp).length;
     })
     // Add a lazy module.
-    .then(() => ng('generate', 'module', 'lazy', '--routing'))
+    .then(() => sr('generate', 'module', 'lazy', '--routing'))
     // Just wait for the rebuild, otherwise we might be validating the last build.
     .then(() => wait(2000))
     .then(() => writeFile('src/app/app.module.ts', `

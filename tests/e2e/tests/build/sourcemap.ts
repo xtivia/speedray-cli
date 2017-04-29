@@ -1,18 +1,18 @@
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {expectFileToExist} from '../../utils/fs';
 import {expectToFail} from '../../utils/utils';
 
 
 export default function() {
-  return ng('build')
-    .then(() => expectFileToExist('dist/main.bundle.js.map'))
+  return sr('build')
+    .then(() => expectFileToExist('liferay/dist/main.*.bundle.js.map'))
 
-    .then(() => ng('build', '--no-sourcemap'))
-    .then(() => expectToFail(() => expectFileToExist('dist/main.bundle.js.map')))
+    .then(() => sr('build', '--no-sourcemap'))
+    .then(() => expectToFail(() => expectFileToExist('liferay/dist/main.*.bundle.js.map')))
 
-    .then(() => ng('build', '--prod', '--output-hashing=none'))
-    .then(() => expectToFail(() => expectFileToExist('dist/main.bundle.js.map')))
+    .then(() => sr('build', '--prod', '--output-hashing=none'))
+    .then(() => expectToFail(() => expectFileToExist('liferay/dist/main.*.bundle.js.map')))
 
-    .then(() => ng('build', '--prod', '--output-hashing=none', '--sourcemap'))
-    .then(() => expectFileToExist('dist/main.bundle.js.map'));
+    .then(() => sr('build', '--prod', '--output-hashing=none', '--sourcemap'))
+    .then(() => expectFileToExist('liferay/dist/main.*.bundle.js.map'));
 }

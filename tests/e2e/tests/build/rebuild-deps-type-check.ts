@@ -22,7 +22,7 @@ export default function() {
     return Promise.resolve();
   }
 
-  return silentExecAndWaitForOutputToMatch('ng', ['serve'], doneRe)
+  return silentExecAndWaitForOutputToMatch('sr', ['serve'], doneRe)
     // Create and import files.
     .then(() => writeFile('src/funky2.ts', `
       export function funky2(value: string): string {

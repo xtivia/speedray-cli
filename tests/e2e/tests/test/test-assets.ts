@@ -1,5 +1,5 @@
 import { writeMultipleFiles } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { updateJsonFile } from '../../utils/project';
 import { expectToFail } from '../../utils/utils';
 import { stripIndent } from 'common-tags';
@@ -38,12 +38,12 @@ export default function () {
       const app = configJson['apps'][0];
       app['assets'] = [];
     }))
-    .then(() => expectToFail(() => ng('test', '--single-run'),
+    .then(() => expectToFail(() => sr('test', '--single-run'),
       'Should fail because the assets to serve were not in the Speedray CLI config'))
     // Test passing condition (assets are included)
     .then(() => updateJsonFile('.speedray-cli.json', configJson => {
       const app = configJson['apps'][0];
       app['assets'] = ['assets', 'file.txt'];
     }))
-    .then(() => ng('test', '--single-run'));
+    .then(() => sr('test', '--single-run'));
 }

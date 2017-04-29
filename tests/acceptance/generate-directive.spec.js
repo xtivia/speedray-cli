@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require('fs-extra');
-var ng = require('../helpers/ng');
+var sr = require('../helpers/sr');
 var existsSync = require('exists-sync');
 var expect = require('chai').expect;
 var path = require('path');
@@ -14,12 +14,12 @@ const denodeify = require('denodeify');
 const readFile = denodeify(fs.readFile);
 
 
-describe('Acceptance: ng generate directive', function () {
+describe('Acceptance: sr generate directive', function () {
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
     }).then(function () {
-      return ng(['new', 'foo', '--skip-install']);
+      return sr(['new', 'foo', '--skip-install']);
     });
   });
 
@@ -30,7 +30,7 @@ describe('Acceptance: ng generate directive', function () {
   });
 
   it('flat', function () {
-    return ng(['generate', 'directive', 'flat']).then(() => {
+    return sr(['generate', 'directive', 'flat']).then(() => {
       var testPath = path.join(root, 'tmp/foo/src/app/flat.directive.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
@@ -42,7 +42,7 @@ describe('Acceptance: ng generate directive', function () {
     const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'directive', 'my-dir', '--flat', 'false'])
+    return sr(['generate', 'directive', 'my-dir', '--flat', 'false'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(true);
@@ -59,7 +59,7 @@ describe('Acceptance: ng generate directive', function () {
     const testPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
 
-    return ng(['generate', 'directive', 'my-dir', '--flat', 'false', '--no-spec'])
+    return sr(['generate', 'directive', 'my-dir', '--flat', 'false', '--no-spec'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(false);
@@ -68,14 +68,14 @@ describe('Acceptance: ng generate directive', function () {
 
   it('test' + path.sep + 'my-dir', function () {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'directive', 'test' + path.sep + 'my-dir', '--flat', 'false']).then(() => {
+    return sr(['generate', 'directive', 'test' + path.sep + 'my-dir', '--flat', 'false']).then(() => {
       var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-dir', 'my-dir.directive.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
   });
 
   it('test' + path.sep + '..' + path.sep + 'my-dir', function () {
-    return ng(['generate', 'directive', 'test' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false'])
+    return sr(['generate', 'directive', 'test' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false'])
       .then(() => {
         var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-dir', 'my-dir.directive.ts');
         expect(existsSync(testPath)).to.equal(true);
@@ -92,7 +92,7 @@ describe('Acceptance: ng generate directive', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'directive', 'my-dir', '--flat', 'false'])
+        return sr(['generate', 'directive', 'my-dir', '--flat', 'false'])
       })
       .then(() => {
         var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-dir', 'my-dir.directive.ts');
@@ -110,7 +110,7 @@ describe('Acceptance: ng generate directive', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'directive', 'child-dir' + path.sep + 'my-dir', '--flat', 'false'])
+        return sr(['generate', 'directive', 'child-dir' + path.sep + 'my-dir', '--flat', 'false'])
       })
       .then(() => {
         var testPath = path.join(
@@ -130,7 +130,7 @@ describe('Acceptance: ng generate directive', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(
+          return sr(
             ['generate', 'directive', 'child-dir' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false'])
         })
         .then(() => {
@@ -152,7 +152,7 @@ describe('Acceptance: ng generate directive', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'directive', path.sep + 'my-dir', '--flat', 'false'])
+          return sr(['generate', 'directive', path.sep + 'my-dir', '--flat', 'false'])
         })
         .then(() => {
           var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-dir', 'my-dir.directive.ts');
@@ -161,8 +161,8 @@ describe('Acceptance: ng generate directive', function () {
     });
 
   it('..' + path.sep + 'my-dir from root dir will fail', () => {
-    return ng(['generate', 'directive', '..' + path.sep + 'my-dir']).then(() => {
-      throw new SilentError(`ng generate directive ..${path.sep}my-dir from root dir should fail.`);
+    return sr(['generate', 'directive', '..' + path.sep + 'my-dir']).then(() => {
+      throw new SilentError(`sr generate directive ..${path.sep}my-dir from root dir should fail.`);
     }, (err) => {
       expect(err).to.equal(`Invalid path: "..${path.sep}my-dir" cannot be above the "src${path.sep}app" directory`);
     });
@@ -171,7 +171,7 @@ describe('Acceptance: ng generate directive', function () {
   it('converts dash-cased-name to a camelCasedSelector', () => {
     const appRoot = path.join(root, 'tmp/foo');
     const directivePath = path.join(appRoot, 'src/app/my-dir.directive.ts');
-    return ng(['generate', 'directive', 'my-dir'])
+    return sr(['generate', 'directive', 'my-dir'])
       .then(() => readFile(directivePath, 'utf-8'))
       .then(content => {
         // expect(content).matches(/selector: [app-my-dir]/m);

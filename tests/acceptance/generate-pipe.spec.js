@@ -2,7 +2,7 @@
 'use strict';
 
 var fs = require('fs-extra');
-var ng = require('../helpers/ng');
+var sr = require('../helpers/sr');
 var existsSync = require('exists-sync');
 var expect = require('chai').expect;
 var path = require('path');
@@ -15,12 +15,12 @@ const denodeify = require('denodeify');
 const readFile = denodeify(fs.readFile);
 
 
-describe('Acceptance: ng generate pipe', function () {
+describe('Acceptance: sr generate pipe', function () {
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
     }).then(function () {
-      return ng(['new', 'foo', '--skip-install']);
+      return sr(['new', 'foo', '--skip-install']);
     });
   });
 
@@ -30,12 +30,12 @@ describe('Acceptance: ng generate pipe', function () {
     return tmp.teardown('./tmp');
   });
 
-  it('ng generate pipe my-pipe', function () {
+  it('sr generate pipe my-pipe', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
-    return ng(['generate', 'pipe', 'my-pipe'])
+    return sr(['generate', 'pipe', 'my-pipe'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(true);
@@ -47,34 +47,34 @@ describe('Acceptance: ng generate pipe', function () {
       });
   });
 
-  it('ng generate pipe my-pipe --no-spec', function () {
+  it('sr generate pipe my-pipe --no-spec', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
 
-    return ng(['generate', 'pipe', 'my-pipe', '--no-spec'])
+    return sr(['generate', 'pipe', 'my-pipe', '--no-spec'])
       .then(() => {
         expect(existsSync(testPath)).to.equal(true);
         expect(existsSync(testSpecPath)).to.equal(false);
       });
   });
 
-  it('ng generate pipe test' + path.sep + 'my-pipe', function () {
+  it('sr generate pipe test' + path.sep + 'my-pipe', function () {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'pipe', 'test' + path.sep + 'my-pipe']).then(() => {
+    return sr(['generate', 'pipe', 'test' + path.sep + 'my-pipe']).then(() => {
       var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-pipe.pipe.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
   });
 
-  it('ng generate pipe test' + path.sep + '..' + path.sep + 'my-pipe', function () {
-    return ng(['generate', 'pipe', 'test' + path.sep + '..' + path.sep + 'my-pipe']).then(() => {
+  it('sr generate pipe test' + path.sep + '..' + path.sep + 'my-pipe', function () {
+    return sr(['generate', 'pipe', 'test' + path.sep + '..' + path.sep + 'my-pipe']).then(() => {
       var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-pipe.pipe.ts');
       expect(existsSync(testPath)).to.equal(true);
     });
   });
 
-  it('ng generate pipe my-pipe from a child dir', () => {
+  it('sr generate pipe my-pipe from a child dir', () => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -84,7 +84,7 @@ describe('Acceptance: ng generate pipe', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'my-pipe'])
+        return sr(['generate', 'pipe', 'my-pipe'])
       })
       .then(() => {
         var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-pipe.pipe.ts');
@@ -92,7 +92,7 @@ describe('Acceptance: ng generate pipe', function () {
       }, err => console.log('ERR: ', err));
   });
 
-  it('ng generate pipe child-dir' + path.sep + 'my-pipe from a child dir', () => {
+  it('sr generate pipe child-dir' + path.sep + 'my-pipe from a child dir', () => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'child-dir'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -102,7 +102,7 @@ describe('Acceptance: ng generate pipe', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'child-dir' + path.sep + 'my-pipe'])
+        return sr(['generate', 'pipe', 'child-dir' + path.sep + 'my-pipe'])
       })
       .then(() => {
         var testPath = path.join(
@@ -111,7 +111,7 @@ describe('Acceptance: ng generate pipe', function () {
       }, err => console.log('ERR: ', err));
   });
 
-  it('ng generate pipe child-dir' + path.sep + '..' + path.sep + 'my-pipe from a child dir', () => {
+  it('sr generate pipe child-dir' + path.sep + '..' + path.sep + 'my-pipe from a child dir', () => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -121,7 +121,7 @@ describe('Acceptance: ng generate pipe', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'child-dir' + path.sep + '..' + path.sep + 'my-pipe'])
+        return sr(['generate', 'pipe', 'child-dir' + path.sep + '..' + path.sep + 'my-pipe'])
       })
       .then(() => {
         var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-pipe.pipe.ts');
@@ -129,7 +129,7 @@ describe('Acceptance: ng generate pipe', function () {
       }, err => console.log('ERR: ', err));
   });
 
-  it('ng generate pipe ' + path.sep + 'my-pipe from a child dir, gens under ' +
+  it('sr generate pipe ' + path.sep + 'my-pipe from a child dir, gens under ' +
     path.join('src', 'app'),
     () => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
@@ -141,7 +141,7 @@ describe('Acceptance: ng generate pipe', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'pipe', path.sep + 'my-pipe'])
+          return sr(['generate', 'pipe', path.sep + 'my-pipe'])
         })
         .then(() => {
           var testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-pipe.pipe.ts');
@@ -149,9 +149,9 @@ describe('Acceptance: ng generate pipe', function () {
         }, err => console.log('ERR: ', err));
     });
 
-  it('ng generate pipe ..' + path.sep + 'my-pipe from root dir will fail', () => {
-    return ng(['generate', 'pipe', '..' + path.sep + 'my-pipe']).then(() => {
-      throw new SilentError(`ng generate pipe ..${path.sep}my-pipe from root dir should fail.`);
+  it('sr generate pipe ..' + path.sep + 'my-pipe from root dir will fail', () => {
+    return sr(['generate', 'pipe', '..' + path.sep + 'my-pipe']).then(() => {
+      throw new SilentError(`sr generate pipe ..${path.sep}my-pipe from root dir should fail.`);
     }, (err) => {
       expect(err).to.equal(`Invalid path: "..${path.sep}my-pipe" cannot be above the "src${path.sep}app" directory`);
     });

@@ -4,7 +4,7 @@ import {
   expectFileToMatch,
   expectFileToExist
 } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { updateJsonFile } from '../../utils/project';
 import { expectToFail } from '../../utils/utils';
 import {getGlobalVariable} from '../../utils/env';
@@ -38,7 +38,7 @@ export default function () {
       ];
     }))
     // Test files are present on build output.
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => expectFileToMatch('./dist/folder/folder-asset.txt', 'folder-asset.txt'))
     .then(() => expectFileToMatch('./dist/string-asset.txt', 'string-asset.txt'))
     .then(() => expectFileToMatch('./dist/glob-asset.txt', 'glob-asset.txt'))
@@ -111,6 +111,6 @@ export default function () {
           });
         });`,
     }))
-    .then(() => !ejected && ng('test', '--single-run'))
-    .then(() => !ejected && ng('e2e', '--no-progress'));
+    .then(() => !ejected && sr('test', '--single-run'))
+    .then(() => !ejected && sr('e2e', '--no-progress'));
 }

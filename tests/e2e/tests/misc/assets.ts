@@ -1,5 +1,5 @@
 import {writeFile, expectFileToExist, expectFileToMatch} from '../../utils/fs';
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {updateJsonFile} from '../../utils/project';
 import {expectToFail} from '../../utils/utils';
 
@@ -7,7 +7,7 @@ import {expectToFail} from '../../utils/utils';
 export default function() {
   return writeFile('src/assets/.file', '')
     .then(() => writeFile('src/assets/test.abc', 'hello world'))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => expectFileToExist('dist/favicon.ico'))
     .then(() => expectFileToExist('dist/assets/.file'))
     .then(() => expectFileToMatch('dist/assets/test.abc', 'hello world'))

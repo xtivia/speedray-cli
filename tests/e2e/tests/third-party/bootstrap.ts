@@ -1,4 +1,4 @@
-import {npm, ng} from '../../utils/process';
+import {npm, sr} from '../../utils/process';
 import {updateJsonFile} from '../../utils/project';
 import {expectFileToMatch} from '../../utils/fs';
 import {oneLineTrim} from 'common-tags';
@@ -16,7 +16,7 @@ export default function() {
         '../node_modules/bootstrap/dist/js/bootstrap.js'
       );
     }))
-    .then(() => ng('build', '--extract-css'))
+    .then(() => sr('build', '--extract-css'))
     .then(() => expectFileToMatch('dist/scripts.bundle.js', '* jQuery JavaScript'))
     .then(() => expectFileToMatch('dist/scripts.bundle.js', '/*! tether '))
     .then(() => expectFileToMatch('dist/scripts.bundle.js', '* Bootstrap'))

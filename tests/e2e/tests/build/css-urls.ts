@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import {
   expectFileToMatch,
   expectFileToExist,
@@ -32,15 +32,15 @@ export default function () {
       'src/assets/component-img-absolute.svg': imgSvg,
       'src/assets/component-img-relative.svg': imgSvg
     }))
-    .then(() => ng('build', '--extract-css', '--aot'))
+    .then(() => sr('build', '--extract-css', '--aot'))
     // Check paths are correctly generated.
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\('\/assets\/global-img-absolute\.svg'\)/))
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\(global-img-relative\.[0-9a-f]{20}\.svg\)/))
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /url\(\\'\/assets\/component-img-absolute\.svg\\'\)/))
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /url\(component-img-relative\.[0-9a-f]{20}\.svg\)/))
     // Check files are correctly created.
     .then(() => expectToFail(() => expectFileToExist('dist/global-img-absolute.svg')))
@@ -48,21 +48,21 @@ export default function () {
     .then(() => expectFileMatchToExist('./dist', /global-img-relative\.[0-9a-f]{20}\.svg/))
     .then(() => expectFileMatchToExist('./dist', /component-img-relative\.[0-9a-f]{20}\.svg/))
     // Check urls with scheme are used as is.
-    .then(() => ng('build', '--base-href=/base/', '--deploy-url=http://deploy.url/',
+    .then(() => sr('build', '--base-href=/base/', '--deploy-url=http://deploy.url/',
       '--extract-css'))
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\(\'http:\/\/deploy\.url\/assets\/global-img-absolute\.svg\'\)/))
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /url\(\'http:\/\/deploy\.url\/assets\/component-img-absolute\.svg\'\)/))
     // Check with base-href and deploy-url flags.
-    .then(() => ng('build', '--base-href=/base/', '--deploy-url=deploy/',
+    .then(() => sr('build', '--base-href=/base/', '--deploy-url=deploy/',
       '--extract-css', '--aot'))
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\('\/base\/deploy\/assets\/global-img-absolute\.svg'\)/))
     .then(() => expectFileToMatch('dist/styles.bundle.css',
       /url\(global-img-relative\.[0-9a-f]{20}\.svg\)/))
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /url\(\\'\/base\/deploy\/assets\/component-img-absolute\.svg\\'\)/))
-    .then(() => expectFileToMatch('dist/main.bundle.js',
+    .then(() => expectFileToMatch('liferay/dist/main.*.bundle.js',
       /url\(deploy\/component-img-relative\.[0-9a-f]{20}\.svg\)/));
 }

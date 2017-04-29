@@ -138,7 +138,7 @@ export function silentExecAndWaitForOutputToMatch(cmd: string, args: string[], m
 
 
 let npmInstalledEject = false;
-export function ng(...args: string[]) {
+export function sr(...args: string[]) {
   // Auto-add --no-progress to commands that build the app, otherwise we get thousands of lines.
   if (['build', 'serve', 'test', 'e2e', 'xi18n'].indexOf(args[0]) != -1) {
     // If we have the --eject, use webpack for the test.
@@ -158,12 +158,12 @@ export function ng(...args: string[]) {
 
     return silentNg(...args, '--no-progress');
   } else {
-    return _exec({}, 'ng', args);
+    return _exec({}, 'sr', args);
   }
 }
 
 export function silentNg(...args: string[]) {
-  return _exec({silent: true}, 'ng', args);
+  return _exec({silent: true}, 'sr', args);
 }
 
 export function silentNpm(...args: string[]) {
