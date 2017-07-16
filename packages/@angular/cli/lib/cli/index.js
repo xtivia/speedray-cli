@@ -32,7 +32,11 @@ function loadCommands() {
 
     // Configuration.
     'set': require('../../commands/set').default,
-    'get': require('../../commands/get').default
+    'get': require('../../commands/get').default,
+
+    // Liferay DXP addons.
+    'deploy': require('../../commands/deploy').default,
+    'jar': require('../../commands/jar').default,
   };
 }
 
@@ -42,9 +46,9 @@ module.exports = function(options) {
   UI.prototype.writeWarnLine = function () { }
 
   options.cli = {
-    name: 'ng',
+    name: 'sr',
     root: path.join(__dirname, '..', '..'),
-    npmPackage: '@angular/cli'
+    npmPackage: '@speedray/cli'
   };
 
   options.commands = loadCommands();
