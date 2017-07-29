@@ -9,7 +9,7 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION YOUR ISSUE MIGHT BE CLOSED WITHO
 
 ### Versions.
 <!--
-Output from: `ng --version`.
+Output from: `sr --version`.
 If nothing, output from: `node --version` and `npm --version`.
   Windows (7/8/10). Linux (incl. distribution). macOS (El Capitan? Sierra?)
 -->

@@ -1,0 +1,38 @@
+{
+  "name": "@speedray/cli",
+  "version": "1.2.1",
+  "description": "CLI tool for Angular with D2Clouds extensions",
+  "main": "lib/cli/index.js",
+  "trackingCode": "UA-8594346-19",
+  "bin": {
+    "sr": "./bin/sr"
+  },
+  "keywords": [
+    "angular",
+    "angular-cli",
+    "Angular CLI",
+    "Speedray CLI",
+    "Liferay",
+    "DXP"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d2clouds/speedray-cli.git"
+  },
+  "engines": {
+    "node": ">= 6.9.0",
+    "npm": ">= 3.0.0"
+  },
+  "author": "Angular Authors and D2Clouds Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d2clouds/speedray-cli/issues"
+  },
+  "homepage": "https://github.com/d2clouds/speedray-cli",
+  "dependencies": {
+    "@angular/cli": "1.2.0",
+    "opn": "4.0.2"
+  },
+  "optionalDependencies": {
+  }
+}

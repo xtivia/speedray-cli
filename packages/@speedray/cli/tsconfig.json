@@ -1,0 +1,13 @@
+{
+  "extends": "../../../tsconfig.json",
+
+  "compilerOptions": {
+    "outDir": "../../../dist/@speedray/cli",
+    "rootDir": ".",
+    "baseUrl": "",
+    "paths": {
+      "@ngtools/json-schema": [ "@ngtools/json-schema/src" ],
+      "@ngtools/webpack": [ "@ngtools/webpack/src" ]
+    }
+  }
+}

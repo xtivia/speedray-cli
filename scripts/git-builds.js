@@ -111,7 +111,7 @@ function main() {
   const message = cliExec.git('log', '--format=%h %s', '-n', '1');
   const hash = message.split(' ')[0];
 
-  console.log(green('Copying ng-tools-webpack-builds dist'));
+  console.log(green('Copying sr-tools-webpack-builds dist'));
   ngToolsWebpackBuildsExec.git('checkout', '-B', branchName);
   ngToolsWebpackBuildsExec.rm('-rf', ...ngToolsWebpackBuildsExec.glob('*'));
   cliExec.cp('dist/@ngtools/webpack', ngToolsWebpackBuildsRoot);
