@@ -1,4 +1,4 @@
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {deleteFile, expectFileToExist, moveFile, symlinkFile} from '../../utils/fs';
 
 
@@ -7,7 +7,7 @@ export default function() {
   return Promise.resolve()
     .then(() => moveFile('node_modules', '../node_modules'))
     .then(() => symlinkFile('../node_modules', 'node_modules', 'dir'))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => expectFileToExist('dist/vendor.bundle.js'))
     // Cleanup
     .then(() => {

@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { replaceInFile } from '../../utils/fs';
 import { getGlobalVariable } from '../../utils/env';
 
@@ -23,5 +23,5 @@ export default function () {
         },
         coverageIstanbulReporter: {
       `))
-    .then(() => ng('test', '--single-run'));
+    .then(() => sr('test', '--single-run'));
 }

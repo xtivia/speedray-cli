@@ -138,7 +138,7 @@ export function silentExecAndWaitForOutputToMatch(cmd: string, args: string[], m
 
 
 let npmInstalledEject = false;
-export function ng(...args: string[]) {
+export function sr(...args: string[]) {
   const argv = getGlobalVariable('argv');
   const maybeSilentNg = argv['nosilent'] ? noSilentNg : silentNg;
   if (['build', 'serve', 'test', 'e2e', 'xi18n'].indexOf(args[0]) != -1) {
@@ -167,11 +167,11 @@ export function ng(...args: string[]) {
 }
 
 export function noSilentNg(...args: string[]) {
-  return _exec({}, 'ng', args);
+  return _exec({}, 'sr', args);
 }
 
 export function silentNg(...args: string[]) {
-  return _exec({silent: true}, 'ng', args);
+  return _exec({silent: true}, 'sr', args);
 }
 
 export function silentNpm(...args: string[]) {

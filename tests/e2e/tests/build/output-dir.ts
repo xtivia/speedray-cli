@@ -1,7 +1,7 @@
 import {getGlobalVariable} from '../../utils/env';
 import {expectFileToExist} from '../../utils/fs';
 import {expectGitToBeClean} from '../../utils/git';
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {updateJsonFile} from '../../utils/project';
 import {expectToFail} from '../../utils/utils';
 
@@ -12,7 +12,7 @@ export default function() {
     return Promise.resolve();
   }
 
-  return ng('build', '-op', './build-output')
+  return sr('build', '-op', './build-output')
     .then(() => expectFileToExist('./build-output/index.html'))
     .then(() => expectFileToExist('./build-output/main.bundle.js'))
     .then(() => expectToFail(expectGitToBeClean))
@@ -20,7 +20,7 @@ export default function() {
       const app = configJson['apps'][0];
       app['outDir'] = 'config-build-output';
     }))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => expectFileToExist('./config-build-output/index.html'))
     .then(() => expectFileToExist('./config-build-output/main.bundle.js'))
     .then(() => expectToFail(expectGitToBeClean));

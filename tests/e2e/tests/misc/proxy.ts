@@ -3,7 +3,7 @@ import * as http from 'http';
 
 import {writeFile} from '../../utils/fs';
 import {request} from '../../utils/http';
-import {killAllProcesses, ng} from '../../utils/process';
+import {killAllProcesses, sr} from '../../utils/process';
 import {ngServe} from '../../utils/project';
 import {expectToFail} from '../../utils/utils';
 
@@ -42,5 +42,5 @@ export default function() {
     .then(() => killAllProcesses(), (err) => { killAllProcesses(); throw err; })
 
     // A non-existing proxy file should error.
-    .then(() => expectToFail(() => ng('serve', '--proxy', 'proxy.non-existent.json')));
+    .then(() => expectToFail(() => sr('serve', '--proxy', 'proxy.non-existent.json')));
 }

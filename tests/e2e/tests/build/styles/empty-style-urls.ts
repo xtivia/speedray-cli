@@ -1,5 +1,5 @@
 import { writeMultipleFiles } from '../../../utils/fs';
-import { ng } from '../../../utils/process';
+import { sr } from '../../../utils/process';
 
 
 export default function () {
@@ -20,5 +20,5 @@ export default function () {
         }
       `
     }))
-    .then(() => ng('build'));
+    .then(() => sr('build'));
 }

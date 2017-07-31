@@ -9,7 +9,7 @@ import {expectToFail, wait} from '../../utils/utils';
 const webpackGoodRegEx = /webpack: Compiled successfully./;
 
 export default function() {
-  return silentExecAndWaitForOutputToMatch('ng', ['serve', '--poll=10000'], webpackGoodRegEx)
+  return silentExecAndWaitForOutputToMatch('sr', ['serve', '--poll=10000'], webpackGoodRegEx)
     // Wait before editing a file.
     // Editing too soon seems to trigger a rebuild and throw polling out of whack.
     .then(() => wait(2000))

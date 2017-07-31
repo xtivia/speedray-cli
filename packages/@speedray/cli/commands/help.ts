@@ -30,31 +30,11 @@ const HelpCommand = Command.extend({
       return acc;
     }, {});
 
-    let angularPath = path.join(path.dirname(require.resolve('@angular/cli')), '../../commands');
-
-    let angularCommandFiles = fs.readdirSync(angularPath)
-      // Remove files that are not JavaScript or Typescript
-      .filter(file => file.match(/\.(j|t)s$/) && !file.match(/\.d.ts$/))
-      .map(file => path.parse(file).name)
-      .map(file => file.toLowerCase());
-
-    let angularCommandMap = angularCommandFiles.reduce((acc: any, curr: string) => {
-      let classifiedName = stringUtils.classify(curr);
-      let defaultImport = require(path.join(angularPath, `${curr}`)).default;
-
-      acc[classifiedName] = defaultImport;
-
-      return acc;
-    }, {});
-
-    let combinedCommandMap = {...commandMap, ...angularCommandMap};
-    let combinedCommandFiles = Array.from(new Set(commandFiles.concat(angularCommandFiles)));
-
     if (rawArgs.indexOf('all') !== -1) {
       rawArgs = []; // just act as if command not specified
     }
 
-    combinedCommandFiles.forEach(cmd => {
+    commandFiles.forEach(cmd => {
       const Command = lookupCommand(commandMap, cmd);
 
       const command = new Command({

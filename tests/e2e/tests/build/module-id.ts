@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { replaceInFile } from '../../utils/fs';
 import { getGlobalVariable } from '../../utils/env';
 
@@ -13,5 +13,5 @@ export default function() {
     .then(() => replaceInFile('src/app/app.component.ts',
       '@Component({',
       '@Component({ moduleId: module.id,'))
-    .then(() => ng('build'));
+    .then(() => sr('build'));
 }

@@ -1,19 +1,19 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { ng, setupProject } from '../helpers';
+import { sr, setupProject } from '../helpers';
 
 const root = process.cwd();
 
-describe('Acceptance: ng generate guard', function () {
+describe('Acceptance: sr generate guard', function () {
   setupProject();
 
-  it('ng generate guard my-guard', (done) => {
+  it('sr generate guard my-guard', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-guard.guard.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-guard.guard.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'guard', 'my-guard'])
+    return sr(['generate', 'guard', 'my-guard'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(true);
@@ -26,13 +26,13 @@ describe('Acceptance: ng generate guard', function () {
       .then(done, done.fail);
   });
 
-  it('ng generate guard my-guard --no-spec', (done) => {
+  it('sr generate guard my-guard --no-spec', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-guard.guard.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-guard.guard.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'guard', 'my-guard', '--no-spec'])
+    return sr(['generate', 'guard', 'my-guard', '--no-spec'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(false);
@@ -45,24 +45,24 @@ describe('Acceptance: ng generate guard', function () {
       .then(done, done.fail);
   });
 
-  it('ng generate guard test' + path.sep + 'my-guard', (done) => {
+  it('sr generate guard test' + path.sep + 'my-guard', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'guard', 'test' + path.sep + 'my-guard']).then(() => {
+    return sr(['generate', 'guard', 'test' + path.sep + 'my-guard']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-guard.guard.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate guard test' + path.sep + '..' + path.sep + 'my-guard', (done) => {
-    return ng(['generate', 'guard', 'test' + path.sep + '..' + path.sep + 'my-guard']).then(() => {
+  it('sr generate guard test' + path.sep + '..' + path.sep + 'my-guard', (done) => {
+    return sr(['generate', 'guard', 'test' + path.sep + '..' + path.sep + 'my-guard']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-guard.guard.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate guard my-guard from a child dir', (done) => {
+  it('sr generate guard my-guard from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -72,7 +72,7 @@ describe('Acceptance: ng generate guard', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'guard', 'my-guard']);
+        return sr(['generate', 'guard', 'my-guard']);
       })
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-guard.guard.ts');
@@ -81,7 +81,7 @@ describe('Acceptance: ng generate guard', function () {
       .then(done, done.fail);
   });
 
-  it('ng generate guard child-dir' + path.sep + 'my-guard from a child dir', (done) => {
+  it('sr generate guard child-dir' + path.sep + 'my-guard from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'child-dir'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -91,7 +91,7 @@ describe('Acceptance: ng generate guard', function () {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'guard', 'child-dir' + path.sep + 'my-guard']);
+        return sr(['generate', 'guard', 'child-dir' + path.sep + 'my-guard']);
       })
       .then(() => {
         const testPath = path.join(
@@ -101,7 +101,7 @@ describe('Acceptance: ng generate guard', function () {
       .then(done, done.fail);
   });
 
-  it('ng generate guard child-dir' + path.sep + '..' + path.sep + 'my-guard from a child dir',
+  it('sr generate guard child-dir' + path.sep + '..' + path.sep + 'my-guard from a child dir',
     (done) => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
       return new Promise(function (resolve) {
@@ -112,7 +112,7 @@ describe('Acceptance: ng generate guard', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(
+          return sr(
             ['generate', 'guard', 'child-dir' + path.sep + '..' + path.sep + 'my-guard']);
         })
         .then(() => {
@@ -123,7 +123,7 @@ describe('Acceptance: ng generate guard', function () {
         .then(done, done.fail);
     });
 
-  it('ng generate guard ' + path.sep + 'my-guard from a child dir, gens under ' +
+  it('sr generate guard ' + path.sep + 'my-guard from a child dir, gens under ' +
     path.join('src', 'app'),
     (done) => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
@@ -135,7 +135,7 @@ describe('Acceptance: ng generate guard', function () {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'guard', path.sep + 'my-guard']);
+          return sr(['generate', 'guard', path.sep + 'my-guard']);
         })
         .then(() => {
           const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-guard.guard.ts');
@@ -144,8 +144,8 @@ describe('Acceptance: ng generate guard', function () {
         .then(done, done.fail);
     });
 
-  it('ng generate guard ..' + path.sep + 'my-guard from root dir will fail', (done) => {
-    return ng(['generate', 'guard', '..' + path.sep + 'my-guard'])
+  it('sr generate guard ..' + path.sep + 'my-guard from root dir will fail', (done) => {
+    return sr(['generate', 'guard', '..' + path.sep + 'my-guard'])
       .then(() => done.fail())
       .catch(err => {
         // tslint:disable-next-line:max-line-length
@@ -156,7 +156,7 @@ describe('Acceptance: ng generate guard', function () {
 
   it('should error out when given an incorrect module path', (done) => {
     return Promise.resolve()
-      .then(() => ng(['generate', 'guard', 'baz', '--module', 'foo']))
+      .then(() => sr(['generate', 'guard', 'baz', '--module', 'foo']))
       .then(() => done.fail())
       .catch((error) => {
         expect(error).toBe('Specified module does not exist');
@@ -170,7 +170,7 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'guard', 'baz', '--module', 'app.module.ts']))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', 'app.module.ts']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '.\/baz.guard';/);
@@ -184,7 +184,7 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'guard', 'baz', '--module', 'app']))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', 'app']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '.\/baz.guard';/);
@@ -198,8 +198,8 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'guard', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '..\/baz.guard';/);
@@ -213,8 +213,8 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'guard', 'baz', '--module', path.join('foo', 'foo')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', path.join('foo', 'foo')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '..\/baz.guard';/);
@@ -228,8 +228,8 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'guard', 'baz', '--module', 'foo']))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', 'foo']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '..\/baz.guard';/);
@@ -243,9 +243,9 @@ describe('Acceptance: ng generate guard', function () {
       const modulePath = path.join(appRoot, 'src/app/foo/bar/bar.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'module', path.join('foo', 'bar')]))
-        .then(() => ng(['generate', 'guard', 'baz', '--module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'guard', 'baz', '--module', path.join('foo', 'bar')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazGuard.*from '..\/..\/baz.guard';/);

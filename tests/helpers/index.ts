@@ -1,4 +1,4 @@
-const ng: ((parameters: string[]) => Promise<any>) = require('./ng');
+const sr: ((parameters: string[]) => Promise<any>) = require('./sr');
 const tmp = require('./tmp');
 
 export function setupProject() {
@@ -7,7 +7,7 @@ export function setupProject() {
 
     tmp.setup('./tmp')
       .then(() => process.chdir('./tmp'))
-      .then(() => ng(['new', 'foo', '--skip-install']))
+      .then(() => sr(['new', 'foo', '--skip-install']))
       .then(done, done.fail);
   }, 10000);
 
@@ -17,5 +17,5 @@ export function setupProject() {
 }
 
 export {
-  ng
+  sr
 };

@@ -1,5 +1,5 @@
 import { createDir, writeFile } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { expectToFail } from '../../utils/utils';
 import { getGlobalVariable } from '../../utils/env';
 
@@ -25,5 +25,5 @@ export default function () {
     .then(() => createDir('src/app/foo'))
     .then(() => writeFile(fileName, 'const foo = \'\';\n'))
     .then(() => writeFile('src/app/foo/tslint.json', nestedConfigContent))
-    .then(() => expectToFail(() => ng('lint')));
+    .then(() => expectToFail(() => sr('lint')));
 }

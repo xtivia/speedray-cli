@@ -28,8 +28,8 @@ Error.stackTraceLimit = Infinity;
  *   --nobuild        Skip building the packages. Use with --nolink and --reuse to quickly
  *                    rerun tests.
  *   --nolink         Skip linking your local @angular/cli directory. Can save a few seconds.
- *   --nosilent       Never silence ng commands.
- *   --ng-sha=SHA     Use a specific ng-sha. Similar to nightly but point to a master SHA instead
+ *   --nosilent       Never silence sr commands.
+ *   --sr-sha=SHA     Use a specific sr-sha. Similar to nightly but point to a master SHA instead
  *                    of using the latest.
  *   --glob           Run tests matching this glob pattern (relative to tests/e2e/).
  *   --ignore         Ignore tests matching this glob pattern.
@@ -53,7 +53,7 @@ const argv = minimist(process.argv.slice(2), {
     'noproject',
     'verbose',
   ],
-  'string': ['glob', 'ignore', 'reuse', 'ng-sha', ],
+  'string': ['glob', 'ignore', 'reuse', 'sr-sha', ],
   'number': ['nb-shards', 'shard']
 });
 

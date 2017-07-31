@@ -1,20 +1,20 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { ng, setupProject } from '../helpers';
+import { sr, setupProject } from '../helpers';
 
 const root = process.cwd();
 
 
-describe('Acceptance: ng generate service', () => {
+describe('Acceptance: sr generate service', () => {
   setupProject();
 
-  it('ng generate service my-svc', (done) => {
+  it('sr generate service my-svc', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'service', 'my-svc'])
+    return sr(['generate', 'service', 'my-svc'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(true);
@@ -27,13 +27,13 @@ describe('Acceptance: ng generate service', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate service my-svc --no-spec', (done) => {
+  it('sr generate service my-svc --no-spec', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'service', 'my-svc', '--no-spec'])
+    return sr(['generate', 'service', 'my-svc', '--no-spec'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(false);
@@ -46,24 +46,24 @@ describe('Acceptance: ng generate service', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate service test' + path.sep + 'my-svc', (done) => {
+  it('sr generate service test' + path.sep + 'my-svc', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'service', 'test' + path.sep + 'my-svc']).then(() => {
+    return sr(['generate', 'service', 'test' + path.sep + 'my-svc']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-svc.service.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate service test' + path.sep + '..' + path.sep + 'my-svc', (done) => {
-    return ng(['generate', 'service', 'test' + path.sep + '..' + path.sep + 'my-svc']).then(() => {
+  it('sr generate service test' + path.sep + '..' + path.sep + 'my-svc', (done) => {
+    return sr(['generate', 'service', 'test' + path.sep + '..' + path.sep + 'my-svc']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-svc.service.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate service my-svc from a child dir', (done) => {
+  it('sr generate service my-svc from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -73,7 +73,7 @@ describe('Acceptance: ng generate service', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'service', 'my-svc']);
+        return sr(['generate', 'service', 'my-svc']);
       })
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-svc.service.ts');
@@ -82,7 +82,7 @@ describe('Acceptance: ng generate service', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate service child-dir' + path.sep + 'my-svc from a child dir', (done) => {
+  it('sr generate service child-dir' + path.sep + 'my-svc from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'child-dir'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -92,7 +92,7 @@ describe('Acceptance: ng generate service', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'service', 'child-dir' + path.sep + 'my-svc']);
+        return sr(['generate', 'service', 'child-dir' + path.sep + 'my-svc']);
       })
       .then(() => {
         const testPath = path.join(
@@ -102,7 +102,7 @@ describe('Acceptance: ng generate service', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate service child-dir' + path.sep + '..' + path.sep + 'my-svc from a child dir',
+  it('sr generate service child-dir' + path.sep + '..' + path.sep + 'my-svc from a child dir',
     (done) => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
       return new Promise(function (resolve) {
@@ -113,7 +113,7 @@ describe('Acceptance: ng generate service', () => {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(
+          return sr(
             ['generate', 'service', 'child-dir' + path.sep + '..' + path.sep + 'my-svc']);
         })
         .then(() => {
@@ -124,7 +124,7 @@ describe('Acceptance: ng generate service', () => {
         .then(done, done.fail);
     });
 
-  it('ng generate service ' + path.sep + 'my-svc from a child dir, gens under ' +
+  it('sr generate service ' + path.sep + 'my-svc from a child dir, gens under ' +
     path.join('src', 'app'),
     (done) => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
@@ -136,7 +136,7 @@ describe('Acceptance: ng generate service', () => {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'service', path.sep + 'my-svc']);
+          return sr(['generate', 'service', path.sep + 'my-svc']);
         })
         .then(() => {
           const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-svc.service.ts');
@@ -145,8 +145,8 @@ describe('Acceptance: ng generate service', () => {
         .then(done, done.fail);
     });
 
-  it('ng generate service ..' + path.sep + 'my-svc from root dir will fail', (done) => {
-    return ng(['generate', 'service', '..' + path.sep + 'my-svc'])
+  it('sr generate service ..' + path.sep + 'my-svc from root dir will fail', (done) => {
+    return sr(['generate', 'service', '..' + path.sep + 'my-svc'])
       .then(() => done.fail())
       .catch((err: string) => {
         // tslint:disable-next-line:max-line-length
@@ -157,7 +157,7 @@ describe('Acceptance: ng generate service', () => {
 
   it('should error out when given an incorrect module path', (done) => {
     return Promise.resolve()
-      .then(() => ng(['generate', 'service', 'baz', '--module', 'foo']))
+      .then(() => sr(['generate', 'service', 'baz', '--module', 'foo']))
       .then(() => done.fail())
       .catch((error) => {
         expect(error).toBe('Specified module does not exist');
@@ -171,7 +171,7 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'service', 'baz', '--module', 'app.module.ts']))
+        .then(() => sr(['generate', 'service', 'baz', '--module', 'app.module.ts']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazService.*from '.\/baz.service';/);
@@ -185,7 +185,7 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'service', 'baz', '--module', 'app']))
+        .then(() => sr(['generate', 'service', 'baz', '--module', 'app']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazService.*from '.\/baz.service';/);
@@ -199,8 +199,8 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'service', 'baz', '--module',
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'service', 'baz', '--module',
           path.join('foo', 'foo.module.ts')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
@@ -215,8 +215,8 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'service', 'baz', '--module', path.join('foo', 'foo')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'service', 'baz', '--module', path.join('foo', 'foo')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazService.*from '..\/baz.service';/);
@@ -230,8 +230,8 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'service', 'baz', '--module', 'foo']))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'service', 'baz', '--module', 'foo']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazService.*from '..\/baz.service';/);
@@ -245,9 +245,9 @@ describe('Acceptance: ng generate service', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/bar/bar.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'module', path.join('foo', 'bar')]))
-        .then(() => ng(['generate', 'service', 'baz', '--module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'service', 'baz', '--module', path.join('foo', 'bar')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazService.*from '..\/..\/baz.service';/);

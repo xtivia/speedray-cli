@@ -1,5 +1,5 @@
 import { writeMultipleFiles } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { updateJsonFile } from '../../utils/project';
 import { expectToFail } from '../../utils/utils';
 import { getGlobalVariable } from '../../utils/env';
@@ -12,7 +12,7 @@ export default function () {
   }
 
   return Promise.resolve()
-    .then(() => ng('test', '--watch=false'))
+    .then(() => sr('test', '--watch=false'))
     // prepare global scripts test files
     .then(() => writeMultipleFiles({
       'src/string-script.js': `stringScriptGlobal = 'string-scripts.js';`,
@@ -64,7 +64,7 @@ export default function () {
       `
     }))
     // should fail because the global scripts were not added to scripts array
-    .then(() => expectToFail(() => ng('test', '--single-run')))
+    .then(() => expectToFail(() => sr('test', '--single-run')))
     .then(() => updateJsonFile('.angular-cli.json', configJson => {
       const app = configJson['apps'][0];
       app['scripts'] = [
@@ -73,6 +73,6 @@ export default function () {
       ];
     }))
     // should pass now
-    .then(() => ng('test', '--single-run'));
+    .then(() => sr('test', '--single-run'));
 }
 

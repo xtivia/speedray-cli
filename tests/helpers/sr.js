@@ -1,9 +1,9 @@
 'use strict';
 
 const MockUI = require('./mock-ui');
-const cli = require('@angular/cli/lib/cli');
+const cli = require('@speedray/cli/lib/cli');
 
-module.exports = function ng(args) {
+module.exports = function sr(args) {
   process.env.PWD = process.cwd();
 
   return cli({

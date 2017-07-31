@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { expectToFail } from '../../utils/utils';
 import { writeFile } from '../../utils/fs';
 import { getGlobalVariable } from '../../utils/env';
@@ -41,5 +41,5 @@ function check(val: any, fxState: any) {
 
   return Promise.resolve()
     .then(() => writeFile(fileName, fileContents))
-    .then(() => expectToFail(() => ng('lint', '--fix', '--type-check')));
+    .then(() => expectToFail(() => sr('lint', '--fix', '--type-check')));
 }

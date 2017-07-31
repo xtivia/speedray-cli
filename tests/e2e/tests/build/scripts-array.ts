@@ -3,7 +3,7 @@ import {
   expectFileToMatch,
   appendToFile
 } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { updateJsonFile } from '../../utils/project';
 import { oneLineTrim } from 'common-tags';
 
@@ -30,7 +30,7 @@ export default function () {
       ];
       app['styles'] = [{ input: 'common-entry-style.css', output: 'common-entry' }];
     }))
-    .then(() => ng('build', '--extract-css'))
+    .then(() => sr('build', '--extract-css'))
     // files were created successfully
     .then(() => expectFileToMatch('dist/scripts.bundle.js', 'string-script'))
     .then(() => expectFileToMatch('dist/scripts.bundle.js', 'input-script'))

@@ -1,19 +1,19 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { ng, setupProject } from '../helpers';
+import { sr, setupProject } from '../helpers';
 
 const root = process.cwd();
 
 
-describe('Acceptance: ng generate pipe', () => {
+describe('Acceptance: sr generate pipe', () => {
   setupProject();
 
-  it('ng generate pipe my-pipe', (done) => {
+  it('sr generate pipe my-pipe', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
-    return ng(['generate', 'pipe', 'my-pipe'])
+    return sr(['generate', 'pipe', 'my-pipe'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(true);
@@ -26,12 +26,12 @@ describe('Acceptance: ng generate pipe', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate pipe my-pipe --no-spec', (done) => {
+  it('sr generate pipe my-pipe --no-spec', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
 
-    return ng(['generate', 'pipe', 'my-pipe', '--no-spec'])
+    return sr(['generate', 'pipe', 'my-pipe', '--no-spec'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(false);
@@ -39,24 +39,24 @@ describe('Acceptance: ng generate pipe', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate pipe test' + path.sep + 'my-pipe', (done) => {
+  it('sr generate pipe test' + path.sep + 'my-pipe', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'pipe', 'test' + path.sep + 'my-pipe']).then(() => {
+    return sr(['generate', 'pipe', 'test' + path.sep + 'my-pipe']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-pipe.pipe.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate pipe test' + path.sep + '..' + path.sep + 'my-pipe', (done) => {
-    return ng(['generate', 'pipe', 'test' + path.sep + '..' + path.sep + 'my-pipe']).then(() => {
+  it('sr generate pipe test' + path.sep + '..' + path.sep + 'my-pipe', (done) => {
+    return sr(['generate', 'pipe', 'test' + path.sep + '..' + path.sep + 'my-pipe']).then(() => {
       const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-pipe.pipe.ts');
       expect(fs.pathExistsSync(testPath)).toBe(true);
     })
     .then(done, done.fail);
   });
 
-  it('ng generate pipe my-pipe from a child dir', (done) => {
+  it('sr generate pipe my-pipe from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -66,7 +66,7 @@ describe('Acceptance: ng generate pipe', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'my-pipe']);
+        return sr(['generate', 'pipe', 'my-pipe']);
       })
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-pipe.pipe.ts');
@@ -75,7 +75,7 @@ describe('Acceptance: ng generate pipe', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate pipe child-dir' + path.sep + 'my-pipe from a child dir', (done) => {
+  it('sr generate pipe child-dir' + path.sep + 'my-pipe from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'child-dir'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -85,7 +85,7 @@ describe('Acceptance: ng generate pipe', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'child-dir' + path.sep + 'my-pipe']);
+        return sr(['generate', 'pipe', 'child-dir' + path.sep + 'my-pipe']);
       })
       .then(() => {
         const testPath = path.join(
@@ -96,7 +96,7 @@ describe('Acceptance: ng generate pipe', () => {
   });
 
   // tslint:disable-next-line:max-line-length
-  it('ng generate pipe child-dir' + path.sep + '..' + path.sep + 'my-pipe from a child dir', (done) => {
+  it('sr generate pipe child-dir' + path.sep + '..' + path.sep + 'my-pipe from a child dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
     return new Promise(function (resolve) {
       process.chdir('./src');
@@ -106,7 +106,7 @@ describe('Acceptance: ng generate pipe', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'pipe', 'child-dir' + path.sep + '..' + path.sep + 'my-pipe']);
+        return sr(['generate', 'pipe', 'child-dir' + path.sep + '..' + path.sep + 'my-pipe']);
       })
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', '1', 'my-pipe.pipe.ts');
@@ -115,7 +115,7 @@ describe('Acceptance: ng generate pipe', () => {
       .then(done, done.fail);
   });
 
-  it('ng generate pipe ' + path.sep + 'my-pipe from a child dir, gens under ' +
+  it('sr generate pipe ' + path.sep + 'my-pipe from a child dir, gens under ' +
     path.join('src', 'app'),
     (done) => {
       fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', '1'));
@@ -127,7 +127,7 @@ describe('Acceptance: ng generate pipe', () => {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'pipe', path.sep + 'my-pipe']);
+          return sr(['generate', 'pipe', path.sep + 'my-pipe']);
         })
         .then(() => {
           const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-pipe.pipe.ts');
@@ -136,8 +136,8 @@ describe('Acceptance: ng generate pipe', () => {
       .then(done, done.fail);
     });
 
-  it('ng generate pipe ..' + path.sep + 'my-pipe from root dir will fail', (done) => {
-    return ng(['generate', 'pipe', '..' + path.sep + 'my-pipe'])
+  it('sr generate pipe ..' + path.sep + 'my-pipe from root dir will fail', (done) => {
+    return sr(['generate', 'pipe', '..' + path.sep + 'my-pipe'])
       .then(() => done.fail())
       .catch(err => {
       // tslint:disable-next-line:max-line-length
@@ -148,7 +148,7 @@ describe('Acceptance: ng generate pipe', () => {
 
   it('should error out when given an incorrect module path', (done) => {
     return Promise.resolve()
-      .then(() => ng(['generate', 'pipe', 'baz', '--module', 'foo']))
+      .then(() => sr(['generate', 'pipe', 'baz', '--module', 'foo']))
       .then(() => done.fail())
       .catch((error) => {
         expect(error).toBe('Specified module does not exist');
@@ -162,7 +162,7 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', 'app.module.ts']))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', 'app.module.ts']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '.\/baz.pipe';/);
@@ -177,7 +177,7 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', 'app']))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', 'app']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '.\/baz.pipe';/);
@@ -192,8 +192,8 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '..\/baz.pipe';/);
@@ -207,8 +207,8 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', path.join('foo', 'foo')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', path.join('foo', 'foo')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '..\/baz.pipe';/);
@@ -222,8 +222,8 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', 'foo']))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', 'foo']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '..\/baz.pipe';/);
@@ -237,9 +237,9 @@ describe('Acceptance: ng generate pipe', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/bar/bar.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'module', path.join('foo', 'bar')]))
-        .then(() => ng(['generate', 'pipe', 'baz', '--module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'pipe', 'baz', '--module', path.join('foo', 'bar')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazPipe.*from '..\/..\/baz.pipe';/);

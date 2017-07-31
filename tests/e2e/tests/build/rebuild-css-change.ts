@@ -19,7 +19,7 @@ export default function() {
   }
 
 
-  return silentExecAndWaitForOutputToMatch('ng', ['serve'], webpackGoodRegEx)
+  return silentExecAndWaitForOutputToMatch('sr', ['serve'], webpackGoodRegEx)
     // Should trigger a rebuild.
     .then(() => exec('touch', 'src/main.ts'))
     .then(() => waitForAnyProcessOutputToMatch(webpackGoodRegEx, 10000))

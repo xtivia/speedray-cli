@@ -1,5 +1,5 @@
 const Command = require('../ember-cli/lib/models/command');
-import { DocTask } from '../tasks/doc';
+import { DocTask } from '@angular/cli/tasks/doc';
 
 export interface DocOptions {
   search?: boolean;

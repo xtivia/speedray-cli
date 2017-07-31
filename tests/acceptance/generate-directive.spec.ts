@@ -1,15 +1,15 @@
 // tslint:disable:max-line-length
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { ng, setupProject } from '../helpers';
+import { sr, setupProject } from '../helpers';
 
 const root = process.cwd();
 
-describe('Acceptance: ng generate directive', () => {
+describe('Acceptance: sr generate directive', () => {
   setupProject();
 
   it('flat', (done) => {
-    return ng(['generate', 'directive', 'flat'])
+    return sr(['generate', 'directive', 'flat'])
       .then(() => {
         const testPath = path.join(root, 'tmp/foo/src/app/flat.directive.ts');
         expect(fs.pathExistsSync(testPath)).toBe(true);
@@ -23,7 +23,7 @@ describe('Acceptance: ng generate directive', () => {
     const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
-    return ng(['generate', 'directive', 'my-dir', '--flat', 'false'])
+    return sr(['generate', 'directive', 'my-dir', '--flat', 'false'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(true);
@@ -41,7 +41,7 @@ describe('Acceptance: ng generate directive', () => {
     const testPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.ts');
     const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
 
-    return ng(['generate', 'directive', 'my-dir', '--flat', 'false', '--no-spec'])
+    return sr(['generate', 'directive', 'my-dir', '--flat', 'false', '--no-spec'])
       .then(() => {
         expect(fs.pathExistsSync(testPath)).toBe(true);
         expect(fs.pathExistsSync(testSpecPath)).toBe(false);
@@ -51,7 +51,7 @@ describe('Acceptance: ng generate directive', () => {
 
   it('test' + path.sep + 'my-dir', (done) => {
     fs.mkdirsSync(path.join(root, 'tmp', 'foo', 'src', 'app', 'test'));
-    return ng(['generate', 'directive', 'test' + path.sep + 'my-dir', '--flat', 'false'])
+    return sr(['generate', 'directive', 'test' + path.sep + 'my-dir', '--flat', 'false'])
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'test', 'my-dir', 'my-dir.directive.ts');
         expect(fs.pathExistsSync(testPath)).toBe(true);
@@ -60,7 +60,7 @@ describe('Acceptance: ng generate directive', () => {
   });
 
   it('test' + path.sep + '..' + path.sep + 'my-dir', (done) => {
-    return ng(['generate', 'directive', 'test' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false'])
+    return sr(['generate', 'directive', 'test' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false'])
       .then(() => {
         const testPath = path.join(root, 'tmp', 'foo', 'src', 'app', 'my-dir', 'my-dir.directive.ts');
         expect(fs.pathExistsSync(testPath)).toBe(true);
@@ -78,7 +78,7 @@ describe('Acceptance: ng generate directive', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'directive', 'my-dir', '--flat', 'false']);
+        return sr(['generate', 'directive', 'my-dir', '--flat', 'false']);
       })
       .then(() => {
         const testPath =
@@ -98,7 +98,7 @@ describe('Acceptance: ng generate directive', () => {
       .then(() => process.chdir('./1'))
       .then(() => {
         process.env.CWD = process.cwd();
-        return ng(['generate', 'directive', 'child-dir' + path.sep + 'my-dir', '--flat', 'false']);
+        return sr(['generate', 'directive', 'child-dir' + path.sep + 'my-dir', '--flat', 'false']);
       })
       .then(() => {
         const testPath = path.join(
@@ -119,7 +119,7 @@ describe('Acceptance: ng generate directive', () => {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'directive', 'child-dir' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false']);
+          return sr(['generate', 'directive', 'child-dir' + path.sep + '..' + path.sep + 'my-dir', '--flat', 'false']);
         })
         .then(() => {
           const testPath =
@@ -141,7 +141,7 @@ describe('Acceptance: ng generate directive', () => {
         .then(() => process.chdir('./1'))
         .then(() => {
           process.env.CWD = process.cwd();
-          return ng(['generate', 'directive', path.sep + 'my-dir', '--flat', 'false']);
+          return sr(['generate', 'directive', path.sep + 'my-dir', '--flat', 'false']);
         })
         .then(() => {
           const testPath =
@@ -152,7 +152,7 @@ describe('Acceptance: ng generate directive', () => {
     });
 
   it('..' + path.sep + 'my-dir from root dir will fail', (done) => {
-    return ng(['generate', 'directive', '..' + path.sep + 'my-dir'])
+    return sr(['generate', 'directive', '..' + path.sep + 'my-dir'])
       .then(() => done.fail())
       .catch((err) => {
         expect(err).toBe(`Invalid path: "..${path.sep}my-dir" cannot be above the "src${path.sep}app" directory`);
@@ -163,7 +163,7 @@ describe('Acceptance: ng generate directive', () => {
   it('converts dash-cased-name to a camelCasedSelector', (done) => {
     const appRoot = path.join(root, 'tmp/foo');
     const directivePath = path.join(appRoot, 'src/app/my-dir.directive.ts');
-    return ng(['generate', 'directive', 'my-dir'])
+    return sr(['generate', 'directive', 'my-dir'])
       .then(() => fs.readFile(directivePath, 'utf-8'))
       .then(content => {
         // expect(content).toMatch(/selector: [app-my-dir]/m);
@@ -174,7 +174,7 @@ describe('Acceptance: ng generate directive', () => {
 
   it('should error out when given an incorrect module path', (done) => {
     return Promise.resolve()
-      .then(() => ng(['generate', 'directive', 'baz', '--module', 'foo']))
+      .then(() => sr(['generate', 'directive', 'baz', '--module', 'foo']))
       .then(() => done.fail())
       .catch((error) => {
         expect(error).toBe('Specified module does not exist');
@@ -188,7 +188,7 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'directive', 'baz', '--module', 'app.module.ts']))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', 'app.module.ts']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '.\/baz.directive';/);
@@ -202,7 +202,7 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/app.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'directive', 'baz', '--module', 'app']))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', 'app']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '.\/baz.directive';/);
@@ -216,8 +216,8 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'directive', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', path.join('foo', 'foo.module.ts')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '..\/baz.directive';/);
@@ -231,8 +231,8 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'directive', 'baz', '--module', path.join('foo', 'foo')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', path.join('foo', 'foo')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '..\/baz.directive';/);
@@ -246,8 +246,8 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/foo.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'directive', 'baz', '--module', 'foo']))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', 'foo']))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '..\/baz.directive';/);
@@ -261,9 +261,9 @@ describe('Acceptance: ng generate directive', () => {
       const modulePath = path.join(appRoot, 'src/app/foo/bar/bar.module.ts');
 
       return Promise.resolve()
-        .then(() => ng(['generate', 'module', 'foo']))
-        .then(() => ng(['generate', 'module', path.join('foo', 'bar')]))
-        .then(() => ng(['generate', 'directive', 'baz', '--module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'module', 'foo']))
+        .then(() => sr(['generate', 'module', path.join('foo', 'bar')]))
+        .then(() => sr(['generate', 'directive', 'baz', '--module', path.join('foo', 'bar')]))
         .then(() => fs.readFile(modulePath, 'utf-8'))
         .then(content => {
           expect(content).toMatch(/import.*BazDirective.*from '..\/..\/baz.directive';/);

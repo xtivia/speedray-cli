@@ -1,8 +1,8 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { oneLine } from 'common-tags';
 
 export default function () {
-  return ng('lint')
+  return sr('lint')
     .then(({ stdout }) => {
       if (!stdout.match(/All files pass linting\./)) {
         throw new Error(oneLine`

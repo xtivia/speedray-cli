@@ -1,5 +1,5 @@
 import {readFile, writeFile} from './fs';
-import {silentExecAndWaitForOutputToMatch, silentNpm, ng} from './process';
+import {silentExecAndWaitForOutputToMatch, silentNpm, sr} from './process';
 import {getGlobalVariable} from './env';
 
 const packages = require('../../../lib/packages').packages;
@@ -25,7 +25,7 @@ export function updateTsConfig(fn: (json: any) => any | void) {
 
 
 export function ngServe(...args: string[]) {
-  return silentExecAndWaitForOutputToMatch('ng',
+  return silentExecAndWaitForOutputToMatch('sr',
     ['serve', ...args],
     /webpack: bundle is now VALID|webpack: Compiled successfully./);
 }
@@ -36,7 +36,7 @@ export function createProject(name: string, ...args: string[]) {
 
   return Promise.resolve()
     .then(() => process.chdir(getGlobalVariable('tmp-root')))
-    .then(() => ng('new', name, '--skip-install', ...args))
+    .then(() => sr('new', name, '--skip-install', ...args))
     .then(() => process.chdir(name))
     .then(() => updateJsonFile('package.json', json => {
       Object.keys(packages).forEach(pkgName => {
@@ -45,8 +45,8 @@ export function createProject(name: string, ...args: string[]) {
     }))
     .then(() => argv['ng2'] ? useNg2() : Promise.resolve())
     .then(() => {
-      if (argv.nightly || argv['ng-sha']) {
-        const label = argv['ng-sha'] ? `#2.0.0-${argv['ng-sha']}` : '';
+      if (argv.nightly || argv['sr-sha']) {
+        const label = argv['sr-sha'] ? `#2.0.0-${argv['sr-sha']}` : '';
         return updateJsonFile('package.json', json => {
           // Install over the project with nightly builds.
           Object.keys(json['dependencies'] || {})

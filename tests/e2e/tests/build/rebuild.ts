@@ -3,7 +3,7 @@ import {
   exec,
   waitForAnyProcessOutputToMatch,
   silentExecAndWaitForOutputToMatch,
-  ng,
+  sr,
 } from '../../utils/process';
 import {writeFile, writeMultipleFiles} from '../../utils/fs';
 import {wait} from '../../utils/utils';
@@ -25,7 +25,7 @@ export default function() {
   let oldNumberOfChunks = 0;
   const chunkRegExp = /chunk\s+\{/g;
 
-  return silentExecAndWaitForOutputToMatch('ng', ['serve'], validBundleRegEx)
+  return silentExecAndWaitForOutputToMatch('sr', ['serve'], validBundleRegEx)
     // Should trigger a rebuild.
     .then(() => exec('touch', 'src/main.ts'))
     .then(() => waitForAnyProcessOutputToMatch(invalidBundleRegEx, 10000))
@@ -35,7 +35,7 @@ export default function() {
       oldNumberOfChunks = stdout.split(chunkRegExp).length;
     })
     // Add a lazy module.
-    .then(() => ng('generate', 'module', 'lazy', '--routing'))
+    .then(() => sr('generate', 'module', 'lazy', '--routing'))
     // Just wait for the rebuild, otherwise we might be validating the last build.
     .then(() => waitForAnyProcessOutputToMatch(validBundleRegEx, 10000))
     .then(() => writeFile('src/app/app.module.ts', `

@@ -1,4 +1,4 @@
-import {ng} from '../../../utils/process';
+import {sr} from '../../../utils/process';
 import {updateJsonFile} from '../../../utils/project';
 import {expectToFail} from '../../../utils/utils';
 
@@ -8,9 +8,9 @@ export default function() {
       const app = configJson['apps'][0];
       app['outDir'] = './';
     }))
-    .then(() => expectToFail(() => ng('build')))
-    .then(() => expectToFail(() => ng('serve')))
-    .then(() => expectToFail(() => ng('eject')));
+    .then(() => expectToFail(() => sr('build')))
+    .then(() => expectToFail(() => sr('serve')))
+    .then(() => expectToFail(() => sr('eject')));
 }
 
 

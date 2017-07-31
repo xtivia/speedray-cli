@@ -4,7 +4,7 @@ import {
   replaceInFile,
   createDir
 } from '../../../utils/fs';
-import { ng } from '../../../utils/process';
+import { sr } from '../../../utils/process';
 import { updateJsonFile } from '../../../utils/project';
 
 export default function () {
@@ -47,12 +47,12 @@ export default function () {
       };
     }))
     // files were created successfully
-    .then(() => ng('build', '--extract-css'))
+    .then(() => sr('build', '--extract-css'))
     .then(() => expectFileToMatch('dist/styles.bundle.css', /h1\s*{\s*color: red;\s*}/))
     .then(() => expectFileToMatch('dist/main.bundle.js', /h2.*{.*color: red;.*}/))
     .then(() => expectFileToMatch('dist/styles.bundle.css', /h3\s*{\s*color: #008000;\s*}/))
     .then(() => expectFileToMatch('dist/main.bundle.js', /h4.*{.*color: #008000;.*}/))
-    .then(() => ng('build', '--extract-css', '--aot'))
+    .then(() => sr('build', '--extract-css', '--aot'))
     .then(() => expectFileToMatch('dist/styles.bundle.css', /h1\s*{\s*color: red;\s*}/))
     .then(() => expectFileToMatch('dist/main.bundle.js', /h2.*{.*color: red;.*}/))
     .then(() => expectFileToMatch('dist/styles.bundle.css', /h3\s*{\s*color: #008000;\s*}/))

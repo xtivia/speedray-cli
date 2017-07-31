@@ -1,5 +1,5 @@
 import { prependToFile, writeMultipleFiles } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 
 
 export default async function () {
@@ -16,6 +16,6 @@ export default async function () {
 
   await prependToFile('src/app/app.module.ts', `import './bar';\n`);
 
-  await ng('build');
-  await ng('build', '--aot');
+  await sr('build');
+  await sr('build', '--aot');
 }

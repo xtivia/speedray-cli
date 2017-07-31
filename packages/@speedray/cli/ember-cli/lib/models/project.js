@@ -345,7 +345,7 @@ class Project {
     @return {Array} List of paths
    */
   blueprintLookupPaths() {
-    return [this.localBlueprintLookupPath()];
+    return [this.localBlueprintLookupPath(), path.join(path.dirname(require.resolve('@angular/cli')), '..', '..', 'blueprints')];
   }
 
   /**

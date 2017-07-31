@@ -2,7 +2,7 @@ import { SpeedrayDeployOptions } from '../models/deploy-options';
 import { Version } from '@angular/cli/upgrade/version';
 import { baseJarCommandOptions } from './jar';
 
-const Command = require('@angular/cli/ember-cli/lib/models/command');
+const Command = require('../ember-cli/lib/models/command');
 
 // defaults for BuildOptions
 export const baseDeployCommandOptions: any = baseJarCommandOptions.concat([

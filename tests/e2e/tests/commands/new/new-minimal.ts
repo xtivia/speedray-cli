@@ -1,4 +1,4 @@
-import {ng} from '../../../utils/process';
+import {sr} from '../../../utils/process';
 import {createProject} from '../../../utils/project';
 import {expectFileNotToExist, expectFileToMatch} from '../../../utils/fs';
 import {expectToFail} from '../../../utils/utils';
@@ -24,5 +24,5 @@ export default function() {
     .then(() => expectToFail(() => expectFileToMatch('package.json', '"jasmine-core":')))
 
     // Try to run a build.
-    .then(() => ng('build'));
+    .then(() => sr('build'));
 }

@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { writeFile } from '../../utils/fs';
 import { getGlobalVariable } from '../../utils/env';
 
@@ -40,8 +40,8 @@ function check(val: any, fxState: any) {
 
   return Promise.resolve()
     .then(() => writeFile(fileName, fileContents))
-    .then(() => ng('lint', '--fix'))
-    .then(() => ng('lint'))
+    .then(() => sr('lint', '--fix'))
+    .then(() => sr('lint'))
     .then(({ stdout }) => {
       if (!stdout.match(/All files pass linting./)) {
         throw new Error('All files pass linting.');

@@ -1,5 +1,5 @@
 import { createDir, moveFile } from '../../utils/fs';
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 
 export default async function () {
   await createDir('node_modules/@angular/cli/node_modules');
@@ -8,5 +8,5 @@ export default async function () {
     'node_modules/@angular/cli/node_modules/@ngtools'
   );
 
-  await ng('build');
+  await sr('build');
 }

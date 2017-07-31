@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { readFile, writeFile } from '../../utils/fs';
 
 export default function () {
@@ -6,7 +6,7 @@ export default function () {
 
   return Promise.resolve()
     .then(() => writeFile(fileName, 'const foo = "";\n'))
-    .then(() => ng('lint', '--fix', '--force'))
+    .then(() => sr('lint', '--fix', '--force'))
     .then(() => readFile(fileName))
     .then(content => {
       if (!content.match(/const foo = '';/)) {

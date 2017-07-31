@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {git, ng, silentNpm} from '../utils/process';
+import {git, sr, silentNpm} from '../utils/process';
 import {expectFileToExist, replaceInFile} from '../utils/fs';
 import {updateTsConfig, updateJsonFile, useNg2} from '../utils/project';
 import {gitClean, gitCommit} from '../utils/git';
@@ -24,7 +24,7 @@ export default function() {
   } else {
     // Otherwise create a project from scratch.
     createProject = Promise.resolve()
-      .then(() => ng('new', 'test-project', '--skip-install'))
+      .then(() => sr('new', 'test-project', '--skip-install'))
       .then(() => expectFileToExist(join(process.cwd(), 'test-project')))
       .then(() => process.chdir('./test-project'));
   }
@@ -48,8 +48,8 @@ export default function() {
       `))
     .then(() => argv['ng2'] ? useNg2() : Promise.resolve())
     .then(() => {
-      if (argv['nightly'] || argv['ng-sha']) {
-        const label = argv['ng-sha'] ? `#2.0.0-${argv['ng-sha']}` : '';
+      if (argv['nightly'] || argv['sr-sha']) {
+        const label = argv['sr-sha'] ? `#2.0.0-${argv['sr-sha']}` : '';
         return updateJsonFile('package.json', json => {
           // Install over the project with nightly builds.
           Object.keys(json['dependencies'] || {})
@@ -77,7 +77,7 @@ export default function() {
       }
     })
     .then(() => updateJsonFile('.angular-cli.json', configJson => {
-      // Auto-add some flags to ng commands that build or test the app.
+      // Auto-add some flags to sr commands that build or test the app.
       // --no-progress disables progress logging, which in CI logs thousands of lines.
       // --no-sourcemaps disables sourcemaps, making builds faster.
       // We add these flags before other args so that they can be overriden.

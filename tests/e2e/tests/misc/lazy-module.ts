@@ -1,7 +1,7 @@
 import {readdirSync} from 'fs';
 import {oneLine} from 'common-tags';
 
-import {ng, npm} from '../../utils/process';
+import {sr, npm} from '../../utils/process';
 import {addImportToModule} from '../../utils/ast';
 import {appendToFile, writeFile} from '../../utils/fs';
 
@@ -9,14 +9,14 @@ import {appendToFile, writeFile} from '../../utils/fs';
 export default function() {
   let oldNumberOfFiles = 0;
   return Promise.resolve()
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => oldNumberOfFiles = readdirSync('dist').length)
-    .then(() => ng('generate', 'module', 'lazy', '--routing'))
+    .then(() => sr('generate', 'module', 'lazy', '--routing'))
     .then(() => addImportToModule('src/app/app.module.ts', oneLine`
       RouterModule.forRoot([{ path: "lazy", loadChildren: "app/lazy/lazy.module#LazyModule" }]),
       RouterModule.forRoot([{ path: "lazy1", loadChildren: "./lazy/lazy.module#LazyModule" }])
       `, '@angular/router'))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => readdirSync('dist').length)
     .then(currentNumberOfDistFiles => {
       if (oldNumberOfFiles >= currentNumberOfDistFiles) {
@@ -32,7 +32,7 @@ export default function() {
       const lazyFile = 'file';
       System.import('./lazy-' + lazyFile);
     `))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => readdirSync('dist').length)
     .then(currentNumberOfDistFiles => {
       if (oldNumberOfFiles >= currentNumberOfDistFiles) {
@@ -46,7 +46,7 @@ export default function() {
       import * as moment from 'moment';
       console.log(moment);
     `))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => readdirSync('dist').length)
     .then(currentNumberOfDistFiles => {
       if (oldNumberOfFiles != currentNumberOfDistFiles) {
@@ -54,7 +54,7 @@ export default function() {
       }
     })
     // Check for AoT and lazy routes.
-    .then(() => ng('build', '--aot'))
+    .then(() => sr('build', '--aot'))
     .then(() => readdirSync('dist').length)
     .then(currentNumberOfDistFiles => {
       if (oldNumberOfFiles != currentNumberOfDistFiles) {

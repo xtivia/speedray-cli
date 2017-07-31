@@ -1,4 +1,4 @@
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {expectFileToExist} from '../../utils/fs';
 import {expectGitToBeClean} from '../../utils/git';
 import {getGlobalVariable} from '../../utils/env';
@@ -15,7 +15,7 @@ export default function() {
     return Promise.resolve();
   }
 
-  return ng('build', '--stats-json')
+  return sr('build', '--stats-json')
     .then(() => expectFileToExist('./dist/stats.json'))
     .then(() => expectGitToBeClean());
 }

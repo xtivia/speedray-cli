@@ -97,7 +97,7 @@ export default function () {
       `
     }))
     .then(_ => silentExecAndWaitForOutputToMatch(
-      'ng',
+      'sr',
       ['e2e', '--watch', '--live-reload'],
       protractorGoodRegEx
     ))
@@ -117,7 +117,7 @@ export default function () {
     .then(_ => resetApiVars())
     // Serve with live reload off should call api only once.
     .then(_ => silentExecAndWaitForOutputToMatch(
-      'ng',
+      'sr',
       ['e2e', '--watch', '--no-live-reload'],
       protractorGoodRegEx
     ))
@@ -151,7 +151,7 @@ export default function () {
           }
         }`))
     .then(_ => silentExecAndWaitForOutputToMatch(
-      'ng',
+      'sr',
       ['e2e', '--watch', '--host=0.0.0.0', '--port=4200', `--public-host=${publicHost}`, '--proxy', proxyConfigFile],
       protractorGoodRegEx
     ))

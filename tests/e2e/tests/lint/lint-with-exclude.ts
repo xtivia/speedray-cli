@@ -1,4 +1,4 @@
-import { ng } from '../../utils/process';
+import { sr } from '../../utils/process';
 import { writeFile } from '../../utils/fs';
 import { getGlobalVariable } from '../../utils/env';
 import { oneLine } from 'common-tags';
@@ -12,9 +12,9 @@ export default function () {
   const fileName = 'src/app/foo.ts';
 
   return Promise.resolve()
-    .then(() => ng('set', 'lint.0.exclude', '"**/foo.ts"'))
+    .then(() => sr('set', 'lint.0.exclude', '"**/foo.ts"'))
     .then(() => writeFile(fileName, 'const foo = "";\n'))
-    .then(() => ng('lint'))
+    .then(() => sr('lint'))
     .then(({ stdout }) => {
       if (!stdout.match(/All files pass linting\./)) {
         throw new Error(oneLine`

@@ -1,4 +1,4 @@
-import {ng} from '../../utils/process';
+import {sr} from '../../utils/process';
 import {expectFileToExist} from '../../utils/fs';
 import {updateJsonFile} from '../../utils/project';
 import {copyFile} from '../../utils/fs';
@@ -18,6 +18,6 @@ export default function() {
       app['outDir'] = 'config-build-output';
       app['index'] = 'config-index.html';
     }))
-    .then(() => ng('build'))
+    .then(() => sr('build'))
     .then(() => expectFileToExist('./config-build-output/config-index.html'));
 }

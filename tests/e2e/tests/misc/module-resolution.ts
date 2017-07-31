@@ -1,5 +1,5 @@
 import { appendToFile, prependToFile } from '../../utils/fs';
-import { ng, silentNpm } from '../../utils/process';
+import { sr, silentNpm } from '../../utils/process';
 
 
 export default async function () {
@@ -8,6 +8,6 @@ export default async function () {
   await prependToFile('src/app/app.module.ts', 'import * as firebase from \'firebase\';');
   await appendToFile('src/app/app.module.ts', 'firebase.initializeApp({});');
 
-  await ng('build');
-  await ng('build', '--aot');
+  await sr('build');
+  await sr('build', '--aot');
 }

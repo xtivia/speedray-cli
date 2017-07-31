@@ -12,27 +12,27 @@ const path = require('path');
 
 function loadCommands() {
   return {
-    'build': require('@angular/cli/commands/build').default,
-    'serve': require('@angular/cli/commands/serve').default,
-    'eject': require('@angular/cli/commands/eject').default,
-    'new': require('@angular/cli/commands/new').default,
-    'generate': require('@angular/cli/commands/generate').default,
-    'destroy': require('@angular/cli/commands/destroy').default,
-    'test': require('@angular/cli/commands/test').default,
-    'e2e': require('@angular/cli/commands/e2e').default,
+    'build': require('../../commands/build').default,
+    'serve': require('../../commands/serve').default,
+    'eject': require('../../commands/eject').default,
+    'new': require('../../commands/new').default,
+    'generate': require('../../commands/generate').default,
+    'destroy': require('../../commands/destroy').default,
+    'test': require('../../commands/test').default,
+    'e2e': require('../../commands/e2e').default,
     'help': require('../../commands/help').default,
-    'lint': require('@angular/cli/commands/lint').default,
-    'version': require('@angular/cli/commands/version').default,
-    'completion': require('@angular/cli/commands/completion').default,
+    'lint': require('../../commands/lint').default,
+    'version': require('../../commands/version').default,
+    'completion': require('../../commands/completion').default,
     'doc': require('../../commands/doc').default,
-    'xi18n': require('@angular/cli/commands/xi18n').default,
+    'xi18n': require('../../commands/xi18n').default,
 
     // Easter eggs.
-    'make-this-awesome': require('@angular/cli/commands/easter-egg').default,
+    'make-this-awesome': require('../../commands/easter-egg').default,
 
     // Configuration.
-    'set': require('@angular/cli/commands/set').default,
-    'get': require('@angular/cli/commands/get').default,
+    'set': require('../../commands/set').default,
+    'get': require('../../commands/get').default,
 
     // Liferay DXP addons.
     'deploy': require('../../commands/deploy').default,
