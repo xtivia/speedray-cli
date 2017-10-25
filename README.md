@@ -82,15 +82,15 @@ You can find all possible blueprints in the table below:
 
 Scaffold  | Usage
 ---       | ---
-Component | `ng g component my-new-component`
-Directive | `ng g directive my-new-directive`
-Pipe      | `ng g pipe my-new-pipe`
-Service   | `ng g service my-new-service`
-Class     | `ng g class my-new-class`
-Guard     | `ng g guard my-new-guard`
-Interface | `ng g interface my-new-interface`
-Enum      | `ng g enum my-new-enum`
-Module    | `ng g module my-module`
+Component | `sr g component my-new-component`
+Directive | `sr g directive my-new-directive`
+Pipe      | `sr g pipe my-new-pipe`
+Service   | `sr g service my-new-service`
+Class     | `sr g class my-new-class`
+Guard     | `sr g guard my-new-guard`
+Interface | `sr g interface my-new-interface`
+Enum      | `sr g enum my-new-enum`
+Module    | `sr g module my-module`
 
 ### Updating Speedray CLI
 
